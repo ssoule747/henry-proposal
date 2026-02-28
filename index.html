@@ -2809,6 +2809,711 @@
         align-items: center;
       }
 
+      /* ============================================
+         MOBILE SECTION STYLES
+         ============================================ */
+
+      /* ---- Mobile Hero ---- */
+      .m-hero {
+        height: calc(var(--vh, 1vh) * 100);
+        min-height: 600px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 24px;
+        background: var(--henry-dark);
+        position: relative;
+        overflow: hidden;
+      }
+      .m-hero-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+        background: rgba(201,169,110,0.08);
+        border: 1.5px solid rgba(201,169,110,0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-serif);
+        font-size: 22px;
+        color: var(--henry-gold);
+        margin-bottom: 20px;
+      }
+      .m-hero-title {
+        font-family: var(--font-serif);
+        font-size: 36px;
+        color: #fff;
+        margin-bottom: 6px;
+        line-height: 1.1;
+      }
+      .m-hero-subtitle {
+        font-size: 13px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--henry-gold);
+        margin-bottom: 28px;
+      }
+      .m-hero-divider {
+        width: 48px;
+        height: 1px;
+        background: rgba(201,169,110,0.3);
+        margin: 0 auto 28px;
+      }
+      .m-hero-hook {
+        font-family: var(--font-serif);
+        font-size: 18px;
+        line-height: 1.5;
+        color: rgba(255,255,255,0.7);
+        max-width: 320px;
+        margin-bottom: 32px;
+      }
+      .m-hero-meta {
+        font-size: 11px;
+        color: rgba(255,255,255,0.3);
+        letter-spacing: 0.5px;
+      }
+      .m-hero-scroll {
+        position: absolute;
+        bottom: 32px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        color: rgba(255,255,255,0.25);
+        font-size: 10px;
+        letter-spacing: 1px;
+      }
+      .m-hero-scroll-arrow {
+        font-size: 14px;
+        animation: m-bounce 2s ease-in-out infinite;
+      }
+      @keyframes m-bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(4px); }
+      }
+
+      /* ---- Mobile Stat Cards (Challenge) ---- */
+      .m-stat-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 24px;
+      }
+      .m-stat-card {
+        background: rgba(91,155,173,0.04);
+        border: 1px solid rgba(91,155,173,0.1);
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+      }
+      .m-stat-card-emphasized {
+        background: rgba(91,155,173,0.08);
+        border-color: rgba(91,155,173,0.2);
+      }
+      .m-stat-number {
+        font-family: var(--font-serif);
+        font-size: 32px;
+        color: var(--crew-teal);
+        line-height: 1;
+        margin-bottom: 6px;
+      }
+      .m-stat-label {
+        font-size: 13px;
+        color: #777;
+      }
+
+      /* ---- Mobile Divider ---- */
+      .m-divider {
+        display: flex;
+        justify-content: center;
+        padding: 4px 0;
+      }
+      .m-divider-line {
+        width: 48px;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--crew-teal), transparent);
+        opacity: 0.3;
+      }
+
+      /* ---- Mobile Meet Henry ---- */
+      .m-henry-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background: rgba(201,169,110,0.1);
+        border: 1.5px solid rgba(201,169,110,0.25);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-serif);
+        font-size: 20px;
+        color: var(--henry-gold);
+        margin: 0 auto 16px;
+      }
+      .m-henry-title {
+        font-family: var(--font-serif);
+        font-size: 28px;
+        color: #fff;
+        text-align: center;
+        margin-bottom: 6px;
+      }
+      .m-henry-sub {
+        font-size: 13px;
+        color: var(--henry-gold);
+        text-align: center;
+        letter-spacing: 1px;
+        margin-bottom: 20px;
+      }
+      .m-henry-body {
+        font-size: 15px;
+        line-height: 1.7;
+        color: rgba(255,255,255,0.6);
+        margin-bottom: 24px;
+      }
+      .m-henry-body p + p { margin-top: 16px; }
+      .m-demo-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-height: 48px;
+        padding: 14px 24px;
+        background: linear-gradient(135deg, var(--henry-gold), #A8884A);
+        color: var(--henry-dark);
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        border-radius: 12px;
+        margin-bottom: 20px;
+      }
+      .m-feature-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+      }
+      .m-feature-pill {
+        font-size: 11px;
+        color: rgba(255,255,255,0.4);
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.06);
+        padding: 6px 12px;
+        border-radius: 20px;
+      }
+      .m-feature-pill-icon {
+        margin-right: 4px;
+      }
+
+      /* ---- Mobile Timeline (How It Works) ---- */
+      .m-timeline {
+        position: relative;
+        padding-left: 32px;
+        margin-top: 28px;
+      }
+      .m-timeline::before {
+        content: '';
+        position: absolute;
+        left: 11px;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: linear-gradient(180deg, var(--crew-teal) 0%, rgba(91,155,173,0.15) 100%);
+      }
+      .m-timeline-step {
+        position: relative;
+        padding-bottom: 32px;
+      }
+      .m-timeline-step:last-child { padding-bottom: 0; }
+      .m-timeline-dot {
+        position: absolute;
+        left: -32px;
+        top: 0;
+        width: 23px;
+        height: 23px;
+        border-radius: 50%;
+        background: var(--bg-primary);
+        border: 2px solid var(--crew-teal);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        font-weight: 700;
+        color: var(--crew-teal);
+        z-index: 1;
+      }
+      .m-timeline-title {
+        font-family: var(--font-serif);
+        font-size: 16px;
+        color: var(--text-primary);
+        margin-bottom: 6px;
+        line-height: 23px; /* align with dot */
+      }
+      .m-timeline-text {
+        font-size: 14px;
+        line-height: 1.6;
+        color: #777;
+      }
+
+      /* ---- Mobile Deliverables (Phase 1) ---- */
+      .m-deliverables {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-top: 24px;
+      }
+      .m-deliverable {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+      }
+      .m-deliverable-check {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: rgba(91,155,173,0.1);
+        border: 1px solid rgba(91,155,173,0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        color: var(--crew-teal);
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+      .m-deliverable-title {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 3px;
+      }
+      .m-deliverable-desc {
+        font-size: 13px;
+        line-height: 1.6;
+        color: #777;
+      }
+
+      /* ---- Mobile ROI Section ---- */
+      .m-time-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin: 24px 0;
+      }
+      .m-time-card {
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+      }
+      .m-time-card-today {
+        background: rgba(91,155,173,0.05);
+        border: 1px solid rgba(91,155,173,0.12);
+      }
+      .m-time-card-henry {
+        background: rgba(201,169,110,0.05);
+        border: 1px solid rgba(201,169,110,0.12);
+      }
+      .m-time-card-label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+      }
+      .m-time-card-label-teal { color: var(--crew-teal); }
+      .m-time-card-label-gold { color: var(--henry-gold); }
+      .m-time-card-value {
+        font-family: var(--font-serif);
+        font-size: 28px;
+        color: var(--text-primary);
+        line-height: 1;
+        margin-bottom: 6px;
+      }
+      .m-time-card-sub {
+        font-size: 12px;
+        color: #999;
+      }
+      .m-reclaimed {
+        text-align: center;
+        padding: 16px;
+        margin-bottom: 4px;
+      }
+      .m-reclaimed-number {
+        font-family: var(--font-serif);
+        font-size: 20px;
+        color: var(--henry-gold);
+        font-weight: 600;
+      }
+      .m-impact-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 32px;
+      }
+      .m-impact-card {
+        background: rgba(91,155,173,0.04);
+        border: 1px solid rgba(91,155,173,0.1);
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+      }
+      .m-impact-card-featured {
+        background: rgba(201,169,110,0.06);
+        border-color: rgba(201,169,110,0.15);
+      }
+      .m-impact-number {
+        font-family: var(--font-serif);
+        font-size: 32px;
+        line-height: 1;
+        margin-bottom: 8px;
+      }
+      .m-impact-number-teal { color: var(--crew-teal); }
+      .m-impact-number-gold { color: var(--henry-gold); }
+      .m-impact-label {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 4px;
+      }
+      .m-impact-subtext {
+        font-size: 12px;
+        color: #999;
+      }
+      .m-bottom-line {
+        text-align: center;
+        padding: 20px;
+        background: rgba(201,169,110,0.06);
+        border: 1px solid rgba(201,169,110,0.12);
+        border-radius: 12px;
+      }
+      .m-bottom-line-text {
+        font-family: var(--font-serif);
+        font-size: 17px;
+        color: var(--text-primary);
+        margin-bottom: 4px;
+      }
+      .m-bottom-line-sub {
+        font-size: 13px;
+        color: var(--henry-gold);
+        font-weight: 500;
+      }
+
+      /* ---- Mobile Capability Accordion (Roadmap) ---- */
+      .m-capabilities {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 24px;
+      }
+      .m-capability {
+        background: rgba(255,255,255,0.5);
+        border: 1px solid rgba(0,0,0,0.06);
+        border-radius: 12px;
+        overflow: hidden;
+        transition: border-color 0.2s ease;
+      }
+      .m-capability.m-expanded {
+        border-color: rgba(91,155,173,0.2);
+      }
+      .m-capability-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 16px;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        min-height: 48px;
+      }
+      .m-capability-icon {
+        font-size: 18px;
+        flex-shrink: 0;
+        width: 24px;
+        text-align: center;
+      }
+      .m-capability-title {
+        flex: 1;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text-primary);
+      }
+      .m-capability-toggle {
+        font-size: 12px;
+        color: #aaa;
+        transition: transform 0.2s ease;
+        flex-shrink: 0;
+      }
+      .m-expanded .m-capability-toggle {
+        transform: rotate(180deg);
+      }
+      .m-capability-body {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+      .m-expanded .m-capability-body {
+        max-height: 200px;
+      }
+      .m-capability-desc {
+        padding: 0 16px 16px;
+        font-size: 13px;
+        line-height: 1.6;
+        color: #777;
+      }
+      .m-phase-badge {
+        display: inline-block;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        padding: 3px 8px;
+        border-radius: 4px;
+        margin-top: 8px;
+      }
+      .m-phase-badge-2 {
+        background: rgba(91,155,173,0.1);
+        color: var(--crew-teal);
+      }
+      .m-phase-badge-3 {
+        background: rgba(201,169,110,0.1);
+        color: var(--henry-gold);
+      }
+
+      /* ---- Mobile Tech Cards ---- */
+      .m-tech-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-top: 24px;
+      }
+      .m-tech-card {
+        background: rgba(255,255,255,0.5);
+        border: 1px solid rgba(0,0,0,0.06);
+        border-radius: 12px;
+        padding: 20px;
+      }
+      .m-tech-card-icon {
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+      .m-tech-card-title {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 8px;
+      }
+      .m-tech-card-desc {
+        font-size: 13px;
+        line-height: 1.6;
+        color: #777;
+      }
+      .m-arch-flow {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        margin-top: 28px;
+        padding: 20px;
+        background: rgba(255,255,255,0.5);
+        border: 1px solid rgba(0,0,0,0.06);
+        border-radius: 12px;
+      }
+      .m-arch-box {
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text-primary);
+        border: 1px solid rgba(0,0,0,0.08);
+        background: var(--bg-primary);
+        text-align: center;
+        min-width: 160px;
+      }
+      .m-arch-box-henry {
+        background: var(--henry-dark);
+        color: var(--henry-gold);
+        border-color: rgba(201,169,110,0.2);
+      }
+      .m-arch-arrow {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 28px;
+        position: relative;
+      }
+      .m-arch-arrow::before {
+        content: '';
+        width: 1px;
+        height: 20px;
+        background: rgba(91,155,173,0.3);
+      }
+      .m-arch-arrow::after {
+        content: '▼';
+        font-size: 8px;
+        color: var(--crew-teal);
+        opacity: 0.5;
+        line-height: 1;
+      }
+
+      /* ---- Mobile Pricing ---- */
+      .m-pricing-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-top: 24px;
+      }
+      .m-pricing-card {
+        background: rgba(255,255,255,0.5);
+        border: 1px solid rgba(0,0,0,0.06);
+        border-radius: 16px;
+        padding: 24px;
+        position: relative;
+        overflow: hidden;
+      }
+      .m-pricing-card-primary {
+        border-color: rgba(91,155,173,0.2);
+      }
+      .m-pricing-card-border {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+      }
+      .m-pricing-card-border-teal { background: linear-gradient(90deg, var(--crew-teal), transparent); }
+      .m-pricing-card-border-gold { background: linear-gradient(90deg, var(--henry-gold), transparent); }
+      .m-pricing-badge {
+        display: inline-block;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: var(--crew-teal);
+        background: rgba(91,155,173,0.08);
+        padding: 4px 10px;
+        border-radius: 4px;
+        margin-bottom: 12px;
+      }
+      .m-pricing-title {
+        font-family: var(--font-serif);
+        font-size: 20px;
+        color: var(--text-primary);
+        margin-bottom: 2px;
+      }
+      .m-pricing-subtitle {
+        font-size: 13px;
+        color: #999;
+        margin-bottom: 16px;
+      }
+      .m-pricing-price {
+        font-family: var(--font-serif);
+        font-size: 32px;
+        margin-bottom: 4px;
+      }
+      .m-pricing-price-teal { color: var(--crew-teal); }
+      .m-pricing-price-gold { color: var(--henry-gold); }
+      .m-pricing-price-note {
+        font-size: 12px;
+        color: #999;
+        margin-bottom: 16px;
+      }
+      .m-pricing-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .m-pricing-list li {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        color: #555;
+        padding: 6px 0;
+        border-bottom: 1px solid rgba(0,0,0,0.04);
+      }
+      .m-pricing-list li:last-child { border-bottom: none; }
+      .m-pricing-check {
+        color: var(--crew-teal);
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+      .m-pricing-footer {
+        font-size: 12px;
+        color: #aaa;
+        text-align: center;
+        margin-top: 16px;
+        padding-top: 12px;
+        border-top: 1px solid rgba(0,0,0,0.06);
+      }
+
+      /* ---- Mobile Footer CTA ---- */
+      .m-closing {
+        background: var(--henry-dark);
+        padding: 64px 24px;
+        text-align: center;
+        position: relative;
+      }
+      .m-closing-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background: rgba(201,169,110,0.1);
+        border: 1.5px solid rgba(201,169,110,0.25);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-serif);
+        font-size: 20px;
+        color: var(--henry-gold);
+        margin: 0 auto 20px;
+      }
+      .m-closing-title {
+        font-family: var(--font-serif);
+        font-size: 26px;
+        color: #fff;
+        margin-bottom: 16px;
+      }
+      .m-closing-body {
+        font-size: 14px;
+        line-height: 1.7;
+        color: rgba(255,255,255,0.55);
+        max-width: 340px;
+        margin: 0 auto 28px;
+      }
+      .m-closing-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-height: 52px;
+        padding: 16px 24px;
+        background: linear-gradient(135deg, var(--henry-gold), #A8884A);
+        color: var(--henry-dark);
+        font-size: 15px;
+        font-weight: 600;
+        text-decoration: none;
+        border-radius: 12px;
+        margin-bottom: 20px;
+      }
+      .m-closing-contact {
+        font-size: 12px;
+        color: rgba(255,255,255,0.3);
+        margin-bottom: 32px;
+      }
+      .m-closing-footer {
+        font-size: 10px;
+        color: rgba(255,255,255,0.15);
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+      .m-closing-logo {
+        height: 20px;
+        margin-top: 12px;
+        opacity: 0.2;
+        filter: brightness(10);
+      }
+
       /* ---- Mobile Reduced Motion ---- */
     }
 
@@ -3711,6 +4416,551 @@
     </div>
   </section>
 
+  <!-- ============================================================
+       MOBILE SECTIONS (hidden on desktop via .mobile-only)
+       ============================================================ -->
+
+  <!-- ============================
+       MOBILE SECTION 1: HERO
+       ============================ -->
+  <section class="m-hero mobile-only">
+    <div class="m-hero-icon m-animate m-fade-in">H</div>
+    <h1 class="m-hero-title m-animate m-fade-in" style="transition-delay: 0.1s;">Henry</h1>
+    <p class="m-hero-subtitle m-animate m-fade-in" style="transition-delay: 0.2s;">AI Presentation Assistant</p>
+    <div class="m-hero-divider m-animate m-fade-in" style="transition-delay: 0.3s;"></div>
+    <p class="m-hero-hook m-animate m-fade-in" style="transition-delay: 0.4s;">
+      Turn 2 hours of manual deck updates into a 5-minute conversation.
+    </p>
+    <p class="m-hero-meta m-animate m-fade-in" style="transition-delay: 0.5s;">
+      A proposal for Crew Wealth Management &middot; February 2026
+    </p>
+    <div class="m-hero-scroll">
+      <span>Scroll to explore</span>
+      <span class="m-hero-scroll-arrow">&darr;</span>
+    </div>
+  </section>
+
+  <!-- ============================
+       MOBILE SECTION 2: THE CHALLENGE
+       ============================ -->
+  <section class="m-section mobile-only">
+    <p class="m-section-label m-animate m-fade-in">The Challenge</p>
+    <h2 class="m-headline m-animate m-fade-in">Annual reviews shouldn&rsquo;t take weeks to produce.</h2>
+    <p class="m-body m-animate m-fade-in">
+      Every year, your team opens last year&rsquo;s Keynote for each client,
+      manually updates financial figures, rewrites market commentary, adjusts
+      dates and projections, and reformats charts. Multiply that across your
+      entire client base and you&rsquo;re looking at weeks of repetitive work.
+    </p>
+
+    <div class="m-stat-cards m-animate m-fade-in" data-stagger="120">
+      <div class="m-stat-card m-stagger-child">
+        <div class="m-stat-number m-animate" data-target="2" data-prefix="~" data-suffix=" hrs">&mdash;</div>
+        <div class="m-stat-label">per client deck, manually</div>
+      </div>
+      <div class="m-stat-card m-stagger-child">
+        <div class="m-stat-number m-animate" data-target="50" data-suffix="+">&mdash;</div>
+        <div class="m-stat-label">client presentations per year</div>
+      </div>
+      <div class="m-stat-card m-stat-card-emphasized m-stagger-child">
+        <div class="m-stat-number m-animate" data-target="100" data-suffix="+ hrs">&mdash;</div>
+        <div class="m-stat-label">of annual repetitive work</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mobile divider -->
+  <div class="m-divider mobile-only"><div class="m-divider-line"></div></div>
+
+  <!-- ============================
+       MOBILE SECTION 3: MEET HENRY
+       ============================ -->
+  <section class="m-section-dark mobile-only">
+    <div class="m-henry-icon m-animate m-fade-in">H</div>
+    <h2 class="m-henry-title m-animate m-fade-in">Meet Henry</h2>
+    <p class="m-henry-sub m-animate m-fade-in">Your AI Presentation Assistant</p>
+    <div class="m-henry-body m-animate m-fade-in">
+      <p>
+        Henry is a private AI assistant that lives on your Mac Mini. Drop in
+        last year&rsquo;s Keynote alongside new financial data &mdash; portfolio
+        statements, tax summaries, CSV exports &mdash; and tell Henry what to
+        change in plain English. He reads everything, cross-references the
+        numbers, and rebuilds the deck in minutes.
+      </p>
+      <p>
+        Henry runs entirely on your local network. No client data ever
+        leaves your office.
+      </p>
+    </div>
+    <a href="https://crew-wealth-studio.vercel.app" target="_blank" class="m-demo-btn m-btn m-animate m-fade-in">
+      Try the Interactive Demo &rarr;
+    </a>
+    <div class="m-feature-pills m-animate m-fade-in" data-stagger="100">
+      <div class="m-feature-pill m-stagger-child"><span class="m-feature-pill-icon">&#128274;</span> Runs Locally</div>
+      <div class="m-feature-pill m-stagger-child"><span class="m-feature-pill-icon">&#128202;</span> Reads Financial Data</div>
+      <div class="m-feature-pill m-stagger-child"><span class="m-feature-pill-icon">&#9998;</span> Updates Presentations</div>
+    </div>
+  </section>
+
+  <!-- ============================
+       MOBILE SECTION 4: HOW IT WORKS
+       ============================ -->
+  <section class="m-section mobile-only">
+    <p class="m-section-label m-animate m-fade-in" style="text-align: center;">How It Works</p>
+    <h2 class="m-headline m-animate m-fade-in" style="text-align: center;">Four steps. One conversation.</h2>
+
+    <div class="m-timeline m-animate m-fade-in" data-stagger="150">
+      <div class="m-timeline-step m-stagger-child">
+        <div class="m-timeline-dot">1</div>
+        <div class="m-timeline-title">Drop in Your Files</div>
+        <div class="m-timeline-text">
+          Last year&rsquo;s Keynote, new portfolio statements, tax summaries &mdash;
+          anything Henry needs to build the update.
+        </div>
+      </div>
+
+      <div class="m-timeline-step m-stagger-child">
+        <div class="m-timeline-dot">2</div>
+        <div class="m-timeline-title">Tell Henry What to Change</div>
+        <div class="m-timeline-text">
+          Type in plain English: &ldquo;Update the financials to 2025 actuals
+          and make the commentary more conservative.&rdquo;
+        </div>
+      </div>
+
+      <div class="m-timeline-step m-stagger-child">
+        <div class="m-timeline-dot">3</div>
+        <div class="m-timeline-title">Review Every Change</div>
+        <div class="m-timeline-text">
+          Henry shows you each slide with a detailed changelog. See exactly
+          what was modified and why.
+        </div>
+      </div>
+
+      <div class="m-timeline-step m-stagger-child">
+        <div class="m-timeline-dot">4</div>
+        <div class="m-timeline-title">Present to Your Client</div>
+        <div class="m-timeline-text">
+          Download the finished Keynote. Open it directly and walk into
+          your next meeting prepared.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       MOBILE SECTION 5: PHASE 1
+       ============================ -->
+  <section class="m-section-alt mobile-only">
+    <p class="m-section-label m-animate m-fade-in">Phase 1</p>
+    <h2 class="m-headline m-animate m-fade-in">The Initial Build</h2>
+    <p class="m-body m-animate m-fade-in" style="margin-bottom: 4px;">
+      Everything you need to start using Henry with your clients.
+    </p>
+
+    <div class="m-deliverables m-animate m-fade-in" data-stagger="100">
+      <div class="m-deliverable m-stagger-child">
+        <div class="m-deliverable-check">&check;</div>
+        <div>
+          <div class="m-deliverable-title">Henry Web Application</div>
+          <div class="m-deliverable-desc">Chat interface, file upload, slide review, and download — running on your Mac Mini.</div>
+        </div>
+      </div>
+
+      <div class="m-deliverable m-stagger-child">
+        <div class="m-deliverable-check">&check;</div>
+        <div>
+          <div class="m-deliverable-title">Keynote Integration</div>
+          <div class="m-deliverable-desc">Native AppleScript that reads and writes .key files. Preserves your themes, transitions, and master slides.</div>
+        </div>
+      </div>
+
+      <div class="m-deliverable m-stagger-child">
+        <div class="m-deliverable-check">&check;</div>
+        <div>
+          <div class="m-deliverable-title">Financial Data Parsing</div>
+          <div class="m-deliverable-desc">Reads PDF statements, CSV exports, and Excel files. Cross-references old vs. new data automatically.</div>
+        </div>
+      </div>
+
+      <div class="m-deliverable m-stagger-child">
+        <div class="m-deliverable-check">&check;</div>
+        <div>
+          <div class="m-deliverable-title">Smart Suggestions</div>
+          <div class="m-deliverable-desc">Pre-analyzes uploaded files and suggests likely updates before you even type.</div>
+        </div>
+      </div>
+
+      <div class="m-deliverable m-stagger-child">
+        <div class="m-deliverable-check">&check;</div>
+        <div>
+          <div class="m-deliverable-title">Slide-Level Iteration</div>
+          <div class="m-deliverable-desc">Click any slide to chat about just that slide. Targeted adjustments without touching the rest.</div>
+        </div>
+      </div>
+
+      <div class="m-deliverable m-stagger-child">
+        <div class="m-deliverable-check">&check;</div>
+        <div>
+          <div class="m-deliverable-title">Client-Ready Output</div>
+          <div class="m-deliverable-desc">Download finished presentations in native Keynote format, ready to present.</div>
+        </div>
+      </div>
+
+      <div class="m-deliverable m-stagger-child">
+        <div class="m-deliverable-check">&check;</div>
+        <div>
+          <div class="m-deliverable-title">Local-First Architecture</div>
+          <div class="m-deliverable-desc">Runs entirely on your Mac Mini. No client data leaves your office network.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       MOBILE SECTION 5.5: THE REAL COST (ROI)
+       ============================ -->
+  <section class="m-section mobile-only">
+    <p class="m-section-label m-animate m-fade-in">The Real Cost</p>
+    <h2 class="m-headline m-animate m-fade-in">Your team&rsquo;s time is worth more than slide&nbsp;edits.</h2>
+
+    <!-- Time comparison cards -->
+    <div class="m-time-cards m-animate m-fade-in">
+      <div class="m-time-card m-time-card-today">
+        <div class="m-time-card-label m-time-card-label-teal">Today</div>
+        <div class="m-time-card-value">~2 hours</div>
+        <div class="m-time-card-sub">per client &middot; &times;50 clients = <strong>100+ hours/year</strong></div>
+      </div>
+      <div class="m-time-card m-time-card-henry">
+        <div class="m-time-card-label m-time-card-label-gold">With Henry</div>
+        <div class="m-time-card-value">~8 minutes</div>
+        <div class="m-time-card-sub">per client &middot; &times;50 clients = <strong>7 hours/year</strong></div>
+      </div>
+    </div>
+
+    <div class="m-reclaimed m-animate m-scale-in">
+      <span class="m-reclaimed-number">93 hours reclaimed.</span>
+    </div>
+
+    <!-- Impact cards -->
+    <div class="m-impact-cards m-animate m-fade-in" data-stagger="120">
+      <div class="m-impact-card m-stagger-child">
+        <div class="m-impact-number m-impact-number-teal m-animate" data-target="7500" data-prefix="$" data-suffix="+">&mdash;</div>
+        <div class="m-impact-label">Annual labor savings</div>
+        <div class="m-impact-subtext">Based on $75/hr &times; 100+ hours</div>
+      </div>
+      <div class="m-impact-card m-impact-card-featured m-stagger-child">
+        <div class="m-impact-number m-impact-number-gold m-animate" data-target="15000" data-prefix="$" data-suffix="+">&mdash;</div>
+        <div class="m-impact-label">Potential new annual revenue</div>
+        <div class="m-impact-subtext">93 hours = time for 3&ndash;5 new client relationships</div>
+      </div>
+      <div class="m-impact-card m-stagger-child">
+        <div class="m-impact-number m-impact-number-teal" style="font-size: 28px;">Zero</div>
+        <div class="m-impact-label">Manual data entry errors</div>
+        <div class="m-impact-subtext">No wrong numbers, outdated figures, or missed updates</div>
+      </div>
+    </div>
+
+    <!-- Opportunity cost (condensed) -->
+    <div class="m-animate m-fade-in">
+      <p class="m-body" style="margin-bottom: 24px;">
+        Every hour your advisors spend reformatting slides is an hour they&rsquo;re not
+        spending with clients. Henry handles the mechanical work so your people
+        can focus on what they were hired to do: advise.
+      </p>
+    </div>
+
+    <div class="m-bottom-line m-animate m-scale-in">
+      <div class="m-bottom-line-text">Henry pays for himself with one new client.</div>
+      <div class="m-bottom-line-sub">Everything after that is profit.</div>
+    </div>
+  </section>
+
+  <!-- ============================
+       MOBILE SECTION 6: ROADMAP
+       ============================ -->
+  <section class="m-section-alt mobile-only">
+    <p class="m-section-label m-animate m-fade-in" style="text-align: center;">The Roadmap</p>
+    <h2 class="m-headline m-animate m-fade-in" style="text-align: center;">Henry grows with your practice.</h2>
+    <p class="m-body m-animate m-fade-in" style="text-align: center; margin-bottom: 4px;">
+      Phase 1 handles presentations. But Henry&rsquo;s architecture is built to become
+      the AI backbone of your entire client workflow.
+    </p>
+
+    <div class="m-capabilities m-animate m-fade-in" data-stagger="80" id="m-capabilities">
+      <!-- 1 -->
+      <div class="m-capability m-stagger-child" data-accordion>
+        <div class="m-capability-header">
+          <div class="m-capability-icon">&#9889;</div>
+          <div class="m-capability-title">Batch Processing</div>
+          <div class="m-capability-toggle">&#9662;</div>
+        </div>
+        <div class="m-capability-body">
+          <div class="m-capability-desc">
+            Feed Henry a folder of 50 client data files. Wake up to 50 updated presentations.
+            <br><span class="m-phase-badge m-phase-badge-2">Phase 2</span>
+          </div>
+        </div>
+      </div>
+      <!-- 2 -->
+      <div class="m-capability m-stagger-child" data-accordion>
+        <div class="m-capability-header">
+          <div class="m-capability-icon">&#128100;</div>
+          <div class="m-capability-title">Client Profiles</div>
+          <div class="m-capability-toggle">&#9662;</div>
+        </div>
+        <div class="m-capability-body">
+          <div class="m-capability-desc">
+            Henry remembers each client&rsquo;s preferences &mdash; language tone, detail
+            level, print size. Every deck is automatically personalized.
+            <br><span class="m-phase-badge m-phase-badge-2">Phase 2</span>
+          </div>
+        </div>
+      </div>
+      <!-- 3 -->
+      <div class="m-capability m-stagger-child" data-accordion>
+        <div class="m-capability-header">
+          <div class="m-capability-icon">&#128203;</div>
+          <div class="m-capability-title">Meeting Prep Briefs</div>
+          <div class="m-capability-toggle">&#9662;</div>
+        </div>
+        <div class="m-capability-body">
+          <div class="m-capability-desc">
+            Alongside each deck, Henry generates a one-page brief: key changes, likely questions,
+            and suggested talking points.
+            <br><span class="m-phase-badge m-phase-badge-2">Phase 2</span>
+          </div>
+        </div>
+      </div>
+      <!-- 4 -->
+      <div class="m-capability m-stagger-child" data-accordion>
+        <div class="m-capability-header">
+          <div class="m-capability-icon">&#9993;</div>
+          <div class="m-capability-title">Post-Meeting Follow-Ups</div>
+          <div class="m-capability-toggle">&#9662;</div>
+        </div>
+        <div class="m-capability-body">
+          <div class="m-capability-desc">
+            Tell Henry what was discussed. He drafts a personalized follow-up email referencing
+            specific topics from the conversation.
+            <br><span class="m-phase-badge m-phase-badge-2">Phase 2</span>
+          </div>
+        </div>
+      </div>
+      <!-- 5 -->
+      <div class="m-capability m-stagger-child" data-accordion>
+        <div class="m-capability-header">
+          <div class="m-capability-icon">&#128202;</div>
+          <div class="m-capability-title">Quarterly Mini-Decks</div>
+          <div class="m-capability-toggle">&#9662;</div>
+        </div>
+        <div class="m-capability-body">
+          <div class="m-capability-desc">
+            Not just annual reviews &mdash; Henry generates lighter quarterly check-in
+            presentations from your latest portfolio data exports.
+            <br><span class="m-phase-badge m-phase-badge-2">Phase 2</span>
+          </div>
+        </div>
+      </div>
+      <!-- 6 -->
+      <div class="m-capability m-stagger-child" data-accordion>
+        <div class="m-capability-header">
+          <div class="m-capability-icon">&#128279;</div>
+          <div class="m-capability-title">Portfolio Software Integration</div>
+          <div class="m-capability-toggle">&#9662;</div>
+        </div>
+        <div class="m-capability-body">
+          <div class="m-capability-desc">
+            Direct connection to Orion, Black Diamond, Tamarac, or your portfolio management system.
+            No more CSV uploads.
+            <br><span class="m-phase-badge m-phase-badge-3">Phase 3</span>
+          </div>
+        </div>
+      </div>
+      <!-- 7 -->
+      <div class="m-capability m-stagger-child" data-accordion>
+        <div class="m-capability-header">
+          <div class="m-capability-icon">&#128737;</div>
+          <div class="m-capability-title">Compliance Pre-Check</div>
+          <div class="m-capability-toggle">&#9662;</div>
+        </div>
+        <div class="m-capability-body">
+          <div class="m-capability-desc">
+            Flags language that might conflict with SEC/FINRA guidelines before the deck
+            reaches a client.
+            <br><span class="m-phase-badge m-phase-badge-2">Phase 2</span>
+          </div>
+        </div>
+      </div>
+      <!-- 8 -->
+      <div class="m-capability m-stagger-child" data-accordion>
+        <div class="m-capability-header">
+          <div class="m-capability-icon">&#127760;</div>
+          <div class="m-capability-title">Client Presentation Portal</div>
+          <div class="m-capability-toggle">&#9662;</div>
+        </div>
+        <div class="m-capability-body">
+          <div class="m-capability-desc">
+            A branded web portal where clients log in to view their presentations online.
+            Secure, trackable, and professional.
+            <br><span class="m-phase-badge m-phase-badge-3">Phase 3</span>
+          </div>
+        </div>
+      </div>
+      <!-- 9 -->
+      <div class="m-capability m-stagger-child" data-accordion>
+        <div class="m-capability-header">
+          <div class="m-capability-icon">&#127912;</div>
+          <div class="m-capability-title">Brand Consistency Engine</div>
+          <div class="m-capability-toggle">&#9662;</div>
+        </div>
+        <div class="m-capability-body">
+          <div class="m-capability-desc">
+            Enforces Crew Wealth&rsquo;s brand guidelines across every deck &mdash; fonts,
+            colors, logo placement, disclaimer language.
+            <br><span class="m-phase-badge m-phase-badge-2">Phase 2</span>
+          </div>
+        </div>
+      </div>
+      <!-- 10 -->
+      <div class="m-capability m-stagger-child" data-accordion>
+        <div class="m-capability-header">
+          <div class="m-capability-icon">&#127908;</div>
+          <div class="m-capability-title">Voice Instructions</div>
+          <div class="m-capability-toggle">&#9662;</div>
+        </div>
+        <div class="m-capability-body">
+          <div class="m-capability-desc">
+            Dictate changes from your phone: &ldquo;Hey Henry, update the Henderson deck
+            with their Q3 numbers.&rdquo; Done.
+            <br><span class="m-phase-badge m-phase-badge-3">Phase 3</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       MOBILE SECTION 7: TECHNICAL
+       ============================ -->
+  <section class="m-section mobile-only">
+    <p class="m-section-label m-animate m-fade-in" style="text-align: center;">Technical Approach</p>
+    <h2 class="m-headline m-animate m-fade-in" style="text-align: center;">Built for privacy and simplicity.</h2>
+
+    <div class="m-tech-cards m-animate m-fade-in" data-stagger="120">
+      <div class="m-tech-card m-stagger-child">
+        <div class="m-tech-card-icon">&#128274;</div>
+        <div class="m-tech-card-title">Runs on Your Mac Mini</div>
+        <div class="m-tech-card-desc">
+          Henry operates entirely on your local machine. Client financial data never
+          touches the cloud, never leaves your office network.
+        </div>
+      </div>
+      <div class="m-tech-card m-stagger-child">
+        <div class="m-tech-card-icon">&#129504;</div>
+        <div class="m-tech-card-title">Anthropic&rsquo;s Claude AI</div>
+        <div class="m-tech-card-desc">
+          Built on Claude, the most capable AI for document analysis and writing.
+          Reads financial data, understands context, and writes with nuance.
+        </div>
+      </div>
+      <div class="m-tech-card m-stagger-child">
+        <div class="m-tech-card-icon">&#128187;</div>
+        <div class="m-tech-card-title">Native Apple Integration</div>
+        <div class="m-tech-card-desc">
+          Talks directly to Keynote through Apple&rsquo;s scripting layer. Your themes,
+          transitions, and brand assets are preserved perfectly.
+        </div>
+      </div>
+    </div>
+
+    <!-- Vertical architecture flow -->
+    <div class="m-arch-flow m-animate m-scale-in">
+      <div class="m-arch-box">Your Files</div>
+      <div class="m-arch-arrow"></div>
+      <div class="m-arch-box m-arch-box-henry">Henry on Mac Mini</div>
+      <div class="m-arch-arrow"></div>
+      <div class="m-arch-box">Claude AI</div>
+      <div class="m-arch-arrow"></div>
+      <div class="m-arch-box">Updated Keynote</div>
+    </div>
+  </section>
+
+  <!-- ============================
+       MOBILE SECTION 8: INVESTMENT
+       ============================ -->
+  <section class="m-section-alt mobile-only">
+    <p class="m-section-label m-animate m-fade-in" style="text-align: center;">Investment</p>
+    <h2 class="m-headline m-animate m-fade-in" style="text-align: center;">Flexible engagement, clear scope.</h2>
+
+    <div class="m-pricing-cards m-animate m-fade-in" data-stagger="150">
+      <!-- Phase 1 card -->
+      <div class="m-pricing-card m-pricing-card-primary m-stagger-child">
+        <div class="m-pricing-card-border m-pricing-card-border-teal"></div>
+        <div class="m-pricing-badge">Recommended</div>
+        <div class="m-pricing-title">Phase 1</div>
+        <div class="m-pricing-subtitle">The Henry Foundation</div>
+        <div class="m-pricing-price m-pricing-price-teal">[PRICE]</div>
+        <div class="m-pricing-price-note">one-time development</div>
+        <ul class="m-pricing-list">
+          <li><span class="m-pricing-check">&check;</span> Henry web application</li>
+          <li><span class="m-pricing-check">&check;</span> Keynote file integration</li>
+          <li><span class="m-pricing-check">&check;</span> Financial data parsing</li>
+          <li><span class="m-pricing-check">&check;</span> Chat-based iteration</li>
+          <li><span class="m-pricing-check">&check;</span> Local Mac Mini deployment</li>
+          <li><span class="m-pricing-check">&check;</span> 30 days of support & refinement</li>
+        </ul>
+        <div class="m-pricing-footer">Estimated [X] weeks</div>
+      </div>
+
+      <!-- Phase 2 card -->
+      <div class="m-pricing-card m-stagger-child">
+        <div class="m-pricing-card-border m-pricing-card-border-gold"></div>
+        <div class="m-pricing-title" style="margin-top: 4px;">Phase 2</div>
+        <div class="m-pricing-subtitle">Expanding Henry&rsquo;s Capabilities</div>
+        <div class="m-pricing-price m-pricing-price-gold">[PRICE]</div>
+        <div class="m-pricing-price-note">per capability add-on</div>
+        <ul class="m-pricing-list">
+          <li><span class="m-pricing-check" style="color: var(--henry-gold);">&check;</span> Batch processing</li>
+          <li><span class="m-pricing-check" style="color: var(--henry-gold);">&check;</span> Client profiles</li>
+          <li><span class="m-pricing-check" style="color: var(--henry-gold);">&check;</span> Meeting prep briefs</li>
+          <li><span class="m-pricing-check" style="color: var(--henry-gold);">&check;</span> Post-meeting follow-ups</li>
+          <li><span class="m-pricing-check" style="color: var(--henry-gold);">&check;</span> Compliance pre-check</li>
+          <li><span class="m-pricing-check" style="color: var(--henry-gold);">&check;</span> Brand consistency engine</li>
+        </ul>
+        <div class="m-pricing-footer">Each add-on scoped individually</div>
+      </div>
+    </div>
+
+    <p class="m-body m-animate m-fade-in" style="text-align: center; margin-top: 20px; color: #999; font-size: 13px;">
+      All pricing is for discussion. Happy to structure this in a way
+      that works best for Crew Wealth.
+    </p>
+  </section>
+
+  <!-- ============================
+       MOBILE SECTION 9: FOOTER CTA
+       ============================ -->
+  <section class="m-closing m-footer mobile-only">
+    <div class="m-closing-icon m-animate m-fade-in">H</div>
+    <h2 class="m-closing-title m-animate m-fade-in">Ready to meet Henry?</h2>
+    <p class="m-closing-body m-animate m-fade-in">
+      If you like the direction, let&rsquo;s schedule a call to walk through the
+      details and finalize the scope. Henry can be up and running on your
+      Mac Mini in weeks.
+    </p>
+    <a href="mailto:stuart@soule.net" class="m-closing-btn m-btn m-animate m-fade-in">
+      Let&rsquo;s Talk &rarr;
+    </a>
+    <p class="m-closing-contact m-animate m-fade-in">
+      [YOUR NAME] &middot; [PHONE] &middot; [EMAIL]
+    </p>
+    <div class="m-closing-footer m-animate m-fade-in">
+      <p>Prepared exclusively for Crew Wealth Management &middot; February 2026</p>
+      <img src="crew-wealth-logo.svg" alt="Crew Wealth Management" class="m-closing-logo">
+    </div>
+  </section>
+
   <!-- ============================
        JavaScript — IntersectionObserver
        ============================ -->
@@ -3887,6 +5137,20 @@
         });
 
         document.querySelectorAll('.m-animate').forEach(el => mobileObserver.observe(el));
+
+        // ---- Mobile Capability Accordion (one-at-a-time) ----
+        const accordionItems = document.querySelectorAll('[data-accordion]');
+        accordionItems.forEach(item => {
+          const header = item.querySelector('.m-capability-header');
+          if (!header) return;
+          header.addEventListener('click', () => {
+            const isOpen = item.classList.contains('m-expanded');
+            // Close all
+            accordionItems.forEach(other => other.classList.remove('m-expanded'));
+            // Toggle clicked
+            if (!isOpen) item.classList.add('m-expanded');
+          });
+        });
       }
 
     });
