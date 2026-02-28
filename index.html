@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
   <title>The AI Foundation for Your Practice | A Proposal for Crew Wealth Management</title>
 
   <!-- Fonts -->
@@ -1301,6 +1301,11 @@
       border-radius: 14px;
       padding: 36px 32px;
       position: relative;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .scope-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
     }
 
     .scope-card--teal {
@@ -1579,6 +1584,11 @@
       border-radius: 14px;
       padding: 32px 28px;
       text-align: center;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .impact-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
     }
 
     .impact-card--emphasized {
@@ -2129,6 +2139,11 @@
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 28px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .tech-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
     }
 
     .tech-card-icon {
@@ -2282,6 +2297,11 @@
       border-radius: 16px;
       border-top: 4px solid var(--teal);
       padding: 40px 32px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .pricing-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
     }
 
     .pricing-card--recommended {
@@ -2645,12 +2665,47 @@
        ------------------------------------------------------------ */
 
     @media (max-width: 768px) {
+      /* ========== iOS Foundation Fixes ========== */
+      body {
+        -webkit-text-size-adjust: 100%;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+      }
+
       /* Hide accent line on mobile */
       body::before {
         display: none;
       }
 
-      /* Hero adjustments */
+      /* ========== Kill ALL :hover states on mobile ========== */
+      .system-card:hover,
+      .future-card:hover,
+      .scope-deliverable:hover,
+      .scope-card:hover,
+      .impact-card:hover,
+      .tech-card:hover,
+      .pricing-card:hover,
+      .demo-link:hover,
+      .next-steps-cta:hover,
+      .next-steps-demo:hover {
+        transform: none !important;
+        box-shadow: none !important;
+        filter: none !important;
+        background: inherit;
+      }
+
+      /* ========== GPU acceleration for animated elements ========== */
+      .reveal, .reveal-left, .reveal-right, .reveal-scale,
+      .stagger-children .stagger-child {
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+      }
+
+      /* ========== Hero adjustments ========== */
+      .hero {
+        height: calc(var(--vh, 1vh) * 100);
+      }
+
       .hero-nav {
         padding: 0 20px;
       }
@@ -2660,7 +2715,7 @@
       }
 
       .hero-title {
-        font-size: 30px;
+        font-size: 32px;
       }
 
       .hero-subtitle {
@@ -2669,20 +2724,21 @@
 
       .hero-content {
         padding: 0 20px;
+        max-width: 340px;
       }
 
-      /* Section adjustments */
+      /* ========== Section adjustments ========== */
       .section,
       .section-alt,
       .section-dark {
-        padding: 64px 0;
+        padding: 56px 0;
       }
 
       .container {
         padding: 0 20px;
       }
 
-      /* Challenge layout stacks vertically */
+      /* ========== Section 2 — Challenge ========== */
       .challenge-layout {
         flex-direction: column;
         gap: 40px;
@@ -2727,7 +2783,7 @@
         font-size: 28px;
       }
 
-      /* Section 3 — Intelligence Layer */
+      /* ========== Section 3 — Intelligence Layer ========== */
       .intel-headline {
         font-size: 28px;
       }
@@ -2739,7 +2795,7 @@
       }
 
       .arch-card {
-        min-width: calc(33% - 8px);
+        min-width: calc(45% - 8px);
       }
 
       .arch-lines {
@@ -2748,8 +2804,14 @@
 
       .intel-bar {
         padding: 16px 20px;
+        flex-direction: column;
+        text-align: center;
         flex-wrap: wrap;
         justify-content: center;
+      }
+
+      .intel-bar-badge {
+        margin-top: 8px;
       }
 
       .intel-values {
@@ -2765,7 +2827,7 @@
         align-items: center;
       }
 
-      /* Section 4 — Meet Henry */
+      /* ========== Section 4 — Meet Henry ========== */
       .henry-layout {
         flex-direction: column;
         gap: 40px;
@@ -2795,9 +2857,16 @@
         font-size: 12px;
       }
 
-      /* Section 5 — How It Works */
+      .demo-link {
+        width: 100%;
+        justify-content: center;
+        min-height: 52px;
+        font-size: 15px;
+      }
+
+      /* ========== Section 5 — How It Works ========== */
       .s5-how {
-        padding: 64px 0;
+        padding: 56px 0;
       }
 
       .s5-how .s5-inner {
@@ -2880,9 +2949,9 @@
         margin: 40px auto;
       }
 
-      /* Section 6 — What's Included */
+      /* ========== Section 6 — What's Included ========== */
       .scope-cards {
-        flex-direction: column;
+        flex-direction: column-reverse;
       }
 
       .scope-card {
@@ -2893,10 +2962,14 @@
         font-size: 26px !important;
       }
 
-      /* Section 7 — The Value */
+      /* ========== Section 7 — The Value ========== */
       .value-headline {
         font-size: 24px;
         margin-bottom: 36px;
+      }
+
+      .bar-container {
+        height: 32px;
       }
 
       .bar-segment-label {
@@ -2967,7 +3040,7 @@
         font-size: 18px;
       }
 
-      /* Section 8 — Future Applications */
+      /* ========== Section 8 — Future Applications ========== */
       .future-grid {
         grid-template-columns: 1fr;
       }
@@ -2989,9 +3062,9 @@
         padding-left: 20px;
       }
 
-      /* Section 9 — Under the Hood */
+      /* ========== Section 9 — Under the Hood ========== */
       #technical {
-        padding: 64px 0;
+        padding: 56px 0;
       }
 
       #technical .section-headline {
@@ -3022,9 +3095,9 @@
         height: 40px;
       }
 
-      /* Section 10: Investment */
+      /* ========== Section 10 — Investment ========== */
       .pricing-cards {
-        flex-direction: column;
+        flex-direction: column-reverse;
       }
 
       .pricing-card {
@@ -3036,7 +3109,7 @@
       }
 
       .pricing-card__price {
-        font-size: 34px;
+        font-size: 36px;
       }
 
       .pricing-card__title {
@@ -3052,9 +3125,10 @@
         right: 16px;
       }
 
-      /* Section 11: Next Steps */
+      /* ========== Section 11 — Next Steps ========== */
       .next-steps {
         padding: 64px 0 48px;
+        padding-bottom: calc(48px + env(safe-area-inset-bottom, 0px));
       }
 
       .next-steps-headline {
@@ -3062,12 +3136,28 @@
       }
 
       .next-steps-cta {
+        width: 100%;
+        text-align: center;
+        min-height: 52px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         padding: 14px 36px;
         font-size: 14px;
       }
 
       .next-steps-logo {
         width: 60px;
+      }
+
+      /* ========== Touch targets (48px minimum) ========== */
+      .demo-link,
+      .next-steps-cta {
+        min-height: 48px;
+      }
+
+      .future-card-header {
+        min-height: 48px;
       }
     }
 
@@ -3129,6 +3219,33 @@
       0% { transform: translateY(-50%); }
       100% { transform: translateY(0); }
     }
+
+    /* ── Print Stylesheet ── */
+    @media print {
+      body::before { display: none !important; }
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+      .reveal, .reveal-left, .reveal-right, .reveal-scale, .hero-stagger,
+      [class*="stagger-child"] {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .section-dark, .section-alt, .hero {
+        background: #fff !important;
+        color: #1a1a1a !important;
+      }
+      .section-dark *, .hero * {
+        color: #1a1a1a !important;
+      }
+      .pricing-card, .impact-card, .scope-card,
+      .tech-card, .future-card {
+        page-break-inside: avoid;
+        box-shadow: none !important;
+      }
+      .scroll-indicator { display: none !important; }
+    }
   </style>
 </head>
 <body>
@@ -3147,7 +3264,7 @@
       <h1 class="hero-title hero-stagger hero-stagger-2">The AI Foundation for Your Practice</h1>
       <p class="hero-subtitle hero-stagger hero-stagger-3">Starting with the work that wastes your team&rsquo;s time most.</p>
       <div class="hero-divider hero-stagger hero-stagger-4"></div>
-      <p class="hero-byline hero-stagger hero-stagger-5">A Technology Proposal by [YOUR NAME]</p>
+      <p class="hero-byline hero-stagger hero-stagger-5">A Technology Proposal by Stuart Soule</p>
       <p class="hero-date hero-stagger hero-stagger-6">February 2026</p>
     </div>
 
@@ -3532,7 +3649,7 @@
     <div class="container">
       <div class="reveal" style="text-align: center;">
         <p class="section-label">WHAT&rsquo;S INCLUDED</p>
-        <h2 style="font-family: var(--font-serif); font-size: 32px; color: var(--text); margin-bottom: 16px;">Two options. Both include the foundation.</h2>
+        <h2 style="font-family: var(--font-serif); font-size: 32px; font-weight: 600; color: var(--text); margin-bottom: 16px;">Two options. Both include the foundation.</h2>
         <p style="font-size: 15px; color: var(--text-muted); max-width: 600px; margin: 0 auto; line-height: 1.7;">Every tier includes the intelligence layer platform &mdash; the difference is how deeply it connects to your existing systems.</p>
       </div>
 
@@ -3943,7 +4060,7 @@
   <section class="section-alt" id="future-apps">
     <div class="container">
       <p class="section-label reveal">The Platform Grows</p>
-      <h2 class="reveal" style="font-family: var(--font-serif); font-size: 30px; text-align: center; margin: 0 0 16px; color: var(--text);">Every application plugs into the same foundation.</h2>
+      <h2 class="reveal" style="font-family: var(--font-serif); font-size: 30px; font-weight: 600; text-align: center; margin: 0 0 16px; color: var(--text);">Every application plugs into the same foundation.</h2>
       <p class="reveal" style="font-size: 15px; color: var(--text-muted); max-width: 600px; margin: 0 auto; text-align: center; line-height: 1.7;">Once the intelligence layer is built, adding new capabilities is incremental &mdash; not a new project. Here&rsquo;s what&rsquo;s on the roadmap.</p>
 
       <div class="future-grid stagger-children">
@@ -4351,9 +4468,9 @@
     </div>
 
     <div class="next-steps-contact reveal reveal-delay-5">
-      <div class="next-steps-contact-name">[YOUR NAME]</div>
+      <div class="next-steps-contact-name">Stuart Soule</div>
       <div class="next-steps-contact-detail">[PHONE]</div>
-      <div class="next-steps-contact-detail">[EMAIL]</div>
+      <div class="next-steps-contact-detail">stuart@pinecrestai.com</div>
     </div>
 
     <div class="reveal reveal-delay-6">
@@ -4375,6 +4492,13 @@
        ============================ -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // ---- iOS viewport height fix ----
+      function setVH() {
+        document.documentElement.style.setProperty('--vh', window.innerHeight * 0.01 + 'px');
+      }
+      setVH();
+      window.addEventListener('resize', setVH);
+
       // ---- Scroll-triggered reveal animations ----
       const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .stagger-children');
       const revealObserver = new IntersectionObserver((entries) => {
