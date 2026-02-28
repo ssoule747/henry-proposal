@@ -1,0 +1,2992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Henry — AI Presentation Assistant | A Proposal for Crew Wealth Management</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================
+       CSS Custom Properties
+       ============================ */
+    :root {
+      /* Crew Wealth Brand */
+      --crew-teal: #5B9BAD;
+      --crew-teal-light: #7BB5C4;
+      --crew-teal-dark: #4A8293;
+      --crew-teal-10: rgba(91, 155, 173, 0.10);
+      --crew-teal-20: rgba(91, 155, 173, 0.20);
+      --crew-teal-05: rgba(91, 155, 173, 0.05);
+
+      /* Henry Brand */
+      --henry-gold: #C9A96E;
+      --henry-gold-light: #D4BA88;
+      --henry-gold-dark: #A8884A;
+      --henry-gold-10: rgba(201, 169, 110, 0.10);
+      --henry-gold-20: rgba(201, 169, 110, 0.20);
+      --henry-gold-05: rgba(201, 169, 110, 0.05);
+      --henry-dark: #0C0B0F;
+      --henry-dark-secondary: #141318;
+
+      /* Neutral Palette */
+      --bg-primary: #FAFAF8;
+      --bg-secondary: #F4F3F0;
+      --bg-dark: #1A1820;
+      --text-primary: #1A1A1A;
+      --text-secondary: #4A4A4A;
+      --text-muted: #8A8A8A;
+      --text-subtle: #B0B0B0;
+      --border-light: rgba(0, 0, 0, 0.06);
+      --border-medium: rgba(0, 0, 0, 0.10);
+
+      /* Typography */
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+      /* Spacing */
+      --section-padding: 120px 0;
+      --container-max: 960px;
+      --container-padding: 0 40px;
+    }
+
+    /* ============================
+       Reset & Base
+       ============================ */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      font-weight: 400;
+      color: var(--text-primary);
+      background: var(--bg-primary);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* ============================
+       Teal Accent Line (left margin motif)
+       ============================ */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 5%;
+      width: 1.5px;
+      height: 100vh;
+      background: linear-gradient(180deg,
+        transparent 0%,
+        var(--crew-teal-20) 15%,
+        var(--crew-teal-20) 85%,
+        transparent 100%
+      );
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* ============================
+       Scroll-triggered animation classes
+       ============================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                  transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Directional variants */
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-30px);
+      transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                  transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .reveal-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(30px);
+      transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                  transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .reveal-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(0.95);
+      transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                  transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .reveal-scale.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+    .reveal-delay-6 { transition-delay: 0.6s; }
+
+    /* ============================
+       Container
+       ============================ */
+    .container {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: var(--container-padding);
+    }
+
+    /* ============================
+       HERO SECTION
+       ============================ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-primary);
+      overflow: hidden;
+    }
+
+    /* Subtle grain texture */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 256px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Subtle radial glow accents */
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--crew-teal-05) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ---- Hero Nav ---- */
+    .hero-nav {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 40px;
+      z-index: 10;
+    }
+
+    .hero-nav-logo {
+      height: 28px;
+      width: auto;
+      opacity: 0.55;
+      transition: opacity 0.3s ease;
+    }
+
+    .hero-nav-logo:hover {
+      opacity: 0.75;
+    }
+
+    .hero-nav-text {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* ---- Hero Content ---- */
+    .hero-content {
+      position: relative;
+      z-index: 5;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 24px;
+    }
+
+    /* Henry "H" icon */
+    .henry-icon {
+      position: relative;
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 14px;
+      background: var(--henry-gold-05);
+      border: 1.5px solid var(--henry-gold-20);
+      background-image: linear-gradient(135deg, var(--henry-gold-10) 0%, transparent 100%);
+      font-family: var(--font-serif);
+      font-size: 24px;
+      color: var(--henry-gold);
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeScaleIn 0.5s ease forwards 0.3s;
+    }
+
+    /* Gold glow pulse behind H icon */
+    .henry-icon::before {
+      content: '';
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201, 169, 110, 0.2) 0%, transparent 70%);
+      animation: glowPulse 4s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: 52px;
+      font-weight: 700;
+      color: var(--crew-teal);
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+      opacity: 0;
+      animation: fadeSlideUp 0.5s ease forwards 0.5s;
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--henry-gold);
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeIn 0.4s ease forwards 0.7s;
+    }
+
+    .hero-divider {
+      width: 60px;
+      height: 1.5px;
+      background: var(--crew-teal);
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: dividerGrow 0.5s ease forwards 0.8s;
+      transform-origin: center;
+    }
+
+    .hero-hook {
+      font-family: var(--font-serif);
+      font-size: 21px;
+      font-weight: 400;
+      color: var(--text-primary);
+      line-height: 1.6;
+      max-width: 520px;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeSlideUp 0.5s ease forwards 0.95s;
+    }
+
+    .hero-meta {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 48px;
+      opacity: 0;
+      animation: fadeIn 0.4s ease forwards 1.1s;
+    }
+
+    .hero-meta span {
+      margin: 0 6px;
+      color: var(--text-subtle);
+    }
+
+    /* Scroll indicator */
+    .scroll-indicator {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      animation: fadeIn 0.4s ease forwards 1.3s;
+    }
+
+    .scroll-indicator-text {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-subtle);
+    }
+
+    .scroll-indicator-arrow {
+      font-size: 16px;
+      color: var(--crew-teal);
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    /* ============================
+       SECTIONS — Base
+       ============================ */
+    .section {
+      padding: var(--section-padding);
+      position: relative;
+    }
+
+    .section-dark {
+      background: var(--henry-dark);
+      color: #fff;
+    }
+
+    .section-alt {
+      background: var(--bg-secondary);
+    }
+
+    .section-label {
+      font-family: var(--font-sans);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--crew-teal);
+      margin-bottom: 16px;
+      padding-left: 12px;
+      border-left: 2px solid transparent;
+      transition: border-color 0.4s ease 0.15s,
+                  opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                  transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .section-label.visible {
+      border-left-color: var(--crew-teal);
+    }
+
+    .section-dark .section-label {
+      color: var(--henry-gold);
+    }
+
+    .section-dark .section-label.visible {
+      border-left-color: var(--henry-gold);
+    }
+
+    /* Centered labels: no left border, use bottom accent instead */
+    .section-label-center {
+      text-align: center;
+      padding-left: 0;
+      border-left: none;
+    }
+
+    .section-label-center.visible {
+      border-left: none;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 36px;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.2;
+      margin-bottom: 20px;
+      max-width: 600px;
+    }
+
+    .section-dark .section-title {
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .section-body {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      color: #555;
+      line-height: 1.8;
+      max-width: 620px;
+    }
+
+    .section-dark .section-body {
+      color: rgba(255, 255, 255, 0.55);
+    }
+
+    /* ============================
+       Section 2: The Challenge — Two-Column
+       ============================ */
+    .challenge-layout {
+      display: flex;
+      gap: 64px;
+      align-items: flex-start;
+    }
+
+    .challenge-left {
+      flex: 0 0 55%;
+      max-width: 55%;
+    }
+
+    .challenge-right {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .challenge-title {
+      font-family: var(--font-serif);
+      font-size: 32px;
+      font-weight: 600;
+      color: #1a1a1a;
+      line-height: 1.3;
+      margin-bottom: 24px;
+    }
+
+    .challenge-body {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      color: #555;
+      line-height: 1.8;
+    }
+
+    .challenge-body p {
+      margin-bottom: 20px;
+    }
+
+    .challenge-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Stat Card */
+    .stat-card {
+      background: #fff;
+      border: 1px solid var(--border-light);
+      border-radius: 16px;
+      padding: 36px 32px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+      width: 100%;
+      max-width: 320px;
+    }
+
+    .stat-block {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .stat-block:first-child {
+      padding-top: 0;
+    }
+
+    .stat-block:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .stat-number {
+      font-family: var(--font-serif);
+      font-size: 44px;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 4px;
+      color: var(--crew-teal);
+    }
+
+    .stat-block.stat-emphasized .stat-number {
+      font-size: 52px;
+      color: var(--henry-gold);
+    }
+
+    .stat-label {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      color: var(--text-muted);
+      letter-spacing: 0.2px;
+    }
+
+    /* Section Divider */
+    .section-divider {
+      display: flex;
+      justify-content: center;
+      padding: 0;
+    }
+
+    .section-divider-line {
+      width: 80px;
+      height: 1.5px;
+      background: var(--crew-teal);
+      opacity: 0.35;
+    }
+
+    /* ============================
+       Section 3: Meet Henry (Dark)
+       ============================ */
+    .meet-henry-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .meet-henry-icon {
+      position: relative;
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 14px;
+      background: rgba(201, 169, 110, 0.06);
+      border: 1.5px solid rgba(201, 169, 110, 0.25);
+      background-image: linear-gradient(135deg, rgba(201,169,110,0.1) 0%, transparent 100%);
+      font-family: var(--font-serif);
+      font-size: 24px;
+      color: var(--henry-gold);
+      margin-bottom: 28px;
+    }
+
+    .meet-henry-icon::before {
+      content: '';
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201, 169, 110, 0.2) 0%, transparent 70%);
+      animation: glowPulse 4s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .meet-henry-title {
+      font-family: var(--font-serif);
+      font-size: 36px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 10px;
+    }
+
+    .meet-henry-subtitle {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--henry-gold);
+      margin-bottom: 24px;
+    }
+
+    .meet-henry-divider {
+      width: 50px;
+      height: 1.5px;
+      background: var(--henry-gold);
+      opacity: 0.4;
+      margin-bottom: 28px;
+    }
+
+    .meet-henry-body {
+      font-family: var(--font-sans);
+      font-size: 15px;
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 1.8;
+      max-width: 620px;
+      margin-bottom: 40px;
+    }
+
+    .meet-henry-body p {
+      margin-bottom: 20px;
+    }
+
+    .meet-henry-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Demo button — gold outline pill with shimmer */
+    .demo-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 36px;
+      border-radius: 50px;
+      border: 1.5px solid var(--henry-gold);
+      background: transparent;
+      color: var(--henry-gold);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      cursor: pointer;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .demo-pill:hover {
+      background: var(--henry-gold);
+      color: #0C0B0F;
+      box-shadow: 0 4px 24px rgba(201, 169, 110, 0.3);
+    }
+
+    /* Shimmer sweep on border */
+    .demo-pill::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent 0%, rgba(201,169,110,0.15) 50%, transparent 100%);
+      animation: shimmerSweep 3s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .demo-pill:hover::after {
+      display: none;
+    }
+
+    @keyframes shimmerSweep {
+      0% { left: -100%; }
+      50% { left: 150%; }
+      100% { left: 150%; }
+    }
+
+    /* Feature pills row */
+    .feature-pills {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+
+    .feature-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 50px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      font-family: var(--font-sans);
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .feature-pill-icon {
+      font-size: 14px;
+    }
+
+    /* ============================
+       Section 4: How It Works — Horizontal Steps
+       ============================ */
+    .steps-flow {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 0;
+      margin-top: 56px;
+      position: relative;
+    }
+
+    .step-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      width: 200px;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    /* CSS-only icons above each step */
+    .step-visual {
+      width: 52px;
+      height: 40px;
+      position: relative;
+      margin-bottom: 16px;
+    }
+
+    /* File stack icon — 3 overlapping rectangles */
+    .step-visual-files {
+      position: relative;
+    }
+
+    .step-visual-files span {
+      position: absolute;
+      width: 28px;
+      height: 20px;
+      border-radius: 3px;
+      border: 1.5px solid;
+      background: var(--bg-primary);
+    }
+
+    .step-visual-files span:nth-child(1) {
+      border-color: var(--text-subtle);
+      top: 0;
+      left: 4px;
+    }
+
+    .step-visual-files span:nth-child(2) {
+      border-color: var(--crew-teal);
+      top: 6px;
+      left: 10px;
+    }
+
+    .step-visual-files span:nth-child(3) {
+      border-color: var(--henry-gold);
+      top: 12px;
+      left: 16px;
+    }
+
+    /* Chat bubble icon */
+    .step-visual-chat {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .step-visual-chat span {
+      display: block;
+      width: 36px;
+      height: 28px;
+      border-radius: 14px 14px 14px 4px;
+      background: var(--crew-teal-10);
+      border: 1.5px solid var(--crew-teal);
+      position: relative;
+    }
+
+    .step-visual-chat span::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 16px;
+      height: 2px;
+      background: var(--crew-teal);
+      opacity: 0.5;
+      border-radius: 1px;
+      box-shadow: 0 -5px 0 var(--crew-teal), 0 5px 0 var(--crew-teal);
+    }
+
+    /* Checklist icon */
+    .step-visual-check {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .step-visual-check span {
+      display: block;
+      width: 30px;
+      height: 34px;
+      border-radius: 4px;
+      border: 1.5px solid var(--crew-teal);
+      background: var(--crew-teal-05);
+      position: relative;
+    }
+
+    .step-visual-check span::before {
+      content: '';
+      position: absolute;
+      top: 8px;
+      left: 7px;
+      width: 8px;
+      height: 4px;
+      border-left: 2px solid var(--crew-teal);
+      border-bottom: 2px solid var(--crew-teal);
+      transform: rotate(-45deg);
+    }
+
+    .step-visual-check span::after {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 7px;
+      width: 14px;
+      height: 2px;
+      background: var(--crew-teal);
+      opacity: 0.3;
+      border-radius: 1px;
+    }
+
+    /* Download arrow icon */
+    .step-visual-download {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .step-visual-download span {
+      display: block;
+      width: 28px;
+      height: 28px;
+      position: relative;
+    }
+
+    .step-visual-download span::before {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 3px;
+      height: 16px;
+      background: var(--crew-teal);
+      border-radius: 2px;
+    }
+
+    .step-visual-download span::after {
+      content: '';
+      position: absolute;
+      bottom: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+      border-top: 7px solid var(--crew-teal);
+    }
+
+    .step-visual-download .dl-base {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 22px;
+      height: 3px;
+      border-bottom: 2px solid var(--crew-teal);
+      border-left: 2px solid var(--crew-teal);
+      border-right: 2px solid var(--crew-teal);
+      border-radius: 0 0 3px 3px;
+    }
+
+    /* Numbered circle */
+    .step-circle {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 2px solid var(--crew-teal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--crew-teal);
+      background: #fff;
+      position: relative;
+      z-index: 2;
+      margin-bottom: 16px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .step-item:hover .step-circle {
+      transform: scale(1.08);
+      box-shadow: 0 4px 16px var(--crew-teal-20);
+    }
+
+    /* Connecting dashed line between circles */
+    .step-connector {
+      position: absolute;
+      top: 76px; /* visual height + gap + half circle */
+      left: calc(50% + 24px);
+      width: calc(100% - 48px);
+      height: 2px;
+      z-index: 1;
+    }
+
+    .step-connector-line {
+      width: 100%;
+      height: 100%;
+      border-top: 2px dashed var(--crew-teal-20);
+    }
+
+    .step-connector-line.animate-draw {
+      border-top-color: var(--crew-teal);
+      opacity: 0.35;
+      animation: drawLine 0.8s ease forwards;
+    }
+
+    @keyframes drawLine {
+      from { clip-path: inset(0 100% 0 0); }
+      to { clip-path: inset(0 0 0 0); }
+    }
+
+    .step-item-title {
+      font-family: var(--font-serif);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .step-item-text {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      padding: 0 4px;
+    }
+
+    /* ============================
+       Section 5: Phase 1 — Two-Column
+       ============================ */
+    .phase1-layout {
+      display: flex;
+      gap: 64px;
+      align-items: flex-start;
+      margin-top: 48px;
+    }
+
+    .phase1-left {
+      flex: 0 0 55%;
+      max-width: 55%;
+    }
+
+    .phase1-right {
+      flex: 1;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 8px;
+    }
+
+    .phase1-subtitle {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      color: var(--text-muted);
+      margin-bottom: 36px;
+    }
+
+    /* Deliverable list items */
+    .deliverable-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .deliverable-item {
+      display: flex;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .deliverable-item:last-child {
+      border-bottom: none;
+    }
+
+    .deliverable-check {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--crew-teal-10);
+      border: 1.5px solid var(--crew-teal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+      font-size: 11px;
+      color: var(--crew-teal);
+      font-weight: 700;
+    }
+
+    .deliverable-content {
+      flex: 1;
+    }
+
+    .deliverable-title {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 3px;
+    }
+
+    .deliverable-desc {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* App Mockup — CSS-only illustration */
+    .app-mockup-wrapper {
+      position: relative;
+    }
+
+    .app-mockup {
+      width: 320px;
+      height: 220px;
+      background: #0C0B0F;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18), 0 4px 16px rgba(0, 0, 0, 0.08);
+      transform: rotate(2deg);
+      position: relative;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* Gold header bar */
+    .mockup-header {
+      height: 28px;
+      background: linear-gradient(90deg, rgba(201,169,110,0.12) 0%, rgba(201,169,110,0.04) 100%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      gap: 4px;
+    }
+
+    .mockup-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+    }
+
+    .mockup-dot:nth-child(1) { background: rgba(255, 95, 87, 0.6); }
+    .mockup-dot:nth-child(2) { background: rgba(254, 188, 46, 0.6); }
+    .mockup-dot:nth-child(3) { background: rgba(40, 200, 64, 0.6); }
+
+    /* Two panels inside mockup */
+    .mockup-body {
+      display: flex;
+      height: calc(100% - 28px);
+    }
+
+    .mockup-panel-left {
+      flex: 0 0 50%;
+      padding: 14px 10px;
+      border-right: 1px solid rgba(255, 255, 255, 0.04);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .mockup-chat-line {
+      height: 6px;
+      border-radius: 3px;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .mockup-chat-line.user {
+      width: 70%;
+      align-self: flex-end;
+      background: rgba(201, 169, 110, 0.15);
+      border: 1px solid rgba(201, 169, 110, 0.12);
+    }
+
+    .mockup-chat-line.ai {
+      width: 85%;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .mockup-chat-line.short {
+      width: 50%;
+    }
+
+    .mockup-panel-right {
+      flex: 1;
+      padding: 14px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .mockup-slide {
+      height: 28px;
+      border-radius: 5px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+      padding: 0 8px;
+      gap: 6px;
+    }
+
+    .mockup-slide-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--crew-teal);
+      opacity: 0.5;
+    }
+
+    .mockup-slide-text {
+      flex: 1;
+      height: 4px;
+      border-radius: 2px;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    /* Floating H badge */
+    .mockup-badge {
+      position: absolute;
+      top: -12px;
+      right: -12px;
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--henry-gold) 0%, var(--henry-gold-dark) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-serif);
+      font-size: 16px;
+      color: #0C0B0F;
+      font-weight: 700;
+      box-shadow: 0 4px 16px rgba(201, 169, 110, 0.35);
+      z-index: 3;
+    }
+
+    /* ============================
+       Section 6: The Bigger Picture — Capability Cards
+       ============================ */
+    .roadmap-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .roadmap-header .section-title {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+
+    .roadmap-count {
+      display: inline-block;
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: var(--text-subtle);
+      background: rgba(0, 0, 0, 0.04);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-left: 12px;
+      vertical-align: middle;
+    }
+
+    .roadmap-subtitle {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.7;
+      text-align: center;
+    }
+
+    .capability-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 56px;
+    }
+
+    .capability-card {
+      background: #fff;
+      border: 1px solid #E8E7E4;
+      border-radius: 12px;
+      padding: 24px;
+      cursor: pointer;
+      transition: box-shadow 0.3s ease, border-color 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Teal top border on hover */
+    .capability-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--crew-teal);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .capability-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .capability-card:hover {
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
+    }
+
+    /* Expanded state — teal left border */
+    .capability-card.expanded {
+      border-left: 3px solid var(--crew-teal);
+    }
+
+    .capability-card.expanded::before {
+      transform: scaleX(1);
+    }
+
+    .capability-card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .capability-card-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      background: var(--bg-secondary);
+    }
+
+    .capability-card-title {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      flex: 1;
+    }
+
+    .capability-card-toggle {
+      font-size: 14px;
+      color: var(--text-subtle);
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .capability-card.expanded .capability-card-toggle {
+      transform: rotate(180deg);
+    }
+
+    /* Expandable description area */
+    .capability-card-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                  opacity 0.3s ease,
+                  margin-top 0.3s ease;
+      opacity: 0;
+      margin-top: 0;
+    }
+
+    .capability-card.expanded .capability-card-body {
+      max-height: 200px;
+      opacity: 1;
+      margin-top: 16px;
+    }
+
+    .capability-card-desc {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 12px;
+    }
+
+    /* Phase badges */
+    .phase-badge {
+      display: inline-block;
+      font-family: var(--font-sans);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+
+    .phase-badge-2 {
+      background: var(--crew-teal);
+      color: #fff;
+    }
+
+    .phase-badge-3 {
+      background: var(--henry-gold);
+      color: #0C0B0F;
+    }
+
+    /* Callout / quote block */
+    .roadmap-callout {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 36px 40px;
+      background: var(--crew-teal-05);
+      border-radius: 14px;
+      text-align: center;
+      position: relative;
+    }
+
+    .roadmap-callout-text {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-style: italic;
+      color: var(--crew-teal-dark);
+      line-height: 1.7;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Decorative quote marks */
+    .roadmap-callout::before,
+    .roadmap-callout::after {
+      font-family: var(--font-serif);
+      font-size: 72px;
+      color: var(--crew-teal);
+      opacity: 0.1;
+      position: absolute;
+      line-height: 1;
+    }
+
+    .roadmap-callout::before {
+      content: '\201C';
+      top: 8px;
+      left: 16px;
+    }
+
+    .roadmap-callout::after {
+      content: '\201D';
+      bottom: -8px;
+      right: 16px;
+    }
+
+    /* ============================
+       Section 7: Under the Hood — Tech Approach
+       ============================ */
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 48px;
+      max-width: 900px;
+    }
+
+    .tech-card {
+      padding: 32px 28px;
+      background: #fff;
+      border: 1px solid var(--border-light);
+      border-radius: 14px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .tech-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+    }
+
+    .tech-card-icon {
+      width: 52px;
+      height: 52px;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* Shield / lock icon */
+    .icon-shield {
+      width: 32px;
+      height: 36px;
+      border: 2.5px solid var(--crew-teal);
+      border-radius: 4px 4px 16px 16px;
+      position: relative;
+    }
+
+    .icon-shield::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--crew-teal);
+    }
+
+    /* Brain / sparkle icon */
+    .icon-brain {
+      width: 32px;
+      height: 32px;
+      position: relative;
+    }
+
+    .icon-brain::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 2.5px solid var(--crew-teal);
+      border-radius: 50%;
+    }
+
+    .icon-brain::after {
+      content: '';
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      right: 5px;
+      bottom: 5px;
+      border: 2px solid var(--crew-teal);
+      border-radius: 50%;
+      opacity: 0.4;
+    }
+
+    .icon-brain-sparkle {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      width: 12px;
+      height: 12px;
+    }
+
+    .icon-brain-sparkle::before,
+    .icon-brain-sparkle::after {
+      content: '';
+      position: absolute;
+      background: var(--henry-gold);
+    }
+
+    .icon-brain-sparkle::before {
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      transform: translateY(-50%);
+      border-radius: 1px;
+    }
+
+    .icon-brain-sparkle::after {
+      left: 50%;
+      top: 0;
+      width: 2px;
+      height: 100%;
+      transform: translateX(-50%);
+      border-radius: 1px;
+    }
+
+    /* Presentation / slide icon */
+    .icon-slide {
+      width: 34px;
+      height: 26px;
+      border: 2.5px solid var(--crew-teal);
+      border-radius: 4px;
+      position: relative;
+    }
+
+    .icon-slide::before {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 16px;
+      height: 3px;
+      background: var(--crew-teal);
+      border-radius: 2px;
+    }
+
+    .icon-slide::after {
+      content: '';
+      position: absolute;
+      top: 5px;
+      left: 6px;
+      width: 10px;
+      height: 6px;
+      border-bottom: 2px solid var(--crew-teal);
+      border-left: 2px solid var(--crew-teal);
+      transform: rotate(-45deg);
+      opacity: 0.5;
+    }
+
+    .tech-card-title {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+
+    .tech-card-desc {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* Architecture flow diagram */
+    .arch-flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      margin-top: 56px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      flex-wrap: nowrap;
+    }
+
+    .arch-box {
+      padding: 14px 24px;
+      border-radius: 10px;
+      border: 1.5px solid var(--crew-teal-20);
+      background: var(--crew-teal-05);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--crew-teal-dark);
+      white-space: nowrap;
+      text-align: center;
+    }
+
+    .arch-box-henry {
+      border-color: var(--henry-gold-20);
+      background: var(--henry-gold-05);
+      color: var(--henry-gold-dark);
+      font-weight: 600;
+    }
+
+    .arch-arrow {
+      display: flex;
+      align-items: center;
+      padding: 0 6px;
+      flex-shrink: 0;
+    }
+
+    .arch-arrow-line {
+      width: 32px;
+      height: 2px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .arch-arrow-line::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--crew-teal) 0px,
+        var(--crew-teal) 4px,
+        transparent 4px,
+        transparent 8px
+      );
+      animation: flowDashes 1s linear infinite;
+    }
+
+    .arch-arrow-head {
+      width: 0;
+      height: 0;
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+      border-left: 6px solid var(--crew-teal);
+      flex-shrink: 0;
+    }
+
+    @keyframes flowDashes {
+      from { transform: translateX(-8px); }
+      to { transform: translateX(0); }
+    }
+
+    /* ============================
+       Section 8: Investment — Pricing Cards
+       ============================ */
+    .pricing-cards {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      margin-top: 48px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .pricing-card {
+      flex: 1;
+      background: #fff;
+      border: 1px solid var(--border-light);
+      border-radius: 12px;
+      padding: 36px 32px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .pricing-card-primary {
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .pricing-card-primary:hover {
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
+    }
+
+    .pricing-card-border {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+    }
+
+    .pricing-card-border-teal {
+      background: var(--crew-teal);
+    }
+
+    .pricing-card-border-gold {
+      background: var(--henry-gold);
+    }
+
+    .pricing-badge {
+      display: inline-block;
+      font-family: var(--font-sans);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      background: var(--crew-teal-10);
+      color: var(--crew-teal);
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+
+    .pricing-title {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .pricing-subtitle {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .pricing-price {
+      font-family: var(--font-serif);
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .pricing-price-teal {
+      color: var(--crew-teal);
+    }
+
+    .pricing-price-gold {
+      color: var(--henry-gold);
+    }
+
+    .pricing-price-note {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      color: var(--text-subtle);
+      margin-bottom: 24px;
+    }
+
+    .pricing-list {
+      list-style: none;
+      margin-bottom: 24px;
+    }
+
+    .pricing-list li {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      color: var(--text-secondary);
+      padding: 7px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+    }
+
+    .pricing-list li:last-child {
+      border-bottom: none;
+    }
+
+    .pricing-check {
+      color: var(--crew-teal);
+      font-size: 12px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .pricing-footer {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      color: var(--text-subtle);
+      font-style: italic;
+    }
+
+    .pricing-note {
+      text-align: center;
+      margin-top: 28px;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      color: var(--text-muted);
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ============================
+       Section 9: Next Steps — Footer CTA (Dark)
+       ============================ */
+    .closing-cta {
+      background: #111118;
+      padding: 100px 0 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle grain texture */
+    .closing-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0.02;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 256px;
+      pointer-events: none;
+    }
+
+    .closing-content {
+      position: relative;
+      z-index: 2;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .closing-icon {
+      position: relative;
+      width: 40px;
+      height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      background: rgba(201, 169, 110, 0.06);
+      border: 1.5px solid rgba(201, 169, 110, 0.25);
+      background-image: linear-gradient(135deg, rgba(201,169,110,0.1) 0%, transparent 100%);
+      font-family: var(--font-serif);
+      font-size: 18px;
+      color: var(--henry-gold);
+      margin-bottom: 28px;
+    }
+
+    .closing-icon::before {
+      content: '';
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201, 169, 110, 0.2) 0%, transparent 70%);
+      animation: glowPulse 4s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .closing-title {
+      font-family: var(--font-serif);
+      font-size: 28px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 16px;
+    }
+
+    .closing-body {
+      font-family: var(--font-sans);
+      font-size: 15px;
+      color: rgba(255, 255, 255, 0.5);
+      line-height: 1.7;
+      margin-bottom: 36px;
+    }
+
+    /* Gold shimmer CTA button */
+    .closing-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 48px;
+      border-radius: 12px;
+      border: none;
+      background: linear-gradient(135deg, var(--henry-gold) 0%, var(--henry-gold-dark) 100%);
+      color: #0C0B0F;
+      font-family: var(--font-sans);
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      cursor: pointer;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .closing-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(201, 169, 110, 0.35);
+    }
+
+    .closing-btn::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%);
+      animation: shimmerSweep 3s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .closing-contact {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.4);
+      margin-top: 28px;
+    }
+
+    .closing-footer {
+      margin-top: 56px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .closing-footer-text {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.2);
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+    }
+
+    .closing-footer-logo {
+      height: 20px;
+      width: auto;
+      opacity: 0.15;
+      filter: brightness(10);
+    }
+
+    /* ============================
+       Keyframes
+       ============================ */
+    @keyframes fadeScaleIn {
+      from { opacity: 0; transform: scale(0.85); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes dividerGrow {
+      from { opacity: 0; transform: scaleX(0); }
+      to { opacity: 1; transform: scaleX(1); }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(6px); }
+    }
+
+    @keyframes glowPulse {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 0.7; transform: scale(1.1); }
+    }
+
+    /* ============================
+       Teal accent line subtle pulse
+       ============================ */
+    body::before {
+      animation: accentPulse 8s ease-in-out infinite;
+    }
+
+    @keyframes accentPulse {
+      0%, 100% { opacity: 0.12; }
+      50% { opacity: 0.3; }
+    }
+
+    /* ============================
+       Accessibility: prefers-reduced-motion
+       ============================ */
+    @media (prefers-reduced-motion: reduce) {
+      .reveal,
+      .reveal-left,
+      .reveal-right,
+      .reveal-scale {
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+
+      .henry-icon,
+      .hero-title,
+      .hero-subtitle,
+      .hero-divider,
+      .hero-hook,
+      .hero-meta,
+      .scroll-indicator {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+
+      .demo-pill::after,
+      .closing-btn::after,
+      .henry-icon::before,
+      .meet-henry-icon::before,
+      .closing-icon::before,
+      .scroll-indicator-arrow,
+      .arch-arrow-line::before,
+      body::before {
+        animation: none !important;
+      }
+
+      .step-connector-line.animate-draw {
+        animation: none !important;
+        clip-path: none !important;
+      }
+    }
+
+    /* ============================
+       Tablet Responsive
+       ============================ */
+    @media (max-width: 1024px) and (min-width: 769px) {
+      .capability-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* ============================
+       Mobile Responsive
+       ============================ */
+    @media (max-width: 768px) {
+      :root {
+        --section-padding: 80px 0;
+        --container-padding: 0 24px;
+      }
+
+      body::before {
+        display: none;
+      }
+
+      .hero-nav {
+        padding: 16px 20px;
+      }
+
+      .hero-nav-logo {
+        height: 22px;
+      }
+
+      .hero-nav-text {
+        font-size: 9px;
+        letter-spacing: 1px;
+      }
+
+      .hero-title {
+        font-size: 38px;
+      }
+
+      .hero-hook {
+        font-size: 18px;
+        max-width: 340px;
+      }
+
+      .hero-meta {
+        font-size: 12px;
+      }
+
+      .section-title {
+        font-size: 28px;
+      }
+
+      .challenge-layout {
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      .challenge-left {
+        flex: 1;
+        max-width: 100%;
+      }
+
+      .challenge-title {
+        font-size: 26px;
+      }
+
+      .stat-card {
+        max-width: 100%;
+      }
+
+      .stat-number {
+        font-size: 36px;
+      }
+
+      .stat-block.stat-emphasized .stat-number {
+        font-size: 42px;
+      }
+
+      .steps-flow {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .step-item {
+        width: 100%;
+        max-width: 320px;
+      }
+
+      .step-connector {
+        display: none;
+      }
+
+      .phase1-layout {
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      .phase1-left {
+        flex: 1;
+        max-width: 100%;
+      }
+
+      .app-mockup {
+        width: 280px;
+        height: 190px;
+        transform: rotate(0deg);
+      }
+
+      .meet-henry-title {
+        font-size: 28px;
+      }
+
+      .capability-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .roadmap-callout {
+        padding: 28px 24px;
+      }
+
+      .roadmap-callout-text {
+        font-size: 16px;
+      }
+
+      .roadmap-callout::before,
+      .roadmap-callout::after {
+        font-size: 48px;
+      }
+
+      .feature-pills {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .tech-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .arch-flow {
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+      }
+
+      .arch-box {
+        font-size: 12px;
+        padding: 10px 16px;
+      }
+
+      .arch-arrow-line {
+        width: 20px;
+      }
+
+      .pricing-cards {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .pricing-price {
+        font-size: 28px;
+      }
+
+      .closing-title {
+        font-size: 24px;
+      }
+
+      .closing-btn {
+        padding: 14px 36px;
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================
+       SECTION 1: HERO
+       ============================ -->
+  <section class="hero">
+    <nav class="hero-nav">
+      <img src="crew-wealth-logo.svg" alt="Crew Wealth Management" class="hero-nav-logo">
+      <span class="hero-nav-text">Prepared for Crew Wealth Management</span>
+    </nav>
+
+    <div class="hero-content">
+      <div class="henry-icon">H</div>
+      <h1 class="hero-title">Henry</h1>
+      <p class="hero-subtitle">AI Presentation Assistant</p>
+      <div class="hero-divider"></div>
+      <p class="hero-hook">
+        Turn 2 hours of manual deck updates<br>into a 5-minute conversation.
+      </p>
+      <p class="hero-meta">
+        A proposal for Crew Wealth Management <span>&middot;</span> February 2026
+      </p>
+      <div class="scroll-indicator">
+        <span class="scroll-indicator-text">Scroll to explore</span>
+        <span class="scroll-indicator-arrow">&darr;</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       SECTION 2: THE CHALLENGE
+       ============================ -->
+  <section class="section" id="challenge">
+    <div class="container">
+      <div class="challenge-layout">
+        <!-- Left Column — Text -->
+        <div class="challenge-left">
+          <p class="section-label reveal-left">The Challenge</p>
+          <h2 class="challenge-title reveal-left reveal-delay-1">
+            Annual reviews shouldn't take weeks to produce.
+          </h2>
+          <div class="challenge-body reveal-left reveal-delay-2">
+            <p>
+              Every year, your team opens last year's Keynote for each client,
+              manually updates financial figures, rewrites market commentary,
+              adjusts dates and projections, and reformats charts. It's skilled
+              work done by skilled people &mdash; but it's repetitive.
+            </p>
+            <p>
+              Multiply that across your entire client base and you're looking
+              at weeks of time spent on mechanical edits instead of the strategic
+              advising your clients actually value.
+            </p>
+          </div>
+        </div>
+
+        <!-- Right Column — Stat Card -->
+        <div class="challenge-right">
+          <div class="stat-card reveal-right reveal-delay-3">
+            <div class="stat-block">
+              <div class="stat-number" data-countup data-target="2" data-prefix="~" data-suffix=" hrs">&mdash;</div>
+              <div class="stat-label">per client deck, manually</div>
+            </div>
+            <div class="stat-block">
+              <div class="stat-number" data-countup data-target="50" data-suffix="+">&mdash;</div>
+              <div class="stat-label">client presentations per year</div>
+            </div>
+            <div class="stat-block stat-emphasized">
+              <div class="stat-number" data-countup data-target="100" data-suffix="+ hrs">&mdash;</div>
+              <div class="stat-label">of annual repetitive work</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section divider -->
+  <div class="section-divider">
+    <div class="section-divider-line reveal-scale"></div>
+  </div>
+
+  <!-- ============================
+       SECTION 3: MEET HENRY (Dark)
+       ============================ -->
+  <section class="section section-dark" id="meet-henry">
+    <div class="container">
+      <div class="meet-henry-content">
+        <div class="meet-henry-icon reveal">H</div>
+        <h2 class="meet-henry-title reveal reveal-delay-1">Meet Henry</h2>
+        <p class="meet-henry-subtitle reveal reveal-delay-2">Your AI Presentation Assistant</p>
+        <div class="meet-henry-divider reveal reveal-delay-2"></div>
+        <div class="meet-henry-body reveal reveal-delay-3">
+          <p>
+            Henry is a private AI assistant that lives on your Mac Mini. Drop in
+            last year's Keynote alongside new financial data &mdash; portfolio
+            statements, tax summaries, CSV exports &mdash; and tell Henry what to
+            change in plain English. He reads everything, cross-references the
+            numbers, and rebuilds the deck in minutes.
+          </p>
+          <p>
+            Henry runs entirely on your local network. No client data ever
+            leaves your office.
+          </p>
+        </div>
+
+        <a href="https://crew-wealth-studio.vercel.app" target="_blank" class="demo-pill reveal reveal-delay-4">
+          Try the Interactive Demo &rarr;
+        </a>
+
+        <div class="feature-pills">
+          <div class="feature-pill reveal reveal-delay-4">
+            <span class="feature-pill-icon">&#128274;</span>
+            Runs Locally
+          </div>
+          <div class="feature-pill reveal reveal-delay-5">
+            <span class="feature-pill-icon">&#128202;</span>
+            Reads Financial Data
+          </div>
+          <div class="feature-pill reveal reveal-delay-6">
+            <span class="feature-pill-icon">&#9998;</span>
+            Updates Presentations
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       SECTION 4: HOW IT WORKS
+       ============================ -->
+  <section class="section" id="how-it-works">
+    <div class="container" style="text-align: center;">
+      <p class="section-label section-label-center reveal">How It Works</p>
+      <h2 class="section-title reveal reveal-delay-1" style="text-align: center; margin-left: auto; margin-right: auto;">
+        Four steps. One conversation.
+      </h2>
+
+      <div class="steps-flow">
+        <!-- Step 1 — Upload -->
+        <div class="step-item reveal reveal-delay-1">
+          <div class="step-visual step-visual-files">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="step-circle">1</div>
+          <div class="step-connector"><div class="step-connector-line" data-draw></div></div>
+          <div class="step-item-title">Drop in Your Files</div>
+          <div class="step-item-text">
+            Last year's Keynote, new portfolio statements, tax
+            summaries &mdash; anything Henry needs to build the update.
+          </div>
+        </div>
+
+        <!-- Step 2 — Instruct -->
+        <div class="step-item reveal reveal-delay-2">
+          <div class="step-visual step-visual-chat">
+            <span></span>
+          </div>
+          <div class="step-circle">2</div>
+          <div class="step-connector"><div class="step-connector-line" data-draw></div></div>
+          <div class="step-item-title">Tell Henry What to Change</div>
+          <div class="step-item-text">
+            Type in plain English: &ldquo;Update the financials to 2025
+            actuals and make the commentary more conservative.&rdquo;
+            Henry understands context.
+          </div>
+        </div>
+
+        <!-- Step 3 — Review -->
+        <div class="step-item reveal reveal-delay-3">
+          <div class="step-visual step-visual-check">
+            <span></span>
+          </div>
+          <div class="step-circle">3</div>
+          <div class="step-connector"><div class="step-connector-line" data-draw></div></div>
+          <div class="step-item-title">Review Every Change</div>
+          <div class="step-item-text">
+            Henry shows you each slide with a detailed changelog. Click
+            any slide to see exactly what was modified and why.
+          </div>
+        </div>
+
+        <!-- Step 4 — Download -->
+        <div class="step-item reveal reveal-delay-4">
+          <div class="step-visual step-visual-download">
+            <span><div class="dl-base"></div></span>
+          </div>
+          <div class="step-circle">4</div>
+          <div class="step-item-title">Present to Your Client</div>
+          <div class="step-item-text">
+            Download the finished Keynote. Open it directly, review the
+            slides, and walk into your next meeting prepared.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       SECTION 5: PHASE 1 — WHAT'S INCLUDED
+       ============================ -->
+  <section class="section section-alt" id="phase-1">
+    <div class="container">
+      <p class="section-label reveal-left">Phase 1</p>
+      <h2 class="section-title reveal-left reveal-delay-1">The Initial Build</h2>
+      <p class="phase1-subtitle reveal-left reveal-delay-2">
+        Everything you need to start using Henry with your clients.
+      </p>
+
+      <div class="phase1-layout">
+        <!-- Left Column — Deliverables -->
+        <div class="phase1-left">
+          <div class="deliverable-list">
+            <div class="deliverable-item reveal-left reveal-delay-1">
+              <div class="deliverable-check">&check;</div>
+              <div class="deliverable-content">
+                <div class="deliverable-title">Henry Web Application</div>
+                <div class="deliverable-desc">
+                  The full web app running on your Mac Mini &mdash; chat interface,
+                  file upload, slide review, and download.
+                </div>
+              </div>
+            </div>
+
+            <div class="deliverable-item reveal-left reveal-delay-2">
+              <div class="deliverable-check">&check;</div>
+              <div class="deliverable-content">
+                <div class="deliverable-title">Keynote Integration</div>
+                <div class="deliverable-desc">
+                  Native AppleScript integration that reads and writes .key files
+                  directly. Preserves your themes, transitions, and master slides.
+                </div>
+              </div>
+            </div>
+
+            <div class="deliverable-item reveal-left reveal-delay-2">
+              <div class="deliverable-check">&check;</div>
+              <div class="deliverable-content">
+                <div class="deliverable-title">Financial Data Parsing</div>
+                <div class="deliverable-desc">
+                  Henry reads PDF statements, CSV exports, and Excel files.
+                  Cross-references old vs. new data automatically.
+                </div>
+              </div>
+            </div>
+
+            <div class="deliverable-item reveal-left reveal-delay-3">
+              <div class="deliverable-check">&check;</div>
+              <div class="deliverable-content">
+                <div class="deliverable-title">Smart Suggestions</div>
+                <div class="deliverable-desc">
+                  Henry pre-analyzes uploaded files and suggests likely updates
+                  before you even type.
+                </div>
+              </div>
+            </div>
+
+            <div class="deliverable-item reveal-left reveal-delay-3">
+              <div class="deliverable-check">&check;</div>
+              <div class="deliverable-content">
+                <div class="deliverable-title">Slide-Level Iteration</div>
+                <div class="deliverable-desc">
+                  Click any slide to chat about just that slide. Make targeted
+                  adjustments without touching the rest of the deck.
+                </div>
+              </div>
+            </div>
+
+            <div class="deliverable-item reveal-left reveal-delay-4">
+              <div class="deliverable-check">&check;</div>
+              <div class="deliverable-content">
+                <div class="deliverable-title">Client-Ready Output</div>
+                <div class="deliverable-desc">
+                  Download finished presentations in native Keynote format,
+                  ready to present.
+                </div>
+              </div>
+            </div>
+
+            <div class="deliverable-item reveal-left reveal-delay-4">
+              <div class="deliverable-check">&check;</div>
+              <div class="deliverable-content">
+                <div class="deliverable-title">Local-First Architecture</div>
+                <div class="deliverable-desc">
+                  Runs entirely on your Mac Mini. No client data leaves your
+                  office network. Enterprise-grade privacy.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column — App Mockup -->
+        <div class="phase1-right">
+          <div class="app-mockup-wrapper reveal-right reveal-delay-3">
+            <div class="app-mockup">
+              <!-- Header bar -->
+              <div class="mockup-header">
+                <div class="mockup-dot"></div>
+                <div class="mockup-dot"></div>
+                <div class="mockup-dot"></div>
+              </div>
+
+              <!-- Two-panel body -->
+              <div class="mockup-body">
+                <!-- Chat panel -->
+                <div class="mockup-panel-left">
+                  <div class="mockup-chat-line ai"></div>
+                  <div class="mockup-chat-line ai short"></div>
+                  <div class="mockup-chat-line user"></div>
+                  <div class="mockup-chat-line ai"></div>
+                  <div class="mockup-chat-line ai short"></div>
+                  <div class="mockup-chat-line user" style="width: 55%;"></div>
+                  <div class="mockup-chat-line ai"></div>
+                </div>
+
+                <!-- Slides panel -->
+                <div class="mockup-panel-right">
+                  <div class="mockup-slide">
+                    <div class="mockup-slide-dot"></div>
+                    <div class="mockup-slide-text"></div>
+                  </div>
+                  <div class="mockup-slide">
+                    <div class="mockup-slide-dot" style="background: var(--henry-gold); opacity: 0.5;"></div>
+                    <div class="mockup-slide-text"></div>
+                  </div>
+                  <div class="mockup-slide">
+                    <div class="mockup-slide-dot"></div>
+                    <div class="mockup-slide-text"></div>
+                  </div>
+                  <div class="mockup-slide">
+                    <div class="mockup-slide-dot" style="background: var(--henry-gold); opacity: 0.5;"></div>
+                    <div class="mockup-slide-text"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating H badge -->
+            <div class="mockup-badge">H</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       SECTION 6: THE BIGGER PICTURE
+       ============================ -->
+  <section class="section section-alt" id="roadmap">
+    <div class="container">
+      <div class="roadmap-header">
+        <p class="section-label section-label-center reveal">The Roadmap</p>
+        <h2 class="section-title reveal reveal-delay-1" style="text-align: center; margin-left: auto; margin-right: auto;">
+          Henry grows with your practice.
+          <span class="roadmap-count">10 planned capabilities</span>
+        </h2>
+        <p class="roadmap-subtitle reveal reveal-delay-2">
+          Phase 1 handles presentations. But Henry's architecture is built to become
+          the AI backbone of your entire client workflow.
+        </p>
+      </div>
+
+      <div class="capability-grid">
+        <!-- 1. Batch Processing -->
+        <div class="capability-card reveal reveal-delay-1" onclick="this.classList.toggle('expanded')">
+          <div class="capability-card-header">
+            <div class="capability-card-icon">&#9889;</div>
+            <div class="capability-card-title">Batch Processing</div>
+            <div class="capability-card-toggle">&#9662;</div>
+          </div>
+          <div class="capability-card-body">
+            <p class="capability-card-desc">
+              Feed Henry a folder of 50 client data files. Wake up to 50 updated
+              presentations. Transform a multi-week project into an overnight task.
+            </p>
+            <span class="phase-badge phase-badge-2">Phase 2</span>
+          </div>
+        </div>
+
+        <!-- 2. Client Profiles -->
+        <div class="capability-card reveal reveal-delay-1" onclick="this.classList.toggle('expanded')">
+          <div class="capability-card-header">
+            <div class="capability-card-icon">&#128100;</div>
+            <div class="capability-card-title">Client Profiles</div>
+            <div class="capability-card-toggle">&#9662;</div>
+          </div>
+          <div class="capability-card-body">
+            <p class="capability-card-desc">
+              Henry remembers each client's preferences &mdash; &ldquo;The Hendersons
+              prefer conservative language,&rdquo; &ldquo;The Chens want detail on
+              international exposure,&rdquo; &ldquo;Mr. Park needs large print.&rdquo;
+              Every deck is automatically personalized.
+            </p>
+            <span class="phase-badge phase-badge-2">Phase 2</span>
+          </div>
+        </div>
+
+        <!-- 3. Meeting Prep Briefs -->
+        <div class="capability-card reveal reveal-delay-2" onclick="this.classList.toggle('expanded')">
+          <div class="capability-card-header">
+            <div class="capability-card-icon">&#128203;</div>
+            <div class="capability-card-title">Meeting Prep Briefs</div>
+            <div class="capability-card-toggle">&#9662;</div>
+          </div>
+          <div class="capability-card-body">
+            <p class="capability-card-desc">
+              Alongside each deck, Henry generates a one-page brief: key changes to
+              highlight, questions the client might ask, and suggested talking points
+              for the meeting.
+            </p>
+            <span class="phase-badge phase-badge-2">Phase 2</span>
+          </div>
+        </div>
+
+        <!-- 4. Post-Meeting Follow-Ups -->
+        <div class="capability-card reveal reveal-delay-2" onclick="this.classList.toggle('expanded')">
+          <div class="capability-card-header">
+            <div class="capability-card-icon">&#9993;</div>
+            <div class="capability-card-title">Post-Meeting Follow-Ups</div>
+            <div class="capability-card-toggle">&#9662;</div>
+          </div>
+          <div class="capability-card-body">
+            <p class="capability-card-desc">
+              After the meeting, tell Henry what was discussed. He drafts a personalized
+              follow-up email to the client, referencing specific topics from the
+              conversation.
+            </p>
+            <span class="phase-badge phase-badge-2">Phase 2</span>
+          </div>
+        </div>
+
+        <!-- 5. Quarterly Mini-Decks -->
+        <div class="capability-card reveal reveal-delay-2" onclick="this.classList.toggle('expanded')">
+          <div class="capability-card-header">
+            <div class="capability-card-icon">&#128202;</div>
+            <div class="capability-card-title">Quarterly Mini-Decks</div>
+            <div class="capability-card-toggle">&#9662;</div>
+          </div>
+          <div class="capability-card-body">
+            <p class="capability-card-desc">
+              Not just annual reviews &mdash; Henry generates lighter quarterly check-in
+              presentations from your latest portfolio data exports.
+            </p>
+            <span class="phase-badge phase-badge-2">Phase 2</span>
+          </div>
+        </div>
+
+        <!-- 6. Portfolio Software Integration -->
+        <div class="capability-card reveal reveal-delay-3" onclick="this.classList.toggle('expanded')">
+          <div class="capability-card-header">
+            <div class="capability-card-icon">&#128279;</div>
+            <div class="capability-card-title">Portfolio Software Integration</div>
+            <div class="capability-card-toggle">&#9662;</div>
+          </div>
+          <div class="capability-card-body">
+            <p class="capability-card-desc">
+              Direct connection to Orion, Black Diamond, Tamarac, or your portfolio
+              management system. Henry pulls data automatically &mdash; no more CSV
+              uploads.
+            </p>
+            <span class="phase-badge phase-badge-3">Phase 3</span>
+          </div>
+        </div>
+
+        <!-- 7. Compliance Pre-Check -->
+        <div class="capability-card reveal reveal-delay-3" onclick="this.classList.toggle('expanded')">
+          <div class="capability-card-header">
+            <div class="capability-card-icon">&#128737;</div>
+            <div class="capability-card-title">Compliance Pre-Check</div>
+            <div class="capability-card-toggle">&#9662;</div>
+          </div>
+          <div class="capability-card-body">
+            <p class="capability-card-desc">
+              Henry flags language that might conflict with SEC/FINRA guidelines before
+              the deck reaches a client &mdash; forward-looking statements, performance
+              claims, missing disclaimers.
+            </p>
+            <span class="phase-badge phase-badge-2">Phase 2</span>
+          </div>
+        </div>
+
+        <!-- 8. Client Presentation Portal -->
+        <div class="capability-card reveal reveal-delay-3" onclick="this.classList.toggle('expanded')">
+          <div class="capability-card-header">
+            <div class="capability-card-icon">&#127760;</div>
+            <div class="capability-card-title">Client Presentation Portal</div>
+            <div class="capability-card-toggle">&#9662;</div>
+          </div>
+          <div class="capability-card-body">
+            <p class="capability-card-desc">
+              A branded web portal where clients log in to view their presentations
+              online. No more emailing large files &mdash; everything is secure,
+              trackable, and professional.
+            </p>
+            <span class="phase-badge phase-badge-3">Phase 3</span>
+          </div>
+        </div>
+
+        <!-- 9. Brand Consistency Engine -->
+        <div class="capability-card reveal reveal-delay-4" onclick="this.classList.toggle('expanded')">
+          <div class="capability-card-header">
+            <div class="capability-card-icon">&#127912;</div>
+            <div class="capability-card-title">Brand Consistency Engine</div>
+            <div class="capability-card-toggle">&#9662;</div>
+          </div>
+          <div class="capability-card-body">
+            <p class="capability-card-desc">
+              Henry enforces Crew Wealth's brand guidelines across every deck &mdash;
+              fonts, colors, logo placement, disclaimer language. Nothing goes out
+              off-brand.
+            </p>
+            <span class="phase-badge phase-badge-2">Phase 2</span>
+          </div>
+        </div>
+
+        <!-- 10. Voice Instructions -->
+        <div class="capability-card reveal reveal-delay-4" onclick="this.classList.toggle('expanded')">
+          <div class="capability-card-header">
+            <div class="capability-card-icon">&#127908;</div>
+            <div class="capability-card-title">Voice Instructions</div>
+            <div class="capability-card-toggle">&#9662;</div>
+          </div>
+          <div class="capability-card-body">
+            <p class="capability-card-desc">
+              Dictate changes to Henry from your phone: &ldquo;Hey Henry, update the
+              Henderson deck with their Q3 numbers and add a slide about the Roth
+              conversion.&rdquo; Done.
+            </p>
+            <span class="phase-badge phase-badge-3">Phase 3</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Callout quote -->
+      <div class="roadmap-callout reveal-scale reveal-delay-2">
+        <p class="roadmap-callout-text">
+          Every capability builds on the same foundation. Phase 1 creates the
+          core &mdash; each addition after that is incremental, not a rebuild.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       SECTION 7: UNDER THE HOOD
+       ============================ -->
+  <section class="section" id="technical">
+    <div class="container" style="max-width: 900px;">
+      <div style="text-align: center;">
+        <p class="section-label section-label-center reveal">Technical Approach</p>
+        <h2 class="section-title reveal reveal-delay-1" style="text-align: center; margin-left: auto; margin-right: auto;">
+          Built for privacy and simplicity.
+        </h2>
+      </div>
+
+      <div class="tech-grid">
+        <!-- Local-First -->
+        <div class="tech-card reveal reveal-delay-2">
+          <div class="tech-card-icon">
+            <div class="icon-shield"></div>
+          </div>
+          <div class="tech-card-title">Runs on Your Mac Mini</div>
+          <div class="tech-card-desc">
+            Henry operates entirely on your local machine. Client financial
+            data never touches the cloud, never leaves your office network.
+            The AI processes everything on-device through a secure API connection.
+          </div>
+        </div>
+
+        <!-- Powered by Claude -->
+        <div class="tech-card reveal reveal-delay-3">
+          <div class="tech-card-icon">
+            <div class="icon-brain">
+              <div class="icon-brain-sparkle"></div>
+            </div>
+          </div>
+          <div class="tech-card-title">Anthropic's Claude AI</div>
+          <div class="tech-card-desc">
+            Henry is built on Claude, the most capable AI for document analysis
+            and writing. Claude reads financial data, understands context, and
+            writes with the nuance and accuracy your clients expect.
+          </div>
+        </div>
+
+        <!-- Native Keynote -->
+        <div class="tech-card reveal reveal-delay-4">
+          <div class="tech-card-icon">
+            <div class="icon-slide"></div>
+          </div>
+          <div class="tech-card-title">Native Apple Integration</div>
+          <div class="tech-card-desc">
+            Henry talks directly to Keynote through Apple's scripting layer.
+            Your themes, transitions, master slides, and brand assets are
+            preserved perfectly &mdash; the output is a real .key file, not
+            a conversion.
+          </div>
+        </div>
+      </div>
+
+      <!-- Architecture flow diagram -->
+      <div class="arch-flow reveal-scale reveal-delay-3">
+        <div class="arch-box">Your Files</div>
+        <div class="arch-arrow">
+          <div class="arch-arrow-line"></div>
+          <div class="arch-arrow-head"></div>
+        </div>
+        <div class="arch-box arch-box-henry">Henry on Mac Mini</div>
+        <div class="arch-arrow">
+          <div class="arch-arrow-line"></div>
+          <div class="arch-arrow-head"></div>
+        </div>
+        <div class="arch-box">Claude AI</div>
+        <div class="arch-arrow">
+          <div class="arch-arrow-line"></div>
+          <div class="arch-arrow-head"></div>
+        </div>
+        <div class="arch-box">Updated Keynote</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       SECTION 8: INVESTMENT
+       ============================ -->
+  <section class="section section-alt" id="investment">
+    <div class="container">
+      <div style="text-align: center;">
+        <p class="section-label section-label-center reveal">Investment</p>
+        <h2 class="section-title reveal reveal-delay-1" style="text-align: center; margin-left: auto; margin-right: auto;">
+          Flexible engagement, clear scope.
+        </h2>
+      </div>
+
+      <div class="pricing-cards">
+        <!-- Card 1 — Phase 1 -->
+        <div class="pricing-card pricing-card-primary reveal-scale reveal-delay-2">
+          <div class="pricing-card-border pricing-card-border-teal"></div>
+          <div class="pricing-badge">Recommended</div>
+          <div class="pricing-title">Phase 1</div>
+          <div class="pricing-subtitle">The Henry Foundation</div>
+          <div class="pricing-price pricing-price-teal">[PRICE]</div>
+          <div class="pricing-price-note">one-time development</div>
+          <ul class="pricing-list">
+            <li><span class="pricing-check">&check;</span> Henry web application</li>
+            <li><span class="pricing-check">&check;</span> Keynote file integration</li>
+            <li><span class="pricing-check">&check;</span> Financial data parsing</li>
+            <li><span class="pricing-check">&check;</span> Chat-based iteration</li>
+            <li><span class="pricing-check">&check;</span> Local Mac Mini deployment</li>
+            <li><span class="pricing-check">&check;</span> 30 days of support & refinement</li>
+          </ul>
+          <div class="pricing-footer">Estimated [X] weeks</div>
+        </div>
+
+        <!-- Card 2 — Phase 2 -->
+        <div class="pricing-card reveal-scale reveal-delay-3">
+          <div class="pricing-card-border pricing-card-border-gold"></div>
+          <div class="pricing-title" style="margin-top: 8px;">Phase 2</div>
+          <div class="pricing-subtitle">Expanding Henry's Capabilities</div>
+          <div class="pricing-price pricing-price-gold">[PRICE]</div>
+          <div class="pricing-price-note">per capability add-on</div>
+          <ul class="pricing-list">
+            <li><span class="pricing-check" style="color: var(--henry-gold);">&check;</span> Batch processing</li>
+            <li><span class="pricing-check" style="color: var(--henry-gold);">&check;</span> Client profiles</li>
+            <li><span class="pricing-check" style="color: var(--henry-gold);">&check;</span> Meeting prep briefs</li>
+            <li><span class="pricing-check" style="color: var(--henry-gold);">&check;</span> Post-meeting follow-ups</li>
+            <li><span class="pricing-check" style="color: var(--henry-gold);">&check;</span> Compliance pre-check</li>
+            <li><span class="pricing-check" style="color: var(--henry-gold);">&check;</span> Brand consistency engine</li>
+          </ul>
+          <div class="pricing-footer">Each add-on scoped individually</div>
+        </div>
+      </div>
+
+      <p class="pricing-note reveal reveal-delay-4">
+        All pricing is for discussion. Happy to structure this in a way
+        that works best for Crew Wealth.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================
+       SECTION 9: NEXT STEPS — FOOTER CTA
+       ============================ -->
+  <section class="closing-cta" id="next-steps">
+    <div class="closing-content">
+      <div class="closing-icon reveal">H</div>
+      <h2 class="closing-title reveal reveal-delay-1">Ready to meet Henry?</h2>
+      <p class="closing-body reveal reveal-delay-2">
+        If you like the direction, let's schedule a call to walk through the
+        details and finalize the scope. Henry can be up and running on your
+        Mac Mini in weeks.
+      </p>
+      <div class="reveal reveal-delay-3">
+        <a href="mailto:stuart@soule.net" class="closing-btn">
+          Let's Talk &rarr;
+        </a>
+      </div>
+      <p class="closing-contact reveal reveal-delay-4">
+        [YOUR NAME] &middot; [PHONE] &middot; [EMAIL]
+      </p>
+
+      <div class="closing-footer reveal reveal-delay-5">
+        <p class="closing-footer-text">
+          Prepared exclusively for Crew Wealth Management &middot; February 2026
+        </p>
+        <img src="crew-wealth-logo.svg" alt="Crew Wealth Management" class="closing-footer-logo">
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       JavaScript — IntersectionObserver
+       ============================ -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+      // ---- Scroll-triggered reveal animations ----
+      const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -40px 0px'
+      });
+      reveals.forEach(el => revealObserver.observe(el));
+
+      // ---- Count-up animation for stat numbers ----
+      const countElements = document.querySelectorAll('[data-countup]');
+
+      function animateCount(el) {
+        const target = parseInt(el.dataset.target, 10);
+        const prefix = el.dataset.prefix || '';
+        const suffix = el.dataset.suffix || '';
+        const duration = 1800; // ms
+        const startTime = performance.now();
+
+        function easeOutCubic(t) {
+          return 1 - Math.pow(1 - t, 3);
+        }
+
+        function update(now) {
+          const elapsed = now - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const easedProgress = easeOutCubic(progress);
+          const current = Math.round(easedProgress * target);
+          el.textContent = prefix + current + suffix;
+          if (progress < 1) {
+            requestAnimationFrame(update);
+          }
+        }
+
+        requestAnimationFrame(update);
+      }
+
+      const countObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            animateCount(entry.target);
+            countObserver.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.3
+      });
+
+      countElements.forEach(el => countObserver.observe(el));
+
+      // ---- Connecting line draw animation for steps ----
+      const drawLines = document.querySelectorAll('[data-draw]');
+      const drawObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-draw');
+            drawObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+      drawLines.forEach(el => drawObserver.observe(el));
+
+      // ---- Smooth scroll for anchor links ----
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+
+    });
+  </script>
+
+</body>
+</html>
