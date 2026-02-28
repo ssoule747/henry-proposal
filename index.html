@@ -1940,7 +1940,309 @@
 
 
     /* ------------------------------------------------------------
-       12. Mobile Responsive (below 768px)
+       12. SECTION 8: FUTURE APPLICATIONS
+       ------------------------------------------------------------ */
+
+    .future-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 48px;
+    }
+
+    .future-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      cursor: pointer;
+      transition: box-shadow 0.3s ease, border-left 0.3s ease;
+      border-left: 3px solid transparent;
+    }
+
+    .future-card:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+
+    .future-card.expanded.future-card--teal {
+      border-left: 3px solid var(--teal);
+    }
+
+    .future-card.expanded.future-card--gold {
+      border-left: 3px solid var(--gold);
+    }
+
+    .future-card-header {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .future-card-icon {
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .future-card-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .future-card-badges {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-left: auto;
+    }
+
+    .future-card-badge {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .future-card-badge--teal {
+      color: var(--teal);
+      background: rgba(91,155,173,0.08);
+      border: 1px solid rgba(91,155,173,0.15);
+    }
+
+    .future-card-badge--gold {
+      color: var(--gold-dark);
+      background: rgba(201,169,110,0.08);
+      border: 1px solid rgba(201,169,110,0.15);
+    }
+
+    .future-card-tier-tag {
+      font-size: 9px;
+      color: var(--gold-dark);
+      background: rgba(201,169,110,0.10);
+      padding: 2px 8px;
+      border-radius: 8px;
+      white-space: nowrap;
+      font-weight: 500;
+    }
+
+    .future-card-body {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.3s ease, opacity 0.3s ease, margin-top 0.3s ease;
+      margin-top: 0;
+    }
+
+    .future-card.expanded .future-card-body {
+      max-height: 200px;
+      opacity: 1;
+      margin-top: 16px;
+    }
+
+    .future-card-desc {
+      font-size: 13px;
+      color: var(--text-body);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .future-card-value {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-style: italic;
+      margin: 8px 0 0 0;
+    }
+
+    .future-pricing {
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    .future-pricing p {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin: 4px 0;
+    }
+
+    .future-quote {
+      max-width: 800px;
+      margin: 48px auto 0;
+      background: rgba(91,155,173,0.05);
+      border-left: 3px solid var(--teal);
+      border-radius: 8px;
+      padding: 32px 36px;
+      position: relative;
+    }
+
+    .future-quote-mark {
+      font-family: var(--font-serif);
+      font-size: 48px;
+      color: var(--teal);
+      opacity: 0.3;
+      line-height: 1;
+      position: absolute;
+      top: 20px;
+      left: 24px;
+    }
+
+    .future-quote-text {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 17px;
+      color: var(--teal-dark);
+      line-height: 1.6;
+      margin: 0;
+      padding-left: 24px;
+    }
+
+
+    /* ------------------------------------------------------------
+       13. SECTION 9: UNDER THE HOOD
+       ------------------------------------------------------------ */
+
+    #technical {
+      background: #fff;
+      padding: 80px 0;
+    }
+
+    #technical .section-headline {
+      font-family: var(--font-serif);
+      font-size: 30px;
+      color: var(--text);
+      margin-top: 16px;
+      margin-bottom: 48px;
+      font-weight: 600;
+    }
+
+    .tech-cards {
+      display: flex;
+      gap: 24px;
+    }
+
+    .tech-card {
+      flex: 1;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px;
+    }
+
+    .tech-card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .tech-card-icon.teal { background: var(--teal); }
+    .tech-card-icon.gold { background: var(--gold); }
+
+    .tech-card-icon svg {
+      width: 20px;
+      height: 20px;
+      fill: #fff;
+    }
+
+    .tech-card h3 {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .tech-card p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-top: 12px;
+    }
+
+    /* Architecture Diagram (Section 9 — namespaced to avoid S3 conflict) */
+    .tech-arch {
+      margin-top: 56px;
+      max-width: 860px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .tech-arch-row {
+      display: flex;
+      align-items: stretch;
+    }
+
+    .tech-arch-box-wrap {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tech-arch-box {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 24px;
+      background: #fff;
+      flex: 1;
+    }
+
+    .tech-arch-box.emphasized {
+      border-color: rgba(201, 169, 110, 0.4);
+    }
+
+    .tech-arch-box-title {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+
+    .tech-arch-box-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .tech-arch-box-list li {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    .tech-arch-box-list li.gold-text {
+      color: var(--gold-dark);
+      font-weight: 600;
+    }
+
+    .tech-arch-box-caption {
+      font-size: 10px;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 12px;
+    }
+
+    .tech-arch-connector {
+      display: flex;
+      align-items: center;
+      padding: 0 4px;
+    }
+
+    .tech-arch-line {
+      width: 40px;
+      height: 2px;
+      background: var(--teal);
+      opacity: 0.3;
+    }
+
+
+    /* ------------------------------------------------------------
+       14. Mobile Responsive (below 768px)
        ------------------------------------------------------------ */
 
     @media (max-width: 768px) {
@@ -2264,6 +2566,61 @@
 
       .value-callout-main {
         font-size: 18px;
+      }
+
+      /* Section 8 — Future Applications */
+      .future-grid {
+        grid-template-columns: 1fr;
+      }
+
+      #future-apps h2 {
+        font-size: 24px !important;
+      }
+
+      .future-quote {
+        padding: 24px;
+      }
+
+      .future-quote-mark {
+        top: 12px;
+        left: 16px;
+      }
+
+      .future-quote-text {
+        padding-left: 20px;
+      }
+
+      /* Section 9 — Under the Hood */
+      #technical {
+        padding: 64px 0;
+      }
+
+      #technical .section-headline {
+        font-size: 24px;
+      }
+
+      .tech-cards {
+        flex-direction: column;
+      }
+
+      .tech-arch-row {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .tech-arch-box-wrap {
+        width: 100%;
+        max-width: 320px;
+      }
+
+      .tech-arch-connector {
+        padding: 4px 0;
+        justify-content: center;
+      }
+
+      .tech-arch-line {
+        width: 2px;
+        height: 40px;
       }
     }
 
@@ -3120,6 +3477,277 @@
       <div class="value-callout-bar reveal-scale">
         <p class="value-callout-main">The intelligence layer pays for itself in months. Everything after that compounds.</p>
         <p class="value-callout-sub">A $25,000&ndash;$35,000 investment against $305,000+ in projected five-year value.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================
+       SECTION 8: FUTURE APPLICATIONS
+       ============================ -->
+  <section class="section-alt" id="future-apps">
+    <div class="container">
+      <p class="section-label reveal">The Platform Grows</p>
+      <h2 class="reveal" style="font-family: var(--font-serif); font-size: 30px; text-align: center; margin: 0 0 16px; color: var(--text);">Every application plugs into the same foundation.</h2>
+      <p class="reveal" style="font-size: 15px; color: var(--text-muted); max-width: 600px; margin: 0 auto; text-align: center; line-height: 1.7;">Once the intelligence layer is built, adding new capabilities is incremental &mdash; not a new project. Here&rsquo;s what&rsquo;s on the roadmap.</p>
+
+      <div class="future-grid stagger-children">
+
+        <!-- Card 1: Batch Processing -->
+        <div class="future-card future-card--teal stagger-child" onclick="this.classList.toggle('expanded')">
+          <div class="future-card-header">
+            <span class="future-card-icon">&#9889;</span>
+            <span class="future-card-title">Batch Processing</span>
+            <div class="future-card-badges">
+              <span class="future-card-badge future-card-badge--teal">Phase 2</span>
+            </div>
+          </div>
+          <div class="future-card-body">
+            <p class="future-card-desc">Update 50+ client decks overnight. Upload a folder of data files, come back to finished presentations.</p>
+            <p class="future-card-value">Saves an additional 40+ hours annually during review season</p>
+          </div>
+        </div>
+
+        <!-- Card 2: Meeting Prep Briefs -->
+        <div class="future-card future-card--teal stagger-child" onclick="this.classList.toggle('expanded')">
+          <div class="future-card-header">
+            <span class="future-card-icon">&#128203;</span>
+            <span class="future-card-title">Meeting Prep Briefs</span>
+            <div class="future-card-badges">
+              <span class="future-card-badge future-card-badge--teal">Phase 2</span>
+              <span class="future-card-tier-tag">Included in Tier 2</span>
+            </div>
+          </div>
+          <div class="future-card-body">
+            <p class="future-card-desc">Auto-generated talking points alongside each deck &mdash; key changes, likely questions, discussion topics.</p>
+            <p class="future-card-value">30 min saved per meeting &times; 100+ meetings = 50 hours/year</p>
+          </div>
+        </div>
+
+        <!-- Card 3: Post-Meeting Follow-Ups -->
+        <div class="future-card future-card--teal stagger-child" onclick="this.classList.toggle('expanded')">
+          <div class="future-card-header">
+            <span class="future-card-icon">&#9993;</span>
+            <span class="future-card-title">Post-Meeting Follow-Ups</span>
+            <div class="future-card-badges">
+              <span class="future-card-badge future-card-badge--teal">Phase 2</span>
+            </div>
+          </div>
+          <div class="future-card-body">
+            <p class="future-card-desc">Tell Henry what was discussed. He drafts a personalized follow-up email to the client.</p>
+            <p class="future-card-value">15 min saved per follow-up &times; 100+ meetings = 25 hours/year</p>
+          </div>
+        </div>
+
+        <!-- Card 4: Compliance Pre-Check -->
+        <div class="future-card future-card--teal stagger-child" onclick="this.classList.toggle('expanded')">
+          <div class="future-card-header">
+            <span class="future-card-icon">&#128737;</span>
+            <span class="future-card-title">Compliance Pre-Check</span>
+            <div class="future-card-badges">
+              <span class="future-card-badge future-card-badge--teal">Phase 2</span>
+            </div>
+          </div>
+          <div class="future-card-body">
+            <p class="future-card-desc">Auto-flag language that might conflict with SEC/FINRA guidelines before any deck reaches a client.</p>
+            <p class="future-card-value">Risk mitigation &mdash; one avoided issue pays for the feature</p>
+          </div>
+        </div>
+
+        <!-- Card 5: Brand Consistency Engine -->
+        <div class="future-card future-card--teal stagger-child" onclick="this.classList.toggle('expanded')">
+          <div class="future-card-header">
+            <span class="future-card-icon">&#127912;</span>
+            <span class="future-card-title">Brand Consistency Engine</span>
+            <div class="future-card-badges">
+              <span class="future-card-badge future-card-badge--teal">Phase 2</span>
+            </div>
+          </div>
+          <div class="future-card-body">
+            <p class="future-card-desc">Enforce Crew Wealth&rsquo;s brand guidelines across every deck automatically &mdash; fonts, colors, logos, disclaimers.</p>
+            <p class="future-card-value">Consistent brand = professional impression at scale</p>
+          </div>
+        </div>
+
+        <!-- Card 6: Client Profiles -->
+        <div class="future-card future-card--teal stagger-child" onclick="this.classList.toggle('expanded')">
+          <div class="future-card-header">
+            <span class="future-card-icon">&#128100;</span>
+            <span class="future-card-title">Client Profiles</span>
+            <div class="future-card-badges">
+              <span class="future-card-badge future-card-badge--teal">Phase 2</span>
+              <span class="future-card-tier-tag">Included in Tier 2</span>
+            </div>
+          </div>
+          <div class="future-card-body">
+            <p class="future-card-desc">Henry remembers preferences, history, and communication style for every client.</p>
+            <p class="future-card-value">Personalization without the mental overhead</p>
+          </div>
+        </div>
+
+        <!-- Card 7: Portfolio Software Integration -->
+        <div class="future-card future-card--gold stagger-child" onclick="this.classList.toggle('expanded')">
+          <div class="future-card-header">
+            <span class="future-card-icon">&#128279;</span>
+            <span class="future-card-title">Portfolio Software Integration</span>
+            <div class="future-card-badges">
+              <span class="future-card-badge future-card-badge--gold">Phase 3</span>
+              <span class="future-card-tier-tag">Included in Tier 2</span>
+            </div>
+          </div>
+          <div class="future-card-body">
+            <p class="future-card-desc">Direct connection to Orion, Black Diamond, Tamarac. No more CSV exports.</p>
+            <p class="future-card-value">Eliminates the most manual step in the current workflow</p>
+          </div>
+        </div>
+
+        <!-- Card 8: Client Presentation Portal -->
+        <div class="future-card future-card--gold stagger-child" onclick="this.classList.toggle('expanded')">
+          <div class="future-card-header">
+            <span class="future-card-icon">&#127760;</span>
+            <span class="future-card-title">Client Presentation Portal</span>
+            <div class="future-card-badges">
+              <span class="future-card-badge future-card-badge--gold">Phase 3</span>
+            </div>
+          </div>
+          <div class="future-card-body">
+            <p class="future-card-desc">Branded web portal where clients view their presentations online. Secure, trackable, professional.</p>
+            <p class="future-card-value">Modernizes client experience &mdash; differentiator for HNW prospects</p>
+          </div>
+        </div>
+
+        <!-- Card 9: Quarterly Mini-Decks -->
+        <div class="future-card future-card--gold stagger-child" onclick="this.classList.toggle('expanded')">
+          <div class="future-card-header">
+            <span class="future-card-icon">&#128202;</span>
+            <span class="future-card-title">Quarterly Mini-Decks</span>
+            <div class="future-card-badges">
+              <span class="future-card-badge future-card-badge--gold">Phase 3</span>
+            </div>
+          </div>
+          <div class="future-card-body">
+            <p class="future-card-desc">Lighter quarterly check-in presentations generated automatically from latest portfolio data.</p>
+            <p class="future-card-value">4x more client touchpoints without 4x the work</p>
+          </div>
+        </div>
+
+        <!-- Card 10: Voice Instructions -->
+        <div class="future-card future-card--gold stagger-child" onclick="this.classList.toggle('expanded')">
+          <div class="future-card-header">
+            <span class="future-card-icon">&#127908;</span>
+            <span class="future-card-title">Voice Instructions</span>
+            <div class="future-card-badges">
+              <span class="future-card-badge future-card-badge--gold">Phase 3</span>
+            </div>
+          </div>
+          <div class="future-card-body">
+            <p class="future-card-desc">Dictate changes from your phone: &lsquo;Hey Henry, update the Henderson deck with Q3 numbers.&rsquo;</p>
+            <p class="future-card-value">Update a deck from the car between client meetings</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="future-pricing">
+        <p>Phase 2 applications: ~$3,000&ndash;$5,000 each</p>
+        <p>Phase 3 applications: ~$5,000&ndash;$8,000 each</p>
+      </div>
+
+      <div class="future-quote reveal-scale">
+        <span class="future-quote-mark">&ldquo;</span>
+        <p class="future-quote-text">Each application builds on the same data, the same AI, the same infrastructure. The hardest part &mdash; building the foundation &mdash; is what Phase 1 delivers. Everything after that is additive.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================
+       SECTION 9: UNDER THE HOOD
+       ============================ -->
+  <section id="technical" class="section" style="background:#fff;padding:80px 0;">
+    <div class="container">
+
+      <div class="reveal">
+        <div class="section-label">TECHNICAL APPROACH</div>
+        <h2 class="section-headline">Built for privacy, built to last.</h2>
+      </div>
+
+      <div class="tech-cards stagger-children">
+
+        <div class="tech-card stagger-child">
+          <div class="tech-card-icon teal">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 2.18l7 3.12v4.7c0 4.67-3.13 9.06-7 10.2-3.87-1.14-7-5.53-7-10.2V6.3l7-3.12z"/><path d="M10 12.5l-2-2-1.41 1.41L10 15.32l7-7-1.41-1.41z"/></svg>
+          </div>
+          <h3>Private &amp; Local</h3>
+          <p>Everything runs on your Mac Mini. Client financial data never leaves your office. No cloud storage, no third-party servers. The intelligence layer processes data locally through a secure API connection to Anthropic&rsquo;s Claude &mdash; the data goes out, the analysis comes back, nothing is stored.</p>
+        </div>
+
+        <div class="tech-card stagger-child">
+          <div class="tech-card-icon gold">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l2.09 6.26L20.18 9l-5 4.27L16.82 20 12 16.77 7.18 20l1.64-6.73L3.82 9l6.09-.74z"/></svg>
+          </div>
+          <h3>Anthropic&rsquo;s Claude AI</h3>
+          <p>The intelligence layer is built on Claude, the most capable AI for document analysis, financial reasoning, and nuanced writing. Claude doesn&rsquo;t just find-and-replace &mdash; it understands context, catches relationships between data points, and writes with the professionalism your clients expect.</p>
+        </div>
+
+        <div class="tech-card stagger-child">
+          <div class="tech-card-icon teal">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.5 11H19V7c0-1.1-.9-2-2-2h-4V3.5a2.5 2.5 0 00-5 0V5H4c-1.1 0-2 .9-2 2v3.8h1.5a2.7 2.7 0 012.7 2.7 2.7 2.7 0 01-2.7 2.7H2V20c0 1.1.9 2 2 2h3.8v-1.5a2.7 2.7 0 012.7-2.7 2.7 2.7 0 012.7 2.7V22H17c1.1 0 2-.9 2-2v-4h1.5a2.5 2.5 0 000-5z"/></svg>
+          </div>
+          <h3>Works With Your Tools</h3>
+          <p>Henry communicates with Keynote natively through Apple&rsquo;s scripting layer. The intelligence layer is designed to connect to standard financial software APIs, CRM systems, and file storage. It adapts to your existing stack &mdash; you don&rsquo;t adapt to it.</p>
+        </div>
+
+      </div>
+
+      <div class="tech-arch reveal">
+        <div class="tech-arch-row stagger-children">
+
+          <div class="tech-arch-box-wrap stagger-child">
+            <div class="tech-arch-box">
+              <div class="tech-arch-box-title">Your Systems</div>
+              <ul class="tech-arch-box-list">
+                <li>&bull; Portfolio</li>
+                <li>&bull; CRM</li>
+                <li>&bull; Files</li>
+              </ul>
+            </div>
+            <div class="tech-arch-box-caption">Your data stays in your systems</div>
+          </div>
+
+          <div class="tech-arch-connector">
+            <div class="tech-arch-line"></div>
+          </div>
+
+          <div class="tech-arch-box-wrap stagger-child">
+            <div class="tech-arch-box emphasized">
+              <div class="tech-arch-box-title">Mac Mini (Local)</div>
+              <ul class="tech-arch-box-list">
+                <li>&bull; Intelligence Layer</li>
+                <li>&bull; Data Processing</li>
+                <li>&bull; Claude AI (secure)</li>
+              </ul>
+            </div>
+            <div class="tech-arch-box-caption">Runs on your local network</div>
+          </div>
+
+          <div class="tech-arch-connector">
+            <div class="tech-arch-line"></div>
+          </div>
+
+          <div class="tech-arch-box-wrap stagger-child">
+            <div class="tech-arch-box">
+              <div class="tech-arch-box-title">Applications</div>
+              <ul class="tech-arch-box-list">
+                <li class="gold-text">&#10003; Henry</li>
+                <li>&#9675; Prep Briefs</li>
+                <li>&#9675; Follow-ups</li>
+              </ul>
+            </div>
+            <div class="tech-arch-box-caption">Apps plug in incrementally</div>
+          </div>
+
+        </div>
       </div>
 
     </div>
