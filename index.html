@@ -996,7 +996,465 @@
 
 
     /* ------------------------------------------------------------
-       9. Mobile Responsive (below 768px)
+       9. SECTION 5: HOW IT WORKS — TWO LAYERS
+       ------------------------------------------------------------ */
+
+    .s5-how {
+      padding: 100px 0;
+      background: var(--bg);
+    }
+
+    .s5-how .s5-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .s5-intro {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .s5-intro h2 {
+      font-family: var(--font-serif);
+      font-size: 32px;
+      font-weight: 500;
+      color: var(--text);
+      margin: 16px 0 0 0;
+      line-height: 1.3;
+    }
+
+    /* Platform Pipeline */
+    .s5-pipeline {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+    }
+
+    .s5-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px 24px;
+      position: relative;
+    }
+
+    .s5-card--data {
+      flex: 0 0 30%;
+      border-top: 3px solid var(--teal);
+    }
+
+    .s5-card--intel {
+      flex: 0 0 34%;
+      border-top: 3px solid var(--gold);
+      background: rgba(201, 169, 110, 0.03);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+      z-index: 2;
+      text-align: center;
+    }
+
+    .s5-card--apps {
+      flex: 0 0 30%;
+      border-top: 3px solid var(--teal);
+    }
+
+    .s5-data-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .s5-data-list li {
+      font-size: 13px;
+      color: var(--text-muted);
+      padding: 6px 0;
+      padding-left: 16px;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .s5-data-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--teal);
+      opacity: 0.6;
+    }
+
+    .s5-intel-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: #fff;
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+
+    .s5-card--intel .s5-card-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      margin: 0 0 8px 0;
+    }
+
+    .s5-card--intel .s5-card-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .s5-apps-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .s5-apps-list li {
+      font-size: 13px;
+      padding: 6px 0;
+      line-height: 1.5;
+    }
+
+    .s5-apps-list li.s5-app-active {
+      color: var(--gold-dark);
+      font-weight: 500;
+    }
+
+    .s5-apps-list li.s5-app-future {
+      color: var(--text-muted);
+    }
+
+    /* Animated Arrows */
+    .s5-arrow {
+      flex: 0 0 3%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      min-width: 36px;
+    }
+
+    .s5-arrow-label {
+      font-size: 10px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      margin-bottom: 8px;
+      letter-spacing: 0.3px;
+    }
+
+    .s5-arrow-line {
+      width: 100%;
+      height: 2px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .s5-arrow-line::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--border) 0,
+        var(--border) 6px,
+        transparent 6px,
+        transparent 12px
+      );
+      animation: s5-dash 1.2s linear infinite;
+    }
+
+    .s5-arrow-line::after {
+      content: "";
+      position: absolute;
+      right: -1px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0;
+      height: 0;
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+      border-left: 7px solid var(--border);
+      z-index: 1;
+    }
+
+    @keyframes s5-dash {
+      0% { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
+    }
+
+    /* Divider */
+    .s5-divider {
+      margin: 56px auto;
+      text-align: center;
+    }
+
+    .s5-divider-line {
+      width: 200px;
+      height: 1px;
+      background: var(--border);
+      margin: 0 auto 20px auto;
+    }
+
+    .s5-divider-label {
+      font-size: 10px;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 600;
+      font-family: var(--font-sans);
+    }
+
+    /* Workflow Steps */
+    .s5-workflow {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 0;
+      position: relative;
+      padding: 0 20px;
+    }
+
+    .s5-step {
+      flex: 0 0 25%;
+      max-width: 220px;
+      text-align: center;
+      position: relative;
+      padding: 0 12px;
+    }
+
+    .s5-step-circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--teal);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 2;
+      font-family: var(--font-sans);
+    }
+
+    .s5-step-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      margin: 0 0 6px 0;
+      font-family: var(--font-sans);
+    }
+
+    .s5-step-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .s5-step:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      top: 20px;
+      left: calc(50% + 24px);
+      width: calc(100% - 48px);
+      height: 1px;
+      border-top: 1px dashed var(--border);
+      z-index: 1;
+    }
+
+
+    /* ------------------------------------------------------------
+       10. SECTION 6: WHAT'S INCLUDED
+       ------------------------------------------------------------ */
+
+    .scope-cards {
+      display: flex;
+      gap: 24px;
+      align-items: stretch;
+      margin-top: 48px;
+    }
+
+    .scope-card {
+      flex: 1;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 36px 32px;
+      position: relative;
+    }
+
+    .scope-card--teal {
+      border-top: 3px solid var(--teal);
+    }
+
+    .scope-card--gold {
+      border-top: 3px solid var(--gold);
+    }
+
+    .scope-tier-badge {
+      display: inline-block;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-family: var(--font-sans);
+      font-weight: 600;
+    }
+
+    .scope-tier-badge--teal {
+      color: var(--teal);
+      background: rgba(91, 155, 173, 0.08);
+      border: 1px solid rgba(91, 155, 173, 0.15);
+    }
+
+    .scope-tier-badge--gold {
+      color: var(--gold);
+      background: rgba(201, 169, 110, 0.12);
+      border: 1px solid rgba(201, 169, 110, 0.25);
+    }
+
+    .scope-recommended-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--gold);
+      background: rgba(201, 169, 110, 0.12);
+      border: 1px solid rgba(201, 169, 110, 0.25);
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-family: var(--font-sans);
+      font-weight: 600;
+    }
+
+    .scope-card-title {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      color: var(--text);
+      margin-top: 16px;
+      margin-bottom: 8px;
+    }
+
+    .scope-card-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+      line-height: 1.5;
+    }
+
+    .scope-includes-note {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--teal);
+      margin-bottom: 20px;
+    }
+
+    .scope-includes-note span {
+      margin-right: 6px;
+    }
+
+    .scope-deliverables {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .scope-deliverable {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+      border-radius: 6px;
+      transition: background 0.25s ease;
+    }
+
+    .scope-deliverable:last-child {
+      border-bottom: none;
+    }
+
+    .scope-deliverable:hover {
+      background: rgba(0, 0, 0, 0.01);
+    }
+
+    .scope-check {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .scope-check--teal {
+      background: var(--teal);
+    }
+
+    .scope-check--gold {
+      background: var(--gold);
+    }
+
+    .scope-check svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    .scope-deliverable-content {
+      flex: 1;
+    }
+
+    .scope-deliverable-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    .scope-deliverable-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
+      line-height: 1.55;
+    }
+
+    .scope-bottom-note {
+      font-size: 13px;
+      font-style: italic;
+      color: var(--text-muted);
+      max-width: 500px;
+      margin: 40px auto 0;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+
+    /* ------------------------------------------------------------
+       11. Mobile Responsive (below 768px)
        ------------------------------------------------------------ */
 
     @media (max-width: 768px) {
@@ -1149,6 +1607,104 @@
         height: 28px;
         font-size: 12px;
       }
+
+      /* Section 5 — How It Works */
+      .s5-how {
+        padding: 64px 0;
+      }
+
+      .s5-how .s5-inner {
+        padding: 0 20px;
+      }
+
+      .s5-intro h2 {
+        font-size: 26px;
+      }
+
+      .s5-pipeline {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .s5-card--data,
+      .s5-card--intel,
+      .s5-card--apps {
+        flex: none;
+        width: 100%;
+        max-width: 380px;
+      }
+
+      .s5-card--intel {
+        transform: none;
+      }
+
+      .s5-arrow {
+        flex: none;
+        width: 100%;
+        max-width: 380px;
+        padding: 16px 0;
+      }
+
+      .s5-arrow-line {
+        width: 2px;
+        height: 32px;
+      }
+
+      .s5-arrow-line::before {
+        width: 100%;
+        height: 200%;
+        background: repeating-linear-gradient(
+          180deg,
+          var(--border) 0,
+          var(--border) 6px,
+          transparent 6px,
+          transparent 12px
+        );
+        animation: s5-dash-v 1.2s linear infinite;
+      }
+
+      .s5-arrow-line::after {
+        right: auto;
+        top: auto;
+        bottom: -1px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-top: 7px solid var(--border);
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: none;
+      }
+
+      .s5-workflow {
+        flex-wrap: wrap;
+        gap: 32px 0;
+      }
+
+      .s5-step {
+        flex: 0 0 50%;
+        max-width: 50%;
+      }
+
+      .s5-step:not(:last-child)::after {
+        display: none;
+      }
+
+      .s5-divider {
+        margin: 40px auto;
+      }
+
+      /* Section 6 — What's Included */
+      .scope-cards {
+        flex-direction: column;
+      }
+
+      .scope-card {
+        padding: 24px 20px;
+      }
+
+      #whats-included h2 {
+        font-size: 26px !important;
+      }
     }
 
 
@@ -1186,6 +1742,15 @@
         animation: none !important;
         box-shadow: 0 0 20px rgba(201, 169, 110, 0.06);
       }
+
+      .s5-arrow-line::before {
+        animation: none !important;
+      }
+    }
+
+    @keyframes s5-dash-v {
+      0% { transform: translateY(-50%); }
+      100% { transform: translateY(0); }
     }
   </style>
 </head>
@@ -1486,6 +2051,275 @@
         </div>
 
       </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       SECTION 5: HOW IT WORKS
+       ============================ -->
+  <section class="s5-how" id="how-it-works">
+    <div class="s5-inner">
+
+      <!-- Intro -->
+      <div class="s5-intro reveal">
+        <div class="section-label">How It Works</div>
+        <h2>Two layers. One seamless experience.</h2>
+      </div>
+
+      <!-- Layer 1: Platform Pipeline -->
+      <div class="s5-pipeline stagger-children">
+
+        <!-- Card 1: Your Data -->
+        <div class="s5-card s5-card--data stagger-child">
+          <ul class="s5-data-list">
+            <li>Portfolio management software</li>
+            <li>Client files &amp; documents</li>
+            <li>Financial statements &amp; CSVs</li>
+            <li>CRM records</li>
+          </ul>
+        </div>
+
+        <!-- Arrow 1 -->
+        <div class="s5-arrow stagger-child">
+          <span class="s5-arrow-label">Secure local connection</span>
+          <div class="s5-arrow-line"></div>
+        </div>
+
+        <!-- Card 2: Intelligence Layer -->
+        <div class="s5-card s5-card--intel stagger-child">
+          <div class="s5-intel-icon">H</div>
+          <div class="s5-card-title">Your Mac Mini</div>
+          <p class="s5-card-desc">Processes, connects, and understands all your data through Claude AI.</p>
+        </div>
+
+        <!-- Arrow 2 -->
+        <div class="s5-arrow stagger-child">
+          <span class="s5-arrow-label">Powers applications</span>
+          <div class="s5-arrow-line"></div>
+        </div>
+
+        <!-- Card 3: Applications -->
+        <div class="s5-card s5-card--apps stagger-child">
+          <ul class="s5-apps-list">
+            <li class="s5-app-active">&#10003; Henry &mdash; Presentations</li>
+            <li class="s5-app-future">&#9675; Meeting Prep</li>
+            <li class="s5-app-future">&#9675; Client Follow-ups</li>
+            <li class="s5-app-future">&#9675; Compliance Checks</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Divider -->
+      <div class="s5-divider reveal">
+        <div class="s5-divider-line"></div>
+        <div class="s5-divider-label">The Henry Workflow</div>
+      </div>
+
+      <!-- Layer 2: Workflow Steps -->
+      <div class="s5-workflow stagger-children">
+
+        <div class="s5-step stagger-child">
+          <div class="s5-step-circle">1</div>
+          <div class="s5-step-title">Upload</div>
+          <p class="s5-step-desc">Drop in last year&#8217;s Keynote plus new financial data.</p>
+        </div>
+
+        <div class="s5-step stagger-child">
+          <div class="s5-step-circle">2</div>
+          <div class="s5-step-title">Instruct</div>
+          <p class="s5-step-desc">Tell Henry what to change in plain English.</p>
+        </div>
+
+        <div class="s5-step stagger-child">
+          <div class="s5-step-circle">3</div>
+          <div class="s5-step-title">Review</div>
+          <p class="s5-step-desc">See every slide with a detailed changelog.</p>
+        </div>
+
+        <div class="s5-step stagger-child">
+          <div class="s5-step-circle">4</div>
+          <div class="s5-step-title">Download</div>
+          <p class="s5-step-desc">Export the finished deck, ready to present.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================
+       SECTION 6: WHAT'S INCLUDED
+       ============================ -->
+  <section id="whats-included" class="section-alt">
+    <div class="container">
+      <div class="reveal" style="text-align: center;">
+        <p class="section-label">WHAT&rsquo;S INCLUDED</p>
+        <h2 style="font-family: var(--font-serif); font-size: 32px; color: var(--text); margin-bottom: 16px;">Two options. Both include the foundation.</h2>
+        <p style="font-size: 15px; color: var(--text-muted); max-width: 600px; margin: 0 auto; line-height: 1.7;">Every tier includes the intelligence layer platform &mdash; the difference is how deeply it connects to your existing systems.</p>
+      </div>
+
+      <div class="scope-cards">
+        <!-- Tier 1 Card -->
+        <div class="scope-card scope-card--teal reveal-scale">
+          <span class="scope-tier-badge scope-tier-badge--teal">TIER 1</span>
+          <h3 class="scope-card-title">Foundation + Henry</h3>
+          <p class="scope-card-subtitle">The platform and your first AI application.</p>
+
+          <ul class="scope-deliverables">
+            <li class="scope-deliverable">
+              <div class="scope-check scope-check--teal">
+                <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="scope-deliverable-content">
+                <div class="scope-deliverable-title">Mac Mini Configuration</div>
+                <div class="scope-deliverable-desc">Your Mac Mini set up as a private AI hub &mdash; secured, optimized, ready to run.</div>
+              </div>
+            </li>
+            <li class="scope-deliverable">
+              <div class="scope-check scope-check--teal">
+                <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="scope-deliverable-content">
+                <div class="scope-deliverable-title">Intelligence Layer Platform</div>
+                <div class="scope-deliverable-desc">The core infrastructure that connects your data to AI. This is the foundation everything builds on.</div>
+              </div>
+            </li>
+            <li class="scope-deliverable">
+              <div class="scope-check scope-check--teal">
+                <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="scope-deliverable-content">
+                <div class="scope-deliverable-title">Henry Web Application</div>
+                <div class="scope-deliverable-desc">Full chat-based presentation assistant &mdash; upload, instruct, review, download.</div>
+              </div>
+            </li>
+            <li class="scope-deliverable">
+              <div class="scope-check scope-check--teal">
+                <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="scope-deliverable-content">
+                <div class="scope-deliverable-title">Keynote Integration</div>
+                <div class="scope-deliverable-desc">Native AppleScript integration that reads and writes .key files directly.</div>
+              </div>
+            </li>
+            <li class="scope-deliverable">
+              <div class="scope-check scope-check--teal">
+                <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="scope-deliverable-content">
+                <div class="scope-deliverable-title">Manual Data Input</div>
+                <div class="scope-deliverable-desc">Drag-and-drop upload for PDFs, CSVs, Excel files. Henry cross-references them automatically.</div>
+              </div>
+            </li>
+            <li class="scope-deliverable">
+              <div class="scope-check scope-check--teal">
+                <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="scope-deliverable-content">
+                <div class="scope-deliverable-title">Slide-Level Iteration</div>
+                <div class="scope-deliverable-desc">Chat about individual slides. Make targeted adjustments without touching the rest.</div>
+              </div>
+            </li>
+            <li class="scope-deliverable">
+              <div class="scope-check scope-check--teal">
+                <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="scope-deliverable-content">
+                <div class="scope-deliverable-title">Client-Ready Output</div>
+                <div class="scope-deliverable-desc">Download finished decks in native Keynote format.</div>
+              </div>
+            </li>
+            <li class="scope-deliverable">
+              <div class="scope-check scope-check--teal">
+                <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="scope-deliverable-content">
+                <div class="scope-deliverable-title">30 Days of Refinement</div>
+                <div class="scope-deliverable-desc">Post-launch support to fine-tune Henry to your workflow.</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Tier 2 Card -->
+        <div class="scope-card scope-card--gold reveal-scale">
+          <span class="scope-recommended-badge">RECOMMENDED</span>
+          <span class="scope-tier-badge scope-tier-badge--gold">TIER 2</span>
+          <h3 class="scope-card-title">Intelligent Practice</h3>
+          <p class="scope-card-subtitle">Everything in Tier 1, plus deep integration and a second application.</p>
+
+          <p class="scope-includes-note"><span>&rarr;</span> Everything in Foundation + Henry, plus:</p>
+
+          <ul class="scope-deliverables">
+            <li class="scope-deliverable">
+              <div class="scope-check scope-check--gold">
+                <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="scope-deliverable-content">
+                <div class="scope-deliverable-title">Portfolio Software Integration</div>
+                <div class="scope-deliverable-desc">Direct connection to your portfolio management system (Orion, Black Diamond, Tamarac, etc.). Henry pulls the latest data automatically &mdash; no manual uploads.</div>
+              </div>
+            </li>
+            <li class="scope-deliverable">
+              <div class="scope-check scope-check--gold">
+                <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="scope-deliverable-content">
+                <div class="scope-deliverable-title">CRM Connection</div>
+                <div class="scope-deliverable-desc">Link to your client relationship manager. Henry knows who each client is, their history, and preferences.</div>
+              </div>
+            </li>
+            <li class="scope-deliverable">
+              <div class="scope-check scope-check--gold">
+                <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="scope-deliverable-content">
+                <div class="scope-deliverable-title">File System Integration</div>
+                <div class="scope-deliverable-desc">Henry accesses your shared drives and document storage. No more dragging files &mdash; he finds what he needs.</div>
+              </div>
+            </li>
+            <li class="scope-deliverable">
+              <div class="scope-check scope-check--gold">
+                <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="scope-deliverable-content">
+                <div class="scope-deliverable-title">Client Profiles</div>
+                <div class="scope-deliverable-desc">Henry remembers: &lsquo;The Hendersons prefer conservative language.&rsquo; &lsquo;The Chens want international detail.&rsquo; Every deck is personalized automatically.</div>
+              </div>
+            </li>
+            <li class="scope-deliverable">
+              <div class="scope-check scope-check--gold">
+                <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="scope-deliverable-content">
+                <div class="scope-deliverable-title">Meeting Prep Briefs</div>
+                <div class="scope-deliverable-desc">Your second application: Henry generates a one-page brief alongside each deck &mdash; key changes to highlight, client questions to expect, talking points.</div>
+              </div>
+            </li>
+            <li class="scope-deliverable">
+              <div class="scope-check scope-check--gold">
+                <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="scope-deliverable-content">
+                <div class="scope-deliverable-title">Smart Suggestions Engine</div>
+                <div class="scope-deliverable-desc">Henry pre-analyzes your data and proactively recommends updates before you ask.</div>
+              </div>
+            </li>
+            <li class="scope-deliverable">
+              <div class="scope-check scope-check--gold">
+                <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="scope-deliverable-content">
+                <div class="scope-deliverable-title">60 Days of Refinement</div>
+                <div class="scope-deliverable-desc">Extended support period to build out integrations and train the system on your workflows.</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="scope-bottom-note reveal">Both tiers include the intelligence layer platform. Future applications plug into the same foundation &mdash; no rebuilding required.</p>
     </div>
   </section>
 
