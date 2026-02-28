@@ -522,7 +522,481 @@
 
 
     /* ------------------------------------------------------------
-       7. Mobile Responsive (below 768px)
+       7. SECTION 3: THE INTELLIGENCE LAYER (Dark)
+       ------------------------------------------------------------ */
+
+    /* Gold section label variant */
+    .section-label-gold {
+      font-family: var(--font-sans);
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    /* Concept Introduction */
+    .intel-intro {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .intel-headline {
+      font-family: var(--font-serif);
+      font-size: 36px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.25;
+      margin-bottom: 20px;
+    }
+
+    .intel-subtitle {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.5);
+      line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Architecture Diagram */
+    .arch-diagram {
+      max-width: 860px;
+      margin: 64px auto 0;
+    }
+
+    .arch-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .arch-card {
+      background: var(--dark-surface);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 10px 14px;
+      text-align: center;
+      min-width: fit-content;
+    }
+
+    .arch-card-icon {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.3);
+      margin-bottom: 4px;
+      line-height: 1;
+    }
+
+    .arch-card-label {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.5);
+      white-space: nowrap;
+    }
+
+    .arch-card-phase {
+      font-family: var(--font-sans);
+      font-size: 9px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: rgba(255, 255, 255, 0.3);
+      margin-top: 6px;
+    }
+
+    .arch-card--active {
+      border-color: rgba(201, 169, 110, 0.3);
+    }
+
+    .arch-card--active .arch-card-phase {
+      color: var(--gold);
+    }
+
+    .arch-card--muted {
+      border-color: rgba(255, 255, 255, 0.06);
+      opacity: 0.7;
+    }
+
+    /* Connecting Lines */
+    .arch-lines {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 30px;
+    }
+
+    .arch-line {
+      width: 1px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Intelligence Layer Bar */
+    .intel-bar {
+      background: linear-gradient(135deg, rgba(201, 169, 110, 0.12), rgba(201, 169, 110, 0.04));
+      border: 1px solid rgba(201, 169, 110, 0.25);
+      border-radius: 12px;
+      padding: 20px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      animation: intel-glow 4s ease-in-out infinite;
+    }
+
+    @keyframes intel-glow {
+      0%, 100% { box-shadow: 0 0 0 rgba(201, 169, 110, 0); }
+      50% { box-shadow: 0 0 30px rgba(201, 169, 110, 0.08), 0 0 60px rgba(201, 169, 110, 0.04); }
+    }
+
+    .intel-bar-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      border: 1px solid rgba(201, 169, 110, 0.3);
+      background: rgba(201, 169, 110, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-serif);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .intel-bar-text {
+      font-family: var(--font-sans);
+      font-size: 15px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .intel-bar-badge {
+      font-family: var(--font-sans);
+      font-size: 10px;
+      letter-spacing: 1px;
+      color: rgba(255, 255, 255, 0.35);
+      background: rgba(255, 255, 255, 0.05);
+      padding: 4px 10px;
+      border-radius: 4px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* Value Statements */
+    .intel-values {
+      display: flex;
+      gap: 40px;
+      max-width: 900px;
+      margin: 64px auto 0;
+    }
+
+    .intel-value {
+      flex: 1;
+    }
+
+    .intel-value-line {
+      width: 30px;
+      height: 2px;
+      background: var(--gold);
+      opacity: 0.5;
+      margin-bottom: 16px;
+    }
+
+    .intel-value-title {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 8px;
+    }
+
+    .intel-value-desc {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.45);
+      line-height: 1.6;
+    }
+
+
+    /* ------------------------------------------------------------
+       8. SECTION 4: MEET HENRY
+       ------------------------------------------------------------ */
+
+    /* Dark-to-light transition */
+    .section-transition {
+      position: relative;
+    }
+
+    .section-transition::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      left: 0;
+      right: 0;
+      height: 80px;
+      background: linear-gradient(to bottom, var(--dark), var(--bg));
+      pointer-events: none;
+    }
+
+    /* Layout */
+    .henry-layout {
+      display: flex;
+      gap: 64px;
+      align-items: flex-start;
+    }
+
+    .henry-left {
+      flex: 0 0 45%;
+      min-width: 0;
+    }
+
+    .henry-right {
+      flex: 0 0 55%;
+      min-width: 0;
+    }
+
+    /* Badge */
+    .app-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(201,169,110,0.08);
+      border: 1px solid rgba(201,169,110,0.15);
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    .henry-title {
+      font-family: var(--font-serif);
+      font-size: 32px;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+
+    .henry-subtitle {
+      font-size: 14px;
+      color: var(--gold);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      font-weight: 500;
+    }
+
+    .henry-body p {
+      font-size: 15px;
+      color: #555;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .henry-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .demo-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 24px;
+      padding: 12px 28px;
+      border: 1.5px solid var(--gold);
+      border-radius: 28px;
+      color: var(--gold);
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .demo-link:hover {
+      background: var(--gold);
+      color: var(--dark);
+    }
+
+    /* App Mockup */
+    .app-mockup {
+      position: relative;
+      background: var(--dark);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15), 0 4px 20px rgba(0,0,0,0.08);
+      transform: rotate(1.5deg);
+      aspect-ratio: 16 / 10;
+      width: 100%;
+    }
+
+    .mockup-titlebar {
+      height: 32px;
+      background: var(--dark-surface);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      gap: 6px;
+      position: relative;
+    }
+
+    .mockup-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+
+    .mockup-dot--close { background: #FF5F57; }
+    .mockup-dot--minimize { background: #FEBC2E; }
+    .mockup-dot--maximize { background: #28C840; }
+
+    .mockup-titlebar-label {
+      font-family: var(--font-serif);
+      font-size: 11px;
+      color: var(--gold);
+      opacity: 0.6;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .mockup-body {
+      display: flex;
+      height: calc(100% - 32px);
+    }
+
+    .mockup-chat {
+      flex: 0 0 45%;
+      border-right: 1px solid rgba(255,255,255,0.06);
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .mockup-chips {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+
+    .mockup-chip {
+      display: inline-block;
+      height: 20px;
+      border-radius: 4px;
+      background: rgba(255,255,255,0.05);
+    }
+
+    .mockup-chip--keynote { width: 60px; border-left: 2px solid var(--gold); }
+    .mockup-chip--data { width: 50px; border-left: 2px solid #E76F51; }
+    .mockup-chip--ref { width: 45px; border-left: 2px solid var(--teal); }
+
+    .mockup-msg {
+      border-radius: 8px;
+      height: 16px;
+    }
+
+    .mockup-msg-ai {
+      background: rgba(255,255,255,0.04);
+      align-self: flex-start;
+    }
+
+    .mockup-msg-user {
+      background: rgba(201,169,110,0.12);
+      align-self: flex-end;
+    }
+
+    .mockup-input {
+      margin-top: auto;
+      height: 28px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      position: relative;
+    }
+
+    .mockup-input-send {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--gold);
+      position: absolute;
+      right: 6px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .mockup-slides {
+      flex: 0 0 55%;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .mockup-slide {
+      flex: 1;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.05);
+      padding: 8px 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mockup-slide-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      opacity: 0.6;
+    }
+
+    .mockup-slide-dot--green { background: #8BC96E; }
+    .mockup-slide-dot--gold { background: var(--gold); }
+
+    .mockup-slide-line {
+      height: 6px;
+      border-radius: 3px;
+      background: rgba(255,255,255,0.06);
+    }
+
+    .mockup-download {
+      height: 24px;
+      border-radius: 6px;
+      background: linear-gradient(135deg, rgba(201,169,110,0.2), rgba(201,169,110,0.08));
+      border: 1px solid rgba(201,169,110,0.2);
+      margin-top: 4px;
+    }
+
+    .mockup-badge {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-serif);
+      font-size: 16px;
+      color: var(--dark);
+      box-shadow: 0 4px 12px rgba(201,169,110,0.3);
+      z-index: 2;
+    }
+
+
+    /* ------------------------------------------------------------
+       9. Mobile Responsive (below 768px)
        ------------------------------------------------------------ */
 
     @media (max-width: 768px) {
@@ -607,6 +1081,74 @@
       .stat-number {
         font-size: 28px;
       }
+
+      /* Section 3 — Intelligence Layer */
+      .intel-headline {
+        font-size: 28px;
+      }
+
+      .arch-row {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .arch-card {
+        min-width: calc(33% - 8px);
+      }
+
+      .arch-lines {
+        display: none;
+      }
+
+      .intel-bar {
+        padding: 16px 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .intel-values {
+        flex-direction: column;
+        gap: 32px;
+        text-align: center;
+        align-items: center;
+      }
+
+      .intel-value {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      /* Section 4 — Meet Henry */
+      .henry-layout {
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      .henry-left,
+      .henry-right {
+        flex: none;
+        width: 100%;
+      }
+
+      .app-mockup {
+        transform: none;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+
+      .henry-title {
+        font-size: 26px;
+      }
+
+      .mockup-badge {
+        top: -6px;
+        right: -6px;
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+      }
     }
 
 
@@ -638,6 +1180,11 @@
         opacity: 1 !important;
         transform: none !important;
         transition: none !important;
+      }
+
+      .intel-bar {
+        animation: none !important;
+        box-shadow: 0 0 20px rgba(201, 169, 110, 0.06);
       }
     }
   </style>
@@ -740,12 +1287,215 @@
   </section>
 
   <!-- ============================
+       SECTION 3: THE INTELLIGENCE LAYER
+       ============================ -->
+  <section class="section-dark" id="intelligence-layer">
+    <div class="container">
+
+      <!-- Concept Introduction -->
+      <div class="intel-intro">
+        <p class="section-label-gold reveal">THE VISION</p>
+        <h2 class="intel-headline reveal reveal-delay-1">One intelligence layer.<br>Every workflow.</h2>
+        <p class="intel-subtitle reveal reveal-delay-2">We're proposing the AI foundation for Crew Wealth &mdash; a private, secure system running on your Mac Mini that connects your data, understands your clients, and powers intelligent applications across your entire practice.</p>
+      </div>
+
+      <!-- Architecture Diagram -->
+      <div class="arch-diagram reveal-scale reveal-delay-3">
+
+        <!-- Top Row — Data Sources -->
+        <div class="arch-row stagger-children">
+          <div class="arch-card stagger-child">
+            <div class="arch-card-icon">&#x1F4CA;</div>
+            <div class="arch-card-label">Portfolio Software</div>
+          </div>
+          <div class="arch-card stagger-child">
+            <div class="arch-card-icon">&#x1F4C1;</div>
+            <div class="arch-card-label">Client Files</div>
+          </div>
+          <div class="arch-card stagger-child">
+            <div class="arch-card-icon">&#x1F4CB;</div>
+            <div class="arch-card-label">Tax Documents</div>
+          </div>
+          <div class="arch-card stagger-child">
+            <div class="arch-card-icon">&#x1F465;</div>
+            <div class="arch-card-label">CRM Data</div>
+          </div>
+          <div class="arch-card stagger-child">
+            <div class="arch-card-icon">&#x1F4DD;</div>
+            <div class="arch-card-label">Meeting Notes</div>
+          </div>
+        </div>
+
+        <!-- Connecting Lines (Top → Middle) -->
+        <div class="arch-lines">
+          <div class="arch-line"></div>
+          <div class="arch-line"></div>
+          <div class="arch-line"></div>
+          <div class="arch-line"></div>
+          <div class="arch-line"></div>
+        </div>
+
+        <!-- Intelligence Layer Bar -->
+        <div class="intel-bar">
+          <div class="intel-bar-icon">H</div>
+          <span class="intel-bar-text">Crew Wealth Intelligence Layer</span>
+          <span class="intel-bar-badge">Powered by Claude</span>
+        </div>
+
+        <!-- Connecting Lines (Middle → Bottom) -->
+        <div class="arch-lines">
+          <div class="arch-line"></div>
+          <div class="arch-line"></div>
+          <div class="arch-line"></div>
+          <div class="arch-line"></div>
+          <div class="arch-line"></div>
+        </div>
+
+        <!-- Bottom Row — Application Cards -->
+        <div class="arch-row stagger-children">
+          <div class="arch-card arch-card--active stagger-child">
+            <div class="arch-card-icon">&#x25C6;</div>
+            <div class="arch-card-label">Henry</div>
+            <div class="arch-card-phase">&#x2713; Phase 1</div>
+          </div>
+          <div class="arch-card arch-card--muted stagger-child">
+            <div class="arch-card-icon">&#x1F4CB;</div>
+            <div class="arch-card-label">Meeting Prep</div>
+            <div class="arch-card-phase">Phase 2</div>
+          </div>
+          <div class="arch-card arch-card--muted stagger-child">
+            <div class="arch-card-icon">&#x2709;</div>
+            <div class="arch-card-label">Follow-Ups</div>
+            <div class="arch-card-phase">Phase 2</div>
+          </div>
+          <div class="arch-card arch-card--muted stagger-child">
+            <div class="arch-card-icon">&#x1F6E1;</div>
+            <div class="arch-card-label">Compliance</div>
+            <div class="arch-card-phase">Phase 2</div>
+          </div>
+          <div class="arch-card arch-card--muted stagger-child">
+            <div class="arch-card-icon">&#x1F310;</div>
+            <div class="arch-card-label">Client Portal</div>
+            <div class="arch-card-phase">Future</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Value Statements -->
+      <div class="intel-values stagger-children">
+        <div class="intel-value stagger-child">
+          <div class="intel-value-line"></div>
+          <div class="intel-value-title">Private &amp; Secure</div>
+          <p class="intel-value-desc">Everything runs on your Mac Mini. Client data never leaves your office network. No cloud dependency.</p>
+        </div>
+        <div class="intel-value stagger-child">
+          <div class="intel-value-line"></div>
+          <div class="intel-value-title">Connected Intelligence</div>
+          <p class="intel-value-desc">One system that understands all your data &mdash; financial records, client history, documents &mdash; and can reason across all of it.</p>
+        </div>
+        <div class="intel-value stagger-child">
+          <div class="intel-value-line"></div>
+          <div class="intel-value-title">Compounding Value</div>
+          <p class="intel-value-desc">Every application you add builds on the same foundation. The initial investment pays dividends for years, not months.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================
+       SECTION 4: MEET HENRY
+       ============================ -->
+  <section class="section section-transition" style="background: var(--bg); padding: 80px 0 100px;">
+    <div class="container" style="max-width: 1000px;">
+      <div class="henry-layout">
+
+        <!-- Left Column -->
+        <div class="henry-left">
+          <div class="reveal reveal-left">
+            <span class="app-badge">FIRST APPLICATION</span>
+          </div>
+          <h2 class="henry-title reveal reveal-left reveal-delay-1">Meet Henry</h2>
+          <p class="henry-subtitle reveal reveal-left reveal-delay-2">AI Presentation Assistant</p>
+          <div class="henry-body">
+            <p class="reveal reveal-left reveal-delay-3">Henry is the first application running on the intelligence layer &mdash; because presentations are where the time waste is most visible and the ROI is most immediate.</p>
+            <p class="reveal reveal-left reveal-delay-4">Drop in last year&rsquo;s Keynote alongside new financial data. Tell Henry what to change in plain English. He reads everything, cross-references the numbers, and rebuilds the deck in minutes.</p>
+            <p class="reveal reveal-left reveal-delay-5">Henry is proof that the platform works. Once you see what it does with presentations, you&rsquo;ll understand what it can do with everything else.</p>
+          </div>
+          <a href="https://crew-wealth-studio.vercel.app" target="_blank" class="demo-link reveal reveal-left reveal-delay-6">Try the Interactive Demo &rarr;</a>
+        </div>
+
+        <!-- Right Column -->
+        <div class="henry-right reveal reveal-right reveal-delay-2">
+          <div class="app-mockup">
+            <div class="mockup-badge">H</div>
+
+            <!-- Title Bar -->
+            <div class="mockup-titlebar">
+              <span class="mockup-dot mockup-dot--close"></span>
+              <span class="mockup-dot mockup-dot--minimize"></span>
+              <span class="mockup-dot mockup-dot--maximize"></span>
+              <span class="mockup-titlebar-label">H</span>
+            </div>
+
+            <!-- Body -->
+            <div class="mockup-body stagger-children">
+
+              <!-- Chat Panel -->
+              <div class="mockup-chat">
+                <div class="mockup-chips stagger-child">
+                  <span class="mockup-chip mockup-chip--keynote"></span>
+                  <span class="mockup-chip mockup-chip--data"></span>
+                  <span class="mockup-chip mockup-chip--ref"></span>
+                </div>
+                <div class="mockup-msg mockup-msg-ai stagger-child" style="width: 80%;"></div>
+                <div class="mockup-msg mockup-msg-ai stagger-child" style="width: 55%;"></div>
+                <div class="mockup-msg mockup-msg-user stagger-child" style="width: 65%;"></div>
+                <div class="mockup-msg mockup-msg-ai stagger-child" style="width: 75%;"></div>
+                <div class="mockup-msg mockup-msg-ai stagger-child" style="width: 40%;"></div>
+                <div class="mockup-msg mockup-msg-user stagger-child" style="width: 55%;"></div>
+                <div class="mockup-input stagger-child">
+                  <span class="mockup-input-send"></span>
+                </div>
+              </div>
+
+              <!-- Slides Panel -->
+              <div class="mockup-slides">
+                <div class="mockup-slide stagger-child">
+                  <span class="mockup-slide-dot mockup-slide-dot--green"></span>
+                  <span class="mockup-slide-line" style="width: 70%;"></span>
+                </div>
+                <div class="mockup-slide stagger-child">
+                  <span class="mockup-slide-dot mockup-slide-dot--gold"></span>
+                  <span class="mockup-slide-line" style="width: 55%;"></span>
+                </div>
+                <div class="mockup-slide stagger-child">
+                  <span class="mockup-slide-dot mockup-slide-dot--green"></span>
+                  <span class="mockup-slide-line" style="width: 80%;"></span>
+                </div>
+                <div class="mockup-slide stagger-child">
+                  <span class="mockup-slide-dot mockup-slide-dot--gold"></span>
+                  <span class="mockup-slide-line" style="width: 45%;"></span>
+                </div>
+                <div class="mockup-download stagger-child"></div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
        JavaScript
        ============================ -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // ---- Scroll-triggered reveal animations ----
-      const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+      const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .stagger-children');
       const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
