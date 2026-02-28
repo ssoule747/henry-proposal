@@ -2625,6 +2625,220 @@
         font-size: 18px;
       }
     }
+    /* ============================
+       DESKTOP / MOBILE VISIBILITY
+       ============================ */
+    @media (min-width: 769px) {
+      .mobile-only { display: none !important; }
+    }
+
+    /* ============================
+       iOS MOBILE FOUNDATION
+       ============================ */
+    @media (max-width: 768px) {
+      .desktop-only { display: none !important; }
+
+      /* iOS viewport height fix */
+      :root {
+        --vh: 1vh;
+      }
+
+      /* Prevent iOS text size inflation */
+      html {
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+      }
+
+      /* iOS momentum scrolling + no horizontal scroll */
+      body {
+        -webkit-overflow-scrolling: touch;
+        overflow-x: hidden;
+      }
+
+      /* Disable iOS tap highlight */
+      * {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      /* Fix iOS input zoom */
+      input, textarea, select {
+        font-size: 16px !important;
+      }
+
+      /* GPU-accelerate animated elements (prevents iOS flicker) */
+      .m-animate {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        will-change: transform, opacity;
+      }
+
+      /* iOS border-radius + overflow clipping fix */
+      .rounded-clip {
+        -webkit-mask-image: -webkit-radial-gradient(white, black);
+      }
+
+      /* ---- Mobile Animation Classes ---- */
+      .m-fade-in {
+        opacity: 0;
+        transform: translateY(16px) translateZ(0);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+      .m-fade-in.m-visible {
+        opacity: 1;
+        transform: translateY(0) translateZ(0);
+      }
+
+      .m-fade-in-left {
+        opacity: 0;
+        transform: translateX(-20px) translateZ(0);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+      .m-fade-in-left.m-visible {
+        opacity: 1;
+        transform: translateX(0) translateZ(0);
+      }
+
+      .m-fade-in-right {
+        opacity: 0;
+        transform: translateX(20px) translateZ(0);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+      .m-fade-in-right.m-visible {
+        opacity: 1;
+        transform: translateX(0) translateZ(0);
+      }
+
+      .m-scale-in {
+        opacity: 0;
+        transform: scale(0.96) translateZ(0);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+      .m-scale-in.m-visible {
+        opacity: 1;
+        transform: scale(1) translateZ(0);
+      }
+
+      /* Stagger children */
+      .m-stagger-child {
+        opacity: 0;
+        transform: translateY(12px) translateZ(0);
+        transition: opacity 0.35s ease, transform 0.35s ease;
+      }
+      .m-stagger-child.m-visible {
+        opacity: 1;
+        transform: translateY(0) translateZ(0);
+      }
+
+      /* ---- Touch Interactions (replace hover) ---- */
+      .capability-card:hover,
+      .tech-card:hover,
+      .pricing-card:hover,
+      .impact-card:hover,
+      .demo-pill:hover,
+      .closing-btn:hover,
+      .step-item:hover .step-circle {
+        transform: none;
+        box-shadow: none;
+      }
+
+      .pricing-card:hover,
+      .impact-card:hover {
+        transform: none;
+      }
+
+      .m-tappable:active {
+        transform: scale(0.98) translateZ(0);
+        transition: transform 0.1s ease;
+      }
+
+      .m-btn:active {
+        filter: brightness(0.9);
+        transition: filter 0.1s ease;
+      }
+
+      /* ---- Mobile Base Typography ---- */
+      .m-section-label {
+        font-family: var(--font-sans);
+        font-size: 10px;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        color: var(--crew-teal);
+        font-weight: 600;
+        margin-bottom: 12px;
+      }
+
+      .m-headline {
+        font-family: var(--font-serif);
+        font-size: 24px;
+        line-height: 1.3;
+        color: var(--text-primary);
+        margin-bottom: 16px;
+      }
+
+      .m-body {
+        font-family: var(--font-sans);
+        font-size: 15px;
+        line-height: 1.7;
+        color: #555;
+      }
+
+      /* ---- Mobile Section Spacing ---- */
+      .m-section {
+        padding: 48px 24px;
+        position: relative;
+      }
+
+      .m-section-dark {
+        padding: 48px 24px;
+        background: var(--henry-dark);
+        position: relative;
+      }
+
+      .m-section-alt {
+        padding: 48px 24px;
+        background: var(--bg-secondary);
+        position: relative;
+      }
+
+      /* ---- Mobile Tap Targets ---- */
+      .m-btn, .m-tappable {
+        min-height: 48px;
+        display: inline-flex;
+        align-items: center;
+      }
+
+      /* ---- Mobile Reduced Motion ---- */
+    }
+
+    @media (max-width: 768px) and (prefers-reduced-motion: reduce) {
+      .m-fade-in,
+      .m-fade-in-left,
+      .m-fade-in-right,
+      .m-scale-in,
+      .m-stagger-child {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+    }
+
+    /* ---- Safe Area Insets (iPhone Notch & Home Indicator) ---- */
+    @supports (padding: env(safe-area-inset-top)) {
+      @media (max-width: 768px) {
+        .m-header {
+          padding-top: calc(12px + env(safe-area-inset-top));
+        }
+        .m-footer {
+          padding-bottom: calc(32px + env(safe-area-inset-bottom));
+        }
+        body {
+          padding-left: env(safe-area-inset-left);
+          padding-right: env(safe-area-inset-right);
+        }
+      }
+    }
   </style>
 </head>
 <body>
@@ -2632,7 +2846,7 @@
   <!-- ============================
        SECTION 1: HERO
        ============================ -->
-  <section class="hero">
+  <section class="hero desktop-only">
     <nav class="hero-nav">
       <img src="crew-wealth-logo.svg" alt="Crew Wealth Management" class="hero-nav-logo">
       <span class="hero-nav-text">Prepared for Crew Wealth Management</span>
@@ -2659,7 +2873,7 @@
   <!-- ============================
        SECTION 2: THE CHALLENGE
        ============================ -->
-  <section class="section" id="challenge">
+  <section class="section desktop-only" id="challenge">
     <div class="container">
       <div class="challenge-layout">
         <!-- Left Column — Text -->
@@ -2705,14 +2919,14 @@
   </section>
 
   <!-- Section divider -->
-  <div class="section-divider">
+  <div class="section-divider desktop-only">
     <div class="section-divider-line reveal-scale"></div>
   </div>
 
   <!-- ============================
        SECTION 3: MEET HENRY (Dark)
        ============================ -->
-  <section class="section section-dark" id="meet-henry">
+  <section class="section section-dark desktop-only" id="meet-henry">
     <div class="container">
       <div class="meet-henry-content">
         <div class="meet-henry-icon reveal">H</div>
@@ -2758,7 +2972,7 @@
   <!-- ============================
        SECTION 4: HOW IT WORKS
        ============================ -->
-  <section class="section" id="how-it-works">
+  <section class="section desktop-only" id="how-it-works">
     <div class="container" style="text-align: center;">
       <p class="section-label section-label-center reveal">How It Works</p>
       <h2 class="section-title reveal reveal-delay-1" style="text-align: center; margin-left: auto; margin-right: auto;">
@@ -2828,7 +3042,7 @@
   <!-- ============================
        SECTION 5: PHASE 1 — WHAT'S INCLUDED
        ============================ -->
-  <section class="section section-alt" id="phase-1">
+  <section class="section section-alt desktop-only" id="phase-1">
     <div class="container">
       <p class="section-label reveal-left">Phase 1</p>
       <h2 class="section-title reveal-left reveal-delay-1">The Initial Build</h2>
@@ -2976,7 +3190,7 @@
   <!-- ============================
        SECTION 5.5: THE REAL COST
        ============================ -->
-  <section class="section real-cost" id="real-cost">
+  <section class="section real-cost desktop-only" id="real-cost">
     <div class="container" style="max-width: 900px;">
 
       <!-- Part 1: Time Audit -->
@@ -3136,7 +3350,7 @@
   <!-- ============================
        SECTION 6: THE BIGGER PICTURE
        ============================ -->
-  <section class="section section-alt" id="roadmap">
+  <section class="section section-alt desktop-only" id="roadmap">
     <div class="container">
       <div class="roadmap-header">
         <p class="section-label section-label-center reveal">The Roadmap</p>
@@ -3334,7 +3548,7 @@
   <!-- ============================
        SECTION 7: UNDER THE HOOD
        ============================ -->
-  <section class="section" id="technical">
+  <section class="section desktop-only" id="technical">
     <div class="container" style="max-width: 900px;">
       <div style="text-align: center;">
         <p class="section-label section-label-center reveal">Technical Approach</p>
@@ -3412,7 +3626,7 @@
   <!-- ============================
        SECTION 8: INVESTMENT
        ============================ -->
-  <section class="section section-alt" id="investment">
+  <section class="section section-alt desktop-only" id="investment">
     <div class="container">
       <div style="text-align: center;">
         <p class="section-label section-label-center reveal">Investment</p>
@@ -3470,7 +3684,7 @@
   <!-- ============================
        SECTION 9: NEXT STEPS — FOOTER CTA
        ============================ -->
-  <section class="closing-cta" id="next-steps">
+  <section class="closing-cta desktop-only" id="next-steps">
     <div class="closing-content">
       <div class="closing-icon reveal">H</div>
       <h2 class="closing-title reveal reveal-delay-1">Ready to meet Henry?</h2>
@@ -3501,9 +3715,20 @@
        JavaScript — IntersectionObserver
        ============================ -->
   <script>
+    // ---- iOS viewport height fix (runs immediately) ----
+    function setVH() {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+    setVH();
+    window.addEventListener('resize', setVH);
+    window.addEventListener('orientationchange', () => {
+      setTimeout(setVH, 100);
+    });
+
     document.addEventListener('DOMContentLoaded', () => {
 
-      // ---- Scroll-triggered reveal animations ----
+      // ---- Desktop: Scroll-triggered reveal animations ----
       const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
       const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -3593,6 +3818,76 @@
           }
         });
       });
+
+      // ---- MOBILE: Separate lightweight animation system ----
+      if (window.innerWidth <= 768) {
+        // Mobile count-up (max 2 simultaneous, queued)
+        let activeCountUps = 0;
+        const countUpQueue = [];
+
+        function mobileCountUp(element) {
+          const target = parseInt(element.dataset.target, 10);
+          if (isNaN(target)) return;
+          const prefix = element.dataset.prefix || '';
+          const suffix = element.dataset.suffix || '';
+          const duration = 1200;
+
+          function run() {
+            activeCountUps++;
+            const start = performance.now();
+            function update(now) {
+              const elapsed = now - start;
+              const progress = Math.min(elapsed / duration, 1);
+              const eased = 1 - Math.pow(1 - progress, 3);
+              const current = Math.round(target * eased);
+              element.textContent = prefix + current.toLocaleString() + suffix;
+              if (progress < 1) {
+                requestAnimationFrame(update);
+              } else {
+                activeCountUps--;
+                if (countUpQueue.length > 0) countUpQueue.shift()();
+              }
+            }
+            requestAnimationFrame(update);
+          }
+
+          if (activeCountUps < 2) {
+            run();
+          } else {
+            countUpQueue.push(run);
+          }
+        }
+
+        // Mobile IntersectionObserver
+        const mobileObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const stagger = entry.target.dataset.stagger;
+              if (stagger) {
+                const children = entry.target.querySelectorAll('.m-stagger-child');
+                children.forEach((child, i) => {
+                  const delay = Math.min(i, 3) * parseInt(stagger);
+                  setTimeout(() => child.classList.add('m-visible'), delay);
+                });
+              } else {
+                entry.target.classList.add('m-visible');
+              }
+
+              // Trigger count-up on mobile data-countup elements
+              if (entry.target.dataset.target) {
+                mobileCountUp(entry.target);
+              }
+
+              mobileObserver.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.1,
+          rootMargin: '0px 0px -40px 0px'
+        });
+
+        document.querySelectorAll('.m-animate').forEach(el => mobileObserver.observe(el));
+      }
 
     });
   </script>
