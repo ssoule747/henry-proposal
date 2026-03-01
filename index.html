@@ -1807,11 +1807,10 @@
     .roi-chart-bar.animated { /* width set inline */ }
 
     /* Bar segment colors */
+    /* Bar segments: teal = new client revenue, gold = retention, muted = labor */
     .roi-seg-henry { background: var(--teal); }
-    .roi-seg-meeting { background: #7BB8C7; }
     .roi-seg-followup { background: var(--gold); }
-    .roi-seg-compliance { background: #D4BD8A; }
-    .roi-seg-portal { background: #8DCED9; }
+    .roi-seg-compliance { background: #C5C0B8; }
 
     .roi-chart-total { flex: 0 0 90px; text-align: right; font-family: var(--font-serif); font-size: 18px; font-weight: 700; color: var(--text); }
     .roi-chart-row:last-child .roi-chart-total { font-size: 22px; color: var(--gold); }
@@ -1856,7 +1855,7 @@
       background: linear-gradient(to top, rgba(201,169,110,0.15), transparent);
     }
 
-    /* 12x multiplier bars */
+    /* 40x multiplier bars */
     .roi-stat-bars { display: flex; gap: 3px; justify-content: center; margin-bottom: 16px; height: 24px; align-items: flex-end; }
     .roi-stat-bars span { width: 6px; background: var(--gold); border-radius: 2px; opacity: 0.6; }
 
@@ -1881,30 +1880,7 @@
       font-family: var(--font-sans);
     }
 
-    /* Part D: Practice Valuation Banner */
-    .roi-valuation {
-      background: var(--teal-dark); border-radius: 12px; padding: 32px 40px;
-      display: flex; align-items: center; justify-content: space-between;
-      margin-top: 48px; gap: 40px;
-    }
-    .roi-valuation-text { flex: 0 0 70%; }
-    .roi-valuation-headline {
-      font-family: var(--font-serif); font-size: 18px; color: #fff; font-weight: 600;
-      margin-bottom: 12px;
-    }
-    .roi-valuation-body {
-      font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.7; font-family: var(--font-sans);
-      margin: 0;
-    }
-    .roi-valuation-stat { flex: 0 0 30%; text-align: center; }
-    .roi-valuation-pre { font-size: 12px; color: rgba(255,255,255,0.5); font-family: var(--font-sans); }
-    .roi-valuation-number {
-      font-family: var(--font-serif); font-size: 36px; color: #fff; font-weight: 700;
-      text-shadow: 0 0 30px rgba(255,255,255,0.15); margin: 4px 0;
-    }
-    .roi-valuation-post { font-size: 12px; color: rgba(255,255,255,0.5); font-family: var(--font-sans); }
-
-    /* Part E: Upgraded Closing Callout Bar */
+    /* Part E: Closing Callout Bar */
     .value-callout-bar {
       background: var(--teal-dark); padding: 48px; text-align: center;
       margin-top: 64px; margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%); width: 100vw;
@@ -3002,11 +2978,6 @@
       .roi-stat--hero { padding: 32px 20px; }
       .roi-stat-number--gold { font-size: 40px; }
 
-      .roi-valuation { flex-direction: column; padding: 24px 20px; gap: 24px; }
-      .roi-valuation-text { flex: 0 0 100%; }
-      .roi-valuation-stat { flex: 0 0 100%; }
-      .roi-valuation-number { font-size: 28px; }
-
       .value-callout-bar { padding: 32px 20px; }
       .value-callout-main { font-size: 18px; }
 
@@ -3913,10 +3884,10 @@
         <div class="roi-arrow">&rarr;</div>
         <div class="roi-card roi-card--return">
           <div class="roi-card-label">Projected 5-Year Value</div>
-          <div class="roi-card-number" data-countup data-target="305000" data-prefix="$" data-from="25000">&mdash;</div>
-          <div class="roi-card-freq">in cumulative new revenue</div>
+          <div class="roi-card-number" data-countup data-target="1000000" data-prefix="$" data-from="25000" data-suffix="+">&mdash;</div>
+          <div class="roi-card-freq">in total value over 5 years</div>
           <div class="roi-card-line"></div>
-          <div class="roi-card-note">Not including client retention value, referrals, or practice valuation impact.</div>
+          <div class="roi-card-note">New revenue, retained revenue, and operational savings &mdash; conservatively estimated.</div>
         </div>
       </div>
 
@@ -3930,123 +3901,120 @@
           <div class="roi-chart-row">
             <div class="roi-chart-year">Year 1</div>
             <div class="roi-chart-track">
-              <div class="roi-chart-bar" data-roi-width="5%" style="transition-delay: 0s;">
-                <div class="roi-seg-henry" style="flex: 15;"></div>
+              <div class="roi-chart-bar" data-roi-width="12.5%" style="transition-delay: 0s;">
+                <div class="roi-seg-henry" style="flex: 22.5;"></div>
+                <div class="roi-seg-followup" style="flex: 20;"></div>
+                <div class="roi-seg-compliance" style="flex: 7.5;"></div>
               </div>
             </div>
-            <div class="roi-chart-total" data-countup data-target="15000" data-prefix="$">&mdash;</div>
+            <div class="roi-chart-total" data-countup data-target="50000" data-prefix="$">&mdash;</div>
           </div>
-          <div class="roi-chart-legend"><span>Henry: $15K</span></div>
+          <div class="roi-chart-legend"><span>New client revenue: $22.5K</span> <span>Retention value: $20K</span> <span>Labor: $7.5K</span></div>
 
           <!-- Year 2 -->
           <div class="roi-chart-row">
             <div class="roi-chart-year">Year 2</div>
             <div class="roi-chart-track">
-              <div class="roi-chart-bar" data-roi-width="18%" style="transition-delay: 0.6s;">
-                <div class="roi-seg-henry" style="flex: 30;"></div>
-                <div class="roi-seg-meeting" style="flex: 25;"></div>
+              <div class="roi-chart-bar" data-roi-width="28%" style="transition-delay: 0.6s;">
+                <div class="roi-seg-henry" style="flex: 60;"></div>
+                <div class="roi-seg-followup" style="flex: 40;"></div>
+                <div class="roi-seg-compliance" style="flex: 13.5;"></div>
               </div>
             </div>
-            <div class="roi-chart-total" data-countup data-target="55000" data-prefix="$">&mdash;</div>
+            <div class="roi-chart-total" data-countup data-target="113500" data-prefix="$">&mdash;</div>
           </div>
-          <div class="roi-chart-legend"><span>Henry: $30K</span> <span class="roi-legend-new">+Meeting Prep: $25K</span></div>
+          <div class="roi-chart-legend"><span>New + recurring clients: $60K</span> <span>Retention: $40K</span> <span>Labor: $13.5K</span></div>
 
           <!-- Year 3 -->
           <div class="roi-chart-row">
             <div class="roi-chart-year">Year 3</div>
             <div class="roi-chart-track">
-              <div class="roi-chart-bar" data-roi-width="41%" style="transition-delay: 1.2s;">
-                <div class="roi-seg-henry" style="flex: 45;"></div>
-                <div class="roi-seg-meeting" style="flex: 50;"></div>
-                <div class="roi-seg-followup" style="flex: 30;"></div>
+              <div class="roi-chart-bar" data-roi-width="50%" style="transition-delay: 1.2s;">
+                <div class="roi-seg-henry" style="flex: 112.5;"></div>
+                <div class="roi-seg-followup" style="flex: 70;"></div>
+                <div class="roi-seg-compliance" style="flex: 16.5;"></div>
               </div>
             </div>
-            <div class="roi-chart-total" data-countup data-target="125000" data-prefix="$">&mdash;</div>
+            <div class="roi-chart-total" data-countup data-target="199000" data-prefix="$">&mdash;</div>
           </div>
-          <div class="roi-chart-legend"><span>Henry: $45K</span> <span>Meeting Prep: $50K</span> <span class="roi-legend-new">+Follow-ups: $30K</span></div>
+          <div class="roi-chart-legend"><span>New + recurring clients: $112.5K</span> <span>Retention: $70K</span> <span>Labor: $16.5K</span></div>
 
           <!-- Year 4 -->
           <div class="roi-chart-row">
             <div class="roi-chart-year">Year 4</div>
             <div class="roi-chart-track">
-              <div class="roi-chart-bar" data-roi-width="67%" style="transition-delay: 1.8s;">
-                <div class="roi-seg-henry" style="flex: 60;"></div>
-                <div class="roi-seg-meeting" style="flex: 75;"></div>
-                <div class="roi-seg-followup" style="flex: 45;"></div>
-                <div class="roi-seg-compliance" style="flex: 25;"></div>
+              <div class="roi-chart-bar" data-roi-width="73%" style="transition-delay: 1.8s;">
+                <div class="roi-seg-henry" style="flex: 172.5;"></div>
+                <div class="roi-seg-followup" style="flex: 100;"></div>
+                <div class="roi-seg-compliance" style="flex: 19.5;"></div>
               </div>
             </div>
-            <div class="roi-chart-total" data-countup data-target="205000" data-prefix="$">&mdash;</div>
+            <div class="roi-chart-total" data-countup data-target="292000" data-prefix="$">&mdash;</div>
           </div>
-          <div class="roi-chart-legend"><span>Henry: $60K</span> <span>Meeting Prep: $75K</span> <span>Follow-ups: $45K</span> <span class="roi-legend-new">+Compliance: $25K</span></div>
+          <div class="roi-chart-legend"><span>New + recurring clients: $172.5K</span> <span>Retention: $100K</span> <span>Labor: $19.5K</span></div>
 
           <!-- Year 5 -->
           <div class="roi-chart-row">
             <div class="roi-chart-year">Year 5</div>
             <div class="roi-chart-track">
               <div class="roi-chart-bar" data-roi-width="100%" style="transition-delay: 2.4s;">
-                <div class="roi-seg-henry" style="flex: 75;"></div>
-                <div class="roi-seg-meeting" style="flex: 100;"></div>
-                <div class="roi-seg-followup" style="flex: 55;"></div>
-                <div class="roi-seg-compliance" style="flex: 40;"></div>
-                <div class="roi-seg-portal" style="flex: 35;"></div>
+                <div class="roi-seg-henry" style="flex: 247.5;"></div>
+                <div class="roi-seg-followup" style="flex: 130;"></div>
+                <div class="roi-seg-compliance" style="flex: 22.5;"></div>
               </div>
             </div>
-            <div class="roi-chart-total" data-countup data-target="305000" data-prefix="$">&mdash;</div>
+            <div class="roi-chart-total" data-countup data-target="400000" data-prefix="$">&mdash;</div>
           </div>
-          <div class="roi-chart-legend"><span>Henry: $75K</span> <span>Meeting Prep: $100K</span> <span>Follow-ups: $55K</span> <span>Compliance: $40K</span> <span class="roi-legend-new">+Portal: $35K</span></div>
+          <div class="roi-chart-legend"><span>New + recurring clients: $247.5K</span> <span>Retention: $130K</span> <span>Labor: $22.5K</span></div>
         </div>
 
-        <p class="roi-chart-insight">Each new application adds capacity. The revenue from that capacity compounds every year.</p>
+        <p class="roi-chart-insight">Every client you win stays. Every client you keep pays. The value doesn&rsquo;t just grow &mdash; it compounds.</p>
       </div>
 
       <!-- Part C: Headline Numbers -->
       <div class="roi-stats stagger-children">
         <div class="roi-stat stagger-child">
           <div class="roi-stat-trend"></div>
-          <div class="roi-stat-number roi-stat-number--teal" data-countup data-target="305000" data-prefix="$" data-suffix="+">&mdash;</div>
-          <div class="roi-stat-label">cumulative new revenue over 5 years</div>
-          <div class="roi-stat-note">From presentations alone: $75K. With full platform: $305K+</div>
+          <div class="roi-stat-number roi-stat-number--teal">$1M+</div>
+          <div class="roi-stat-label">in total value over five years</div>
+          <div class="roi-stat-note">Year 1 alone covers the investment. Years 2&ndash;5 are pure upside.</div>
         </div>
 
         <div class="roi-stat roi-stat--hero stagger-child">
           <div class="roi-stat-trend"></div>
-          <div class="roi-stat-number roi-stat-number--gold" data-countup data-target="16500000" data-prefix="$" data-divisor="1000000" data-decimal="1" data-unit="M">&mdash;</div>
-          <div class="roi-stat-label">in new assets under management</div>
-          <div class="roi-stat-sublabel">generating $165,000+ in annual recurring fees</div>
-          <div class="roi-stat-note">At 1% annual fee, growing every year</div>
+          <div class="roi-stat-number roi-stat-number--gold" data-countup data-target="37000000" data-prefix="$" data-divisor="1000000" data-decimal="0" data-unit="M">&mdash;</div>
+          <div class="roi-stat-label">in total assets influenced</div>
+          <div class="roi-stat-sublabel">generating $377,500 in annual recurring fees by Year 5</div>
+          <div class="roi-stat-note">New clients won plus existing clients retained</div>
         </div>
 
         <div class="roi-stat stagger-child">
           <div class="roi-stat-bars">
-            <span style="height: 8px;"></span><span style="height: 10px;"></span><span style="height: 9px;"></span>
-            <span style="height: 12px;"></span><span style="height: 11px;"></span><span style="height: 14px;"></span>
-            <span style="height: 13px;"></span><span style="height: 16px;"></span><span style="height: 15px;"></span>
-            <span style="height: 18px;"></span><span style="height: 20px;"></span><span style="height: 24px;"></span>
+            <span style="height: 5px;"></span><span style="height: 6px;"></span><span style="height: 5px;"></span>
+            <span style="height: 7px;"></span><span style="height: 6px;"></span><span style="height: 8px;"></span>
+            <span style="height: 7px;"></span><span style="height: 9px;"></span><span style="height: 8px;"></span>
+            <span style="height: 10px;"></span><span style="height: 9px;"></span><span style="height: 11px;"></span>
+            <span style="height: 10px;"></span><span style="height: 12px;"></span><span style="height: 11px;"></span>
+            <span style="height: 13px;"></span><span style="height: 14px;"></span><span style="height: 13px;"></span>
+            <span style="height: 15px;"></span><span style="height: 14px;"></span><span style="height: 16px;"></span>
+            <span style="height: 15px;"></span><span style="height: 17px;"></span><span style="height: 18px;"></span>
+            <span style="height: 17px;"></span><span style="height: 19px;"></span><span style="height: 18px;"></span>
+            <span style="height: 20px;"></span><span style="height: 19px;"></span><span style="height: 21px;"></span>
+            <span style="height: 20px;"></span><span style="height: 22px;"></span><span style="height: 21px;"></span>
+            <span style="height: 22px;"></span><span style="height: 23px;"></span><span style="height: 22px;"></span>
+            <span style="height: 23px;"></span><span style="height: 24px;"></span><span style="height: 23px;"></span>
+            <span style="height: 24px;"></span>
           </div>
-          <div class="roi-stat-number roi-stat-number--teal">12X</div>
-          <div class="roi-stat-label">return on investment within 5 years</div>
-          <div class="roi-stat-note">Excluding retention value and practice valuation</div>
-        </div>
-      </div>
-
-      <!-- Part D: Practice Valuation -->
-      <div class="roi-valuation reveal">
-        <div class="roi-valuation-text">
-          <div class="roi-valuation-headline">What this means for your practice valuation</div>
-          <p class="roi-valuation-body">Wealth management firms typically sell at 2&ndash;3&times; annual revenue. Every $100,000 in new recurring revenue increases your practice value by $200,000&ndash;$300,000. The intelligence layer isn&rsquo;t an expense on your P&amp;L &mdash; it&rsquo;s a direct multiplier on the value of Crew Wealth Management.</p>
-        </div>
-        <div class="roi-valuation-stat">
-          <div class="roi-valuation-pre">Up to</div>
-          <div class="roi-valuation-number" data-countup data-target="500000" data-prefix="+$">&mdash;</div>
-          <div class="roi-valuation-post">added practice value</div>
+          <div class="roi-stat-number roi-stat-number--teal">40X</div>
+          <div class="roi-stat-label">return on investment over five years</div>
+          <div class="roi-stat-note">On the Tier 1 investment. Tier 2 ROI is even higher due to deeper integration.</div>
         </div>
       </div>
 
       <!-- Part E: Closing Callout -->
       <div class="value-callout-bar reveal-scale">
         <p class="value-callout-main">The question isn&rsquo;t whether this is worth $25,000. It&rsquo;s what it costs you to wait another year.</p>
-        <p class="value-callout-sub">Every month without the intelligence layer is another month of $75/hour talent doing $15/hour work.</p>
+        <p class="value-callout-sub">Every month without the intelligence layer is another month your competitors are pulling ahead.</p>
       </div>
 
     </div>
@@ -4424,7 +4392,7 @@
     <p class="investment-comparison reveal">Both tiers are one-time investments. Future applications are scoped and priced individually ($3,000&ndash;$8,000 each) and plug into the platform you&rsquo;ve already built &mdash; no additional infrastructure cost.</p>
 
     <div class="investment-value-bar reveal">
-      <span class="value-num">$25K&ndash;$35K</span> investment &nbsp;&middot;&nbsp; <span class="value-num">$305K+</span> projected 5-year value &nbsp;&middot;&nbsp; <span class="value-num">12x+</span> ROI
+      <span class="value-num">$25K&ndash;$35K</span> investment &nbsp;&middot;&nbsp; <span class="value-num">$1M+</span> projected 5-year value &nbsp;&middot;&nbsp; <span class="value-num">40X</span> ROI
     </div>
   </div>
 </section>
