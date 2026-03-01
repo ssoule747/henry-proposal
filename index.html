@@ -57,6 +57,10 @@
 
     html {
       scroll-behavior: smooth;
+      scrollbar-width: none;
+    }
+    html::-webkit-scrollbar {
+      display: none;
     }
 
     body {
@@ -64,6 +68,7 @@
       background: var(--bg);
       color: var(--text);
       line-height: 1.7;
+      overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
@@ -2096,15 +2101,14 @@
       letter-spacing: 1px;
       padding: 6px 14px;
       border-radius: 20px;
-      transform: rotate(-3deg);
       box-shadow: 0 2px 8px rgba(201,169,110,0.3);
       animation: badge-pop 0.4s ease-out 0.3s both;
     }
 
     @keyframes badge-pop {
-      0% { transform: rotate(-3deg) scale(0); }
-      70% { transform: rotate(-3deg) scale(1.1); }
-      100% { transform: rotate(-3deg) scale(1); }
+      0% { transform: scale(0); }
+      70% { transform: scale(1.1); }
+      100% { transform: scale(1); }
     }
 
     .tier-pill {
@@ -4026,7 +4030,6 @@
       </div>
     </div>
 
-    <p class="investment-comparison reveal">Both tiers are one-time investments. Future applications are scoped and priced individually ($3,000&ndash;$8,000 each) and plug into the platform you&rsquo;ve already built &mdash; no additional infrastructure cost.</p>
 
     <div class="investment-value-bar reveal">
       <span class="value-num">$25K&ndash;$35K</span> investment &nbsp;&middot;&nbsp; <span class="value-num">$1M+</span> projected 5-year value &nbsp;&middot;&nbsp; <span class="value-num">40X</span> ROI
