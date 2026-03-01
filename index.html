@@ -1255,6 +1255,8 @@
       flex: 0 0 3%;
       display: flex;
       flex-direction: column;
+      position: relative;
+      z-index: 5;
       align-items: center;
       justify-content: center;
       position: relative;
@@ -1737,328 +1739,182 @@
       line-height: 1.6;
     }
 
-    /* Part 3: Compounding Value */
+    /* Part 3 header (reused) */
     .s7p3-divider {
-      width: 100%;
-      max-width: 200px;
-      height: 1px;
-      background: var(--border);
-      margin: 64px auto 24px;
+      width: 100%; max-width: 200px; height: 1px;
+      background: var(--border); margin: 64px auto 24px;
     }
-
     .s7p3-sublabel {
-      font-family: var(--font-sans);
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--gold);
-      text-align: center;
-      margin-bottom: 16px;
+      font-family: var(--font-sans); font-size: 10px; text-transform: uppercase;
+      letter-spacing: 2px; color: var(--gold); text-align: center; margin-bottom: 16px;
     }
-
     .s7p3-subheadline {
-      font-family: var(--font-serif);
-      font-size: 28px;
-      line-height: 1.35;
-      color: var(--text);
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto;
+      font-family: var(--font-serif); font-size: 28px; line-height: 1.35;
+      color: var(--text); text-align: center; max-width: 600px; margin: 0 auto;
     }
 
-    .s7p3-table-card {
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-      padding: 32px;
-      margin-top: 48px;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
+    /* Part A: Investment Comparison */
+    .roi-compare { display: flex; gap: 0; align-items: stretch; margin-top: 56px; }
+    .roi-card { flex: 1; border-radius: 14px; padding: 40px; text-align: center; }
+
+    .roi-card--cost {
+      background: #fff; border: 1px solid var(--border);
+    }
+    .roi-card--return {
+      background: linear-gradient(135deg, rgba(201,169,110,0.04), rgba(201,169,110,0.08));
+      border: 2px solid rgba(201,169,110,0.25);
+      animation: roi-glowPulse 4s ease-in-out infinite;
+    }
+    @keyframes roi-glowPulse {
+      0%, 100% { box-shadow: 0 0 20px rgba(201,169,110,0.08); }
+      50% { box-shadow: 0 0 40px rgba(201,169,110,0.2), 0 0 60px rgba(201,169,110,0.08); }
     }
 
-    .s7p3-table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 660px;
+    .roi-card-label { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); margin-bottom: 16px; font-family: var(--font-sans); }
+    .roi-card--return .roi-card-label { color: var(--gold); }
+
+    .roi-card-number { font-family: var(--font-serif); line-height: 1.2; font-weight: 700; }
+    .roi-card--cost .roi-card-number { font-size: 32px; color: #555; }
+    .roi-card--return .roi-card-number { font-size: 48px; color: var(--gold); text-shadow: 0 0 30px rgba(201,169,110,0.2); }
+
+    .roi-card-freq { font-size: 14px; font-style: italic; color: var(--text-muted); margin-top: 8px; font-family: var(--font-sans); }
+    .roi-card--return .roi-card-freq { color: var(--gold); opacity: 0.7; }
+
+    .roi-card-line { width: 60px; height: 1px; margin: 20px auto; }
+    .roi-card--cost .roi-card-line { background: var(--border); }
+    .roi-card--return .roi-card-line { background: rgba(201,169,110,0.3); }
+
+    .roi-card-note { font-size: 13px; color: var(--text-muted); line-height: 1.6; max-width: 280px; margin: 0 auto; font-family: var(--font-sans); }
+    .roi-card--return .roi-card-note { font-style: italic; color: rgba(201,169,110,0.6); }
+
+    .roi-arrow { flex: 0 0 60px; display: flex; align-items: center; justify-content: center; font-size: 32px; color: var(--teal); font-weight: 300; }
+
+    /* Part B: Growth Bar Chart */
+    .roi-chart-card {
+      background: #fff; border: 1px solid var(--border); border-radius: 14px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.04); padding: 40px; margin-top: 56px;
+    }
+    .roi-chart-header { font-family: var(--font-serif); font-size: 18px; color: var(--text); font-weight: 600; margin-bottom: 4px; }
+    .roi-chart-note { font-size: 11px; color: var(--text-muted); font-style: italic; margin-bottom: 32px; font-family: var(--font-sans); }
+
+    .roi-chart-rows { display: flex; flex-direction: column; gap: 20px; }
+
+    .roi-chart-row { display: flex; align-items: center; gap: 16px; }
+    .roi-chart-year { flex: 0 0 52px; font-size: 14px; font-weight: 700; color: var(--text); font-family: var(--font-sans); }
+
+    .roi-chart-track { flex: 1; height: 40px; background: rgba(0,0,0,0.03); border-radius: 8px; position: relative; overflow: hidden; }
+    .roi-chart-bar { height: 100%; border-radius: 8px; display: flex; overflow: hidden; width: 0; transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    .roi-chart-bar.animated { /* width set inline */ }
+
+    /* Bar segment colors */
+    .roi-seg-henry { background: var(--teal); }
+    .roi-seg-meeting { background: #7BB8C7; }
+    .roi-seg-followup { background: var(--gold); }
+    .roi-seg-compliance { background: #D4BD8A; }
+    .roi-seg-portal { background: #8DCED9; }
+
+    .roi-chart-total { flex: 0 0 90px; text-align: right; font-family: var(--font-serif); font-size: 18px; font-weight: 700; color: var(--text); }
+    .roi-chart-row:last-child .roi-chart-total { font-size: 22px; color: var(--gold); }
+
+    .roi-chart-legend { font-size: 11px; color: var(--text-muted); margin-top: 4px; padding-left: 68px; font-family: var(--font-sans); }
+    .roi-chart-legend span { margin-right: 12px; }
+    .roi-chart-legend .roi-legend-new { color: var(--teal); font-weight: 600; }
+
+    .roi-chart-insight {
+      font-size: 14px; font-style: italic; color: var(--teal); text-align: center;
+      max-width: 500px; margin: 40px auto 0; line-height: 1.7; font-family: var(--font-sans);
     }
 
-    .s7p3-table thead th {
-      font-family: var(--font-serif);
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--teal);
-      text-align: center;
-      padding: 14px 16px;
-      border-bottom: 2px solid var(--border);
+    /* Part C: Redesigned Stat Cards */
+    .roi-stats { display: flex; gap: 24px; margin-top: 64px; align-items: stretch; }
+
+    .roi-stat {
+      flex: 1; background: #fff; border: 1px solid var(--border); border-radius: 14px;
+      padding: 32px 28px; text-align: center; position: relative; overflow: hidden;
+      border-left: 3px solid var(--teal);
+    }
+    .roi-stat--hero {
+      flex: 1.15; border-left: none; border: 2px solid rgba(201,169,110,0.2);
+      background: linear-gradient(135deg, rgba(201,169,110,0.03), rgba(201,169,110,0.06));
+      animation: roi-glowPulse 4s ease-in-out infinite;
+      padding: 40px 28px;
     }
 
-    .s7p3-table thead th:first-child {
-      text-align: left;
-      min-width: 160px;
+    /* Mini trend line - CSS only */
+    .roi-stat-trend {
+      width: 48px; height: 24px; margin: 0 auto 16px; position: relative;
+    }
+    .roi-stat-trend::after {
+      content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 100%;
+      border-bottom: 2px solid var(--teal); border-right: 2px solid var(--teal);
+      border-radius: 0 0 4px 0;
+      clip-path: polygon(0 100%, 20% 70%, 40% 80%, 60% 50%, 80% 30%, 100% 0, 100% 100%);
+      background: linear-gradient(to top, rgba(91,155,173,0.15), transparent);
+    }
+    .roi-stat--hero .roi-stat-trend::after {
+      border-color: var(--gold);
+      background: linear-gradient(to top, rgba(201,169,110,0.15), transparent);
     }
 
-    .s7p3-table tbody td {
+    /* 12x multiplier bars */
+    .roi-stat-bars { display: flex; gap: 3px; justify-content: center; margin-bottom: 16px; height: 24px; align-items: flex-end; }
+    .roi-stat-bars span { width: 6px; background: var(--gold); border-radius: 2px; opacity: 0.6; }
+
+    .roi-stat-number {
+      font-family: var(--font-serif); font-size: 40px; font-weight: 700; line-height: 1.2;
+    }
+    .roi-stat-number--teal { color: var(--teal); }
+    .roi-stat-number--gold {
+      font-size: 52px; color: var(--gold);
+      text-shadow: 0 0 30px rgba(201,169,110,0.2);
+    }
+
+    .roi-stat-label { font-size: 14px; color: var(--text-muted); margin-top: 8px; line-height: 1.5; font-family: var(--font-sans); }
+
+    .roi-stat-sublabel {
+      font-size: 13px; font-weight: 700; color: var(--gold); margin-top: 8px;
       font-family: var(--font-sans);
-      font-size: 13px;
-      color: var(--text-body);
-      text-align: center;
-      padding: 14px 16px;
-      border-bottom: 1px solid var(--border);
-      vertical-align: top;
     }
 
-    .s7p3-table tbody td:first-child {
-      text-align: left;
-      min-width: 160px;
-      white-space: nowrap;
-    }
-
-    .s7p3-table tbody td:not(:first-child) {
-      min-width: 100px;
-    }
-
-    .s7p3-row-label {
+    .roi-stat-note {
+      font-size: 12px; color: var(--text-muted); margin-top: 12px; line-height: 1.5;
       font-family: var(--font-sans);
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text);
-      line-height: 1.3;
     }
 
-    .s7p3-row-sublabel {
-      display: block;
-      font-size: 10px;
-      color: var(--text-muted);
-      font-style: italic;
-      font-weight: 400;
-      margin-top: 2px;
+    /* Part D: Practice Valuation Banner */
+    .roi-valuation {
+      background: var(--teal-dark); border-radius: 12px; padding: 32px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 48px; gap: 40px;
     }
-
-    .s7p3-cell-sub {
-      display: block;
-      font-size: 10px;
-      color: var(--text-muted);
-      font-style: italic;
-      margin-top: 2px;
+    .roi-valuation-text { flex: 0 0 70%; }
+    .roi-valuation-headline {
+      font-family: var(--font-serif); font-size: 18px; color: #fff; font-weight: 600;
+      margin-bottom: 12px;
     }
-
-    .s7p3-row-highlight td {
-      background: rgba(201, 169, 110, 0.06);
-      font-weight: 700;
-      font-size: 15px;
-      color: var(--text);
-    }
-
-    .s7p3-row-highlight td:first-child {
-      color: var(--text);
-    }
-
-    .s7p3-table tbody tr:last-child td {
-      border-bottom: none;
-    }
-
-    /* Punchline Stats */
-    .s7p3-stats {
-      display: flex;
-      gap: 32px;
-      margin-top: 56px;
-      text-align: center;
-      justify-content: center;
-      align-items: flex-start;
-    }
-
-    .s7p3-stat {
-      flex: 1;
-      max-width: 280px;
-    }
-
-    .s7p3-stat-number {
-      font-family: var(--font-serif);
-      font-size: 44px;
-      line-height: 1.1;
-      font-weight: 700;
-    }
-
-    .s7p3-stat-number--teal {
-      color: var(--teal);
-    }
-
-    .s7p3-stat-number--gold {
-      color: var(--gold);
-    }
-
-    .s7p3-stat-desc {
-      font-family: var(--font-sans);
-      font-size: 14px;
-      color: var(--text-muted);
-      margin-top: 8px;
-      line-height: 1.5;
-    }
-
-    .s7p3-stat-note {
-      font-family: var(--font-sans);
-      font-size: 11px;
-      color: var(--text-muted);
-      margin-top: 12px;
-      max-width: 220px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.5;
-    }
-
-    /* Gold shimmer animation */
-    .s7p3-shimmer {
-      background: linear-gradient(90deg, var(--gold) 0%, #E8D5A3 40%, var(--gold) 60%);
-      background-size: 200% 100%;
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-position: 200% center;
-    }
-
-    .s7p3-shimmer.visible {
-      animation: s7p3ShimmerSweep 1.5s ease-out forwards;
-    }
-
-    @keyframes s7p3ShimmerSweep {
-      0% { background-position: 200% center; }
-      100% { background-position: 0% center; }
-    }
-
-    /* Part 4: Two-Column Argument */
-    .value-argument {
-      display: flex;
-      gap: 48px;
-      margin-top: 64px;
-      align-items: flex-start;
-    }
-
-    .value-argument-text {
-      flex: 0 0 55%;
-      max-width: 55%;
-    }
-
-    .value-argument-text p {
-      font-size: 15px;
-      line-height: 1.8;
-      color: var(--text-body);
-      font-family: var(--font-sans);
-      margin: 0 0 20px 0;
-    }
-
-    .value-argument-text p:last-child {
-      margin-bottom: 0;
-    }
-
-    /* Timeline Column */
-    .value-timeline-col {
-      flex: 0 0 45%;
-      max-width: 45%;
-    }
-
-    .value-timeline-label {
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--teal);
-      margin-bottom: 24px;
-      font-family: var(--font-sans);
-      font-weight: 600;
-    }
-
-    .value-timeline {
-      position: relative;
-      padding-left: 30px;
-    }
-
-    .value-timeline::before {
-      content: '';
-      position: absolute;
-      left: 4px;
-      top: 5px;
-      bottom: 5px;
-      width: 2px;
-      background: var(--gold);
-      opacity: 0.3;
-    }
-
-    .value-milestone {
-      position: relative;
-      margin-bottom: 20px;
-    }
-
-    .value-milestone:last-child {
-      margin-bottom: 0;
-    }
-
-    .value-milestone::before {
-      content: '';
-      position: absolute;
-      left: -30px;
-      top: 18px;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--gold);
-      z-index: 1;
-    }
-
-    .value-milestone-card {
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 16px 20px;
-    }
-
-    .value-milestone-year {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--text);
-      font-family: var(--font-sans);
-      margin-bottom: 4px;
-    }
-
-    .value-milestone-hours {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--teal);
-      font-family: var(--font-sans);
-      margin-bottom: 4px;
-    }
-
-    .value-milestone-outcome {
-      font-size: 13px;
-      color: var(--text-muted);
-      font-family: var(--font-sans);
-      line-height: 1.5;
-    }
-
-    /* Part 5: Bottom-Line Callout Bar */
-    .value-callout-bar {
-      background: var(--teal-dark);
-      padding: 48px;
-      text-align: center;
-      margin-top: 80px;
-      margin-left: calc(-50vw + 50%);
-      margin-right: calc(-50vw + 50%);
-      width: 100vw;
-    }
-
-    .value-callout-main {
-      font-size: 20px;
-      font-family: var(--font-serif);
-      color: #fff;
-      line-height: 1.4;
+    .roi-valuation-body {
+      font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.7; font-family: var(--font-sans);
       margin: 0;
     }
+    .roi-valuation-stat { flex: 0 0 30%; text-align: center; }
+    .roi-valuation-pre { font-size: 12px; color: rgba(255,255,255,0.5); font-family: var(--font-sans); }
+    .roi-valuation-number {
+      font-family: var(--font-serif); font-size: 36px; color: #fff; font-weight: 700;
+      text-shadow: 0 0 30px rgba(255,255,255,0.15); margin: 4px 0;
+    }
+    .roi-valuation-post { font-size: 12px; color: rgba(255,255,255,0.5); font-family: var(--font-sans); }
 
+    /* Part E: Upgraded Closing Callout Bar */
+    .value-callout-bar {
+      background: var(--teal-dark); padding: 48px; text-align: center;
+      margin-top: 64px; margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%); width: 100vw;
+    }
+    .value-callout-main {
+      font-size: 20px; font-family: var(--font-serif); color: #fff; line-height: 1.4; margin: 0;
+    }
     .value-callout-sub {
-      font-size: 14px;
-      font-family: var(--font-sans);
-      color: rgba(255, 255, 255, 0.7);
-      margin: 12px 0 0 0;
-      line-height: 1.5;
+      font-size: 14px; font-family: var(--font-sans); color: rgba(255,255,255,0.7);
+      margin: 12px 0 0 0; line-height: 1.5;
     }
 
 
@@ -2796,6 +2652,8 @@
       .scope-deliverable:hover,
       .scope-card:hover,
       .impact-card:hover,
+      .roi-card:hover,
+      .roi-stat:hover,
       .tech-card:hover,
       .pricing-card:hover,
       .demo-link:hover,
@@ -3124,51 +2982,33 @@
         font-size: 20px;
       }
 
-      .s7p3-table-card {
-        padding: 16px;
-        border-radius: 8px;
-      }
+      /* ========== Section 7 — ROI Redesign ========== */
+      .s7p3-subheadline { font-size: 22px; }
+      .roi-compare { flex-direction: column; gap: 0; }
+      .roi-arrow { transform: rotate(90deg); padding: 8px 0; flex: none; }
+      .roi-card--return .roi-card-number { font-size: 36px; }
+      .roi-card { padding: 28px 20px; }
 
-      .s7p3-subheadline {
-        font-size: 22px;
-      }
+      .roi-chart-card { padding: 20px; }
+      .roi-chart-row { gap: 8px; }
+      .roi-chart-year { flex: 0 0 44px; font-size: 12px; }
+      .roi-chart-track { height: 32px; }
+      .roi-chart-total { flex: 0 0 70px; font-size: 15px; }
+      .roi-chart-row:last-child .roi-chart-total { font-size: 18px; }
+      .roi-chart-legend { display: none; }
+      .roi-chart-insight { font-size: 13px; }
 
-      .s7p3-stats {
-        flex-direction: column;
-        align-items: center;
-        gap: 40px;
-      }
+      .roi-stats { flex-direction: column; }
+      .roi-stat--hero { padding: 32px 20px; }
+      .roi-stat-number--gold { font-size: 40px; }
 
-      .s7p3-stat {
-        max-width: 100%;
-      }
+      .roi-valuation { flex-direction: column; padding: 24px 20px; gap: 24px; }
+      .roi-valuation-text { flex: 0 0 100%; }
+      .roi-valuation-stat { flex: 0 0 100%; }
+      .roi-valuation-number { font-size: 28px; }
 
-      .s7p3-stat-number {
-        font-size: 36px;
-      }
-
-      .value-argument {
-        flex-direction: column;
-        gap: 48px;
-      }
-
-      .value-argument-text,
-      .value-timeline-col {
-        flex: 0 0 100%;
-        max-width: 100%;
-      }
-
-      .value-milestone-card {
-        padding: 14px 16px;
-      }
-
-      .value-callout-bar {
-        padding: 32px 20px;
-      }
-
-      .value-callout-main {
-        font-size: 18px;
-      }
+      .value-callout-bar { padding: 32px 20px; }
+      .value-callout-main { font-size: 18px; }
 
       /* ========== Section 8 — Future Applications ========== */
       .future-grid {
@@ -3344,10 +3184,8 @@
         animation: none !important;
       }
 
-      .s7p3-shimmer.visible {
-        animation: none;
-        background-position: 0% center;
-      }
+      .roi-card--return, .roi-stat--hero { animation: none !important; box-shadow: 0 0 20px rgba(201,169,110,0.1) !important; }
+      .roi-chart-bar { transition: none !important; }
 
       .pricing-badge {
         animation: none;
@@ -4059,155 +3897,156 @@
         </div>
       </div>
 
-      <!-- Part 3: Compounding Value -->
+      <!-- Part A: Investment Comparison -->
       <div class="s7p3-divider reveal"></div>
       <p class="s7p3-sublabel reveal">The Bigger Picture</p>
       <h3 class="s7p3-subheadline reveal">This isn&rsquo;t a $25K decision. It&rsquo;s a multi-million dollar one.</h3>
 
-      <div class="s7p3-table-card reveal-scale">
-        <table class="s7p3-table">
-          <thead>
-            <tr>
-              <th></th>
-              <th>Year 1</th>
-              <th>Year 2</th>
-              <th>Year 3</th>
-              <th>Year 4</th>
-              <th>Year 5</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><span class="s7p3-row-label">Hours Reclaimed</span></td>
-              <td>93 hrs<span class="s7p3-cell-sub">(Henry)</span></td>
-              <td>180 hrs<span class="s7p3-cell-sub">(+Meeting Prep)</span></td>
-              <td>220 hrs<span class="s7p3-cell-sub">(+Follow-ups)</span></td>
-              <td>260 hrs<span class="s7p3-cell-sub">(+Compliance)</span></td>
-              <td>300 hrs<span class="s7p3-cell-sub">(+Portal App)</span></td>
-            </tr>
-            <tr>
-              <td><span class="s7p3-row-label">Labor Savings</span></td>
-              <td>$7,500</td>
-              <td>$13,500</td>
-              <td>$16,500</td>
-              <td>$19,500</td>
-              <td>$22,500</td>
-            </tr>
-            <tr>
-              <td>
-                <span class="s7p3-row-label">New Clients Won</span>
-                <span class="s7p3-row-sublabel">(from redirected time)</span>
-              </td>
-              <td>3</td>
-              <td>5</td>
-              <td>7</td>
-              <td>8</td>
-              <td>10</td>
-            </tr>
-            <tr>
-              <td><span class="s7p3-row-label">New AUM Acquired</span></td>
-              <td>$1.5M</td>
-              <td>$2.5M</td>
-              <td>$3.5M</td>
-              <td>$4M</td>
-              <td>$5M</td>
-            </tr>
-            <tr>
-              <td>
-                <span class="s7p3-row-label">New Annual Revenue</span>
-                <span class="s7p3-row-sublabel">(1% AUM fee)</span>
-              </td>
-              <td>$15,000</td>
-              <td>$25,000</td>
-              <td>$35,000</td>
-              <td>$40,000</td>
-              <td>$50,000</td>
-            </tr>
-            <tr class="s7p3-row-highlight">
-              <td><span class="s7p3-row-label">Cumulative Revenue</span></td>
-              <td>$15,000</td>
-              <td>$55,000</td>
-              <td>$125,000</td>
-              <td>$205,000</td>
-              <td>$305,000</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <!-- Punchline Stats -->
-      <div class="s7p3-stats stagger-children">
-        <div class="s7p3-stat stagger-child">
-          <div class="s7p3-stat-number s7p3-stat-number--teal" data-countup data-target="305000" data-prefix="$" data-suffix="+">&mdash;</div>
-          <p class="s7p3-stat-desc">in cumulative new revenue over 5 years</p>
-          <p class="s7p3-stat-note">From presentations alone: $75K. With full platform: $305K+</p>
+      <div class="roi-compare reveal">
+        <div class="roi-card roi-card--cost">
+          <div class="roi-card-label">Your Investment</div>
+          <div class="roi-card-number">$25,000 &ndash; $35,000</div>
+          <div class="roi-card-freq">one time</div>
+          <div class="roi-card-line"></div>
+          <div class="roi-card-note">That&rsquo;s less than the cost of one junior analyst for one month.</div>
         </div>
-
-        <div class="s7p3-stat stagger-child">
-          <div class="s7p3-stat-number s7p3-stat-number--gold s7p3-shimmer reveal">$16.5M</div>
-          <p class="s7p3-stat-desc">in new assets under management</p>
-          <p class="s7p3-stat-note">At 1% annual fee, generating recurring revenue indefinitely</p>
-        </div>
-
-        <div class="s7p3-stat stagger-child">
-          <div class="s7p3-stat-number s7p3-stat-number--teal">12x</div>
-          <p class="s7p3-stat-desc">return on a $25K investment within 5 years</p>
-          <p class="s7p3-stat-note">Conservative estimate &mdash; excludes retention value and practice valuation impact</p>
+        <div class="roi-arrow">&rarr;</div>
+        <div class="roi-card roi-card--return">
+          <div class="roi-card-label">Projected 5-Year Value</div>
+          <div class="roi-card-number" data-countup data-target="305000" data-prefix="$" data-from="25000">&mdash;</div>
+          <div class="roi-card-freq">in cumulative new revenue</div>
+          <div class="roi-card-line"></div>
+          <div class="roi-card-note">Not including client retention value, referrals, or practice valuation impact.</div>
         </div>
       </div>
 
-      <!-- Part 4: The Argument -->
-      <div class="value-argument">
+      <!-- Part B: Growth Visualization -->
+      <div class="roi-chart-card reveal-scale">
+        <div class="roi-chart-header">How the value compounds</div>
+        <div class="roi-chart-note">Based on conservative estimates</div>
 
-        <!-- Left Column: Beyond the Numbers -->
-        <div class="value-argument-text">
-          <div class="section-label">BEYOND THE NUMBERS</div>
-          <p class="reveal-left">These projections are conservative. They don&rsquo;t account for client retention &mdash; the clients who stay because your team has more time to actually know them. They don&rsquo;t account for referrals &mdash; the new business that comes from clients who feel genuinely cared for. And they don&rsquo;t account for practice valuation.</p>
-          <p class="reveal-left reveal-delay-1">Wealth management firms typically sell at 2&ndash;3x annual revenue. Every $100,000 in recurring revenue you add increases your practice value by $200,000&ndash;$300,000. The intelligence layer isn&rsquo;t just an operational tool &mdash; it&rsquo;s a direct multiplier on the long-term value of Crew Wealth Management.</p>
-          <p class="reveal-left reveal-delay-2">In five years, the question won&rsquo;t be whether this investment was worth it. It&rsquo;ll be how much sooner you wish you&rsquo;d started.</p>
-        </div>
-
-        <!-- Right Column: What 93 Hours Becomes -->
-        <div class="value-timeline-col reveal-right">
-          <div class="value-timeline-label">WHAT 93 HOURS BECOMES</div>
-          <div class="value-timeline stagger-children">
-            <div class="value-milestone stagger-child">
-              <div class="value-milestone-card">
-                <div class="value-milestone-year">Year 1</div>
-                <div class="value-milestone-hours">93 hours</div>
-                <div class="value-milestone-outcome">3 new client relationships</div>
+        <div class="roi-chart-rows" id="roi-chart">
+          <!-- Year 1 -->
+          <div class="roi-chart-row">
+            <div class="roi-chart-year">Year 1</div>
+            <div class="roi-chart-track">
+              <div class="roi-chart-bar" data-roi-width="5%" style="transition-delay: 0s;">
+                <div class="roi-seg-henry" style="flex: 15;"></div>
               </div>
             </div>
-            <div class="value-milestone stagger-child">
-              <div class="value-milestone-card">
-                <div class="value-milestone-year">Year 2</div>
-                <div class="value-milestone-hours">180 hours</div>
-                <div class="value-milestone-outcome">5 new clients + deeper existing relationships</div>
-              </div>
-            </div>
-            <div class="value-milestone stagger-child">
-              <div class="value-milestone-card">
-                <div class="value-milestone-year">Year 3</div>
-                <div class="value-milestone-hours">220 hours</div>
-                <div class="value-milestone-outcome">7 new clients + quarterly check-ins for all</div>
-              </div>
-            </div>
-            <div class="value-milestone stagger-child">
-              <div class="value-milestone-card">
-                <div class="value-milestone-year">Year 5</div>
-                <div class="value-milestone-hours">300 hours</div>
-                <div class="value-milestone-outcome">10 new clients/year + fully leveraged team</div>
-              </div>
-            </div>
+            <div class="roi-chart-total" data-countup data-target="15000" data-prefix="$">&mdash;</div>
           </div>
+          <div class="roi-chart-legend"><span>Henry: $15K</span></div>
+
+          <!-- Year 2 -->
+          <div class="roi-chart-row">
+            <div class="roi-chart-year">Year 2</div>
+            <div class="roi-chart-track">
+              <div class="roi-chart-bar" data-roi-width="18%" style="transition-delay: 0.6s;">
+                <div class="roi-seg-henry" style="flex: 30;"></div>
+                <div class="roi-seg-meeting" style="flex: 25;"></div>
+              </div>
+            </div>
+            <div class="roi-chart-total" data-countup data-target="55000" data-prefix="$">&mdash;</div>
+          </div>
+          <div class="roi-chart-legend"><span>Henry: $30K</span> <span class="roi-legend-new">+Meeting Prep: $25K</span></div>
+
+          <!-- Year 3 -->
+          <div class="roi-chart-row">
+            <div class="roi-chart-year">Year 3</div>
+            <div class="roi-chart-track">
+              <div class="roi-chart-bar" data-roi-width="41%" style="transition-delay: 1.2s;">
+                <div class="roi-seg-henry" style="flex: 45;"></div>
+                <div class="roi-seg-meeting" style="flex: 50;"></div>
+                <div class="roi-seg-followup" style="flex: 30;"></div>
+              </div>
+            </div>
+            <div class="roi-chart-total" data-countup data-target="125000" data-prefix="$">&mdash;</div>
+          </div>
+          <div class="roi-chart-legend"><span>Henry: $45K</span> <span>Meeting Prep: $50K</span> <span class="roi-legend-new">+Follow-ups: $30K</span></div>
+
+          <!-- Year 4 -->
+          <div class="roi-chart-row">
+            <div class="roi-chart-year">Year 4</div>
+            <div class="roi-chart-track">
+              <div class="roi-chart-bar" data-roi-width="67%" style="transition-delay: 1.8s;">
+                <div class="roi-seg-henry" style="flex: 60;"></div>
+                <div class="roi-seg-meeting" style="flex: 75;"></div>
+                <div class="roi-seg-followup" style="flex: 45;"></div>
+                <div class="roi-seg-compliance" style="flex: 25;"></div>
+              </div>
+            </div>
+            <div class="roi-chart-total" data-countup data-target="205000" data-prefix="$">&mdash;</div>
+          </div>
+          <div class="roi-chart-legend"><span>Henry: $60K</span> <span>Meeting Prep: $75K</span> <span>Follow-ups: $45K</span> <span class="roi-legend-new">+Compliance: $25K</span></div>
+
+          <!-- Year 5 -->
+          <div class="roi-chart-row">
+            <div class="roi-chart-year">Year 5</div>
+            <div class="roi-chart-track">
+              <div class="roi-chart-bar" data-roi-width="100%" style="transition-delay: 2.4s;">
+                <div class="roi-seg-henry" style="flex: 75;"></div>
+                <div class="roi-seg-meeting" style="flex: 100;"></div>
+                <div class="roi-seg-followup" style="flex: 55;"></div>
+                <div class="roi-seg-compliance" style="flex: 40;"></div>
+                <div class="roi-seg-portal" style="flex: 35;"></div>
+              </div>
+            </div>
+            <div class="roi-chart-total" data-countup data-target="305000" data-prefix="$">&mdash;</div>
+          </div>
+          <div class="roi-chart-legend"><span>Henry: $75K</span> <span>Meeting Prep: $100K</span> <span>Follow-ups: $55K</span> <span>Compliance: $40K</span> <span class="roi-legend-new">+Portal: $35K</span></div>
         </div>
 
+        <p class="roi-chart-insight">Each new application adds capacity. The revenue from that capacity compounds every year.</p>
       </div>
 
-      <!-- Part 5: Bottom-Line Callout Bar -->
+      <!-- Part C: Headline Numbers -->
+      <div class="roi-stats stagger-children">
+        <div class="roi-stat stagger-child">
+          <div class="roi-stat-trend"></div>
+          <div class="roi-stat-number roi-stat-number--teal" data-countup data-target="305000" data-prefix="$" data-suffix="+">&mdash;</div>
+          <div class="roi-stat-label">cumulative new revenue over 5 years</div>
+          <div class="roi-stat-note">From presentations alone: $75K. With full platform: $305K+</div>
+        </div>
+
+        <div class="roi-stat roi-stat--hero stagger-child">
+          <div class="roi-stat-trend"></div>
+          <div class="roi-stat-number roi-stat-number--gold" data-countup data-target="16500000" data-prefix="$" data-divisor="1000000" data-decimal="1" data-unit="M">&mdash;</div>
+          <div class="roi-stat-label">in new assets under management</div>
+          <div class="roi-stat-sublabel">generating $165,000+ in annual recurring fees</div>
+          <div class="roi-stat-note">At 1% annual fee, growing every year</div>
+        </div>
+
+        <div class="roi-stat stagger-child">
+          <div class="roi-stat-bars">
+            <span style="height: 8px;"></span><span style="height: 10px;"></span><span style="height: 9px;"></span>
+            <span style="height: 12px;"></span><span style="height: 11px;"></span><span style="height: 14px;"></span>
+            <span style="height: 13px;"></span><span style="height: 16px;"></span><span style="height: 15px;"></span>
+            <span style="height: 18px;"></span><span style="height: 20px;"></span><span style="height: 24px;"></span>
+          </div>
+          <div class="roi-stat-number roi-stat-number--teal">12X</div>
+          <div class="roi-stat-label">return on investment within 5 years</div>
+          <div class="roi-stat-note">Excluding retention value and practice valuation</div>
+        </div>
+      </div>
+
+      <!-- Part D: Practice Valuation -->
+      <div class="roi-valuation reveal">
+        <div class="roi-valuation-text">
+          <div class="roi-valuation-headline">What this means for your practice valuation</div>
+          <p class="roi-valuation-body">Wealth management firms typically sell at 2&ndash;3&times; annual revenue. Every $100,000 in new recurring revenue increases your practice value by $200,000&ndash;$300,000. The intelligence layer isn&rsquo;t an expense on your P&amp;L &mdash; it&rsquo;s a direct multiplier on the value of Crew Wealth Management.</p>
+        </div>
+        <div class="roi-valuation-stat">
+          <div class="roi-valuation-pre">Up to</div>
+          <div class="roi-valuation-number" data-countup data-target="500000" data-prefix="+$">&mdash;</div>
+          <div class="roi-valuation-post">added practice value</div>
+        </div>
+      </div>
+
+      <!-- Part E: Closing Callout -->
       <div class="value-callout-bar reveal-scale">
-        <p class="value-callout-main">The intelligence layer pays for itself in months. Everything after that compounds.</p>
-        <p class="value-callout-sub">A $25,000&ndash;$35,000 investment against $305,000+ in projected five-year value.</p>
+        <p class="value-callout-main">The question isn&rsquo;t whether this is worth $25,000. It&rsquo;s what it costs you to wait another year.</p>
+        <p class="value-callout-sub">Every month without the intelligence layer is another month of $75/hour talent doing $15/hour work.</p>
       </div>
 
     </div>
@@ -4362,27 +4201,9 @@
           </div>
         </div>
 
-        <!-- Card 10: Voice Instructions -->
-        <div class="future-card future-card--gold stagger-child" onclick="this.classList.toggle('expanded')">
-          <div class="future-card-header">
-            <span class="future-card-icon">&#127908;</span>
-            <span class="future-card-title">Voice Instructions</span>
-            <div class="future-card-badges">
-              <span class="future-card-badge future-card-badge--gold">Phase 3</span>
-            </div>
-          </div>
-          <div class="future-card-body">
-            <p class="future-card-desc">Dictate changes from your phone: &lsquo;Hey Henry, update the Henderson deck with Q3 numbers.&rsquo;</p>
-            <p class="future-card-value">Update a deck from the car between client meetings</p>
-          </div>
-        </div>
 
       </div>
 
-      <div class="future-pricing">
-        <p>Phase 2 applications: ~$3,000&ndash;$5,000 each</p>
-        <p>Phase 3 applications: ~$5,000&ndash;$8,000 each</p>
-      </div>
 
       <div class="future-quote reveal-scale">
         <span class="future-quote-mark">&ldquo;</span>
@@ -4674,25 +4495,36 @@
       reveals.forEach(el => revealObserver.observe(el));
 
       // ---- Count-up animation for stat numbers ----
-      const countElements = document.querySelectorAll('[data-countup]');
+      const countElements = document.querySelectorAll('[data-countup]:not(#roi-chart [data-countup])');
 
       function animateCount(el) {
         const target = parseInt(el.dataset.target, 10);
+        const from = parseInt(el.dataset.from || '0', 10);
         const prefix = el.dataset.prefix || '';
         const suffix = el.dataset.suffix || '';
-        const duration = 1800;
+        const unit = el.dataset.unit || '';
+        const divisor = parseFloat(el.dataset.divisor) || 0;
+        const decimal = parseInt(el.dataset.decimal || '0', 10);
+        const duration = el.dataset.from ? 3000 : 1800;
         const startTime = performance.now();
 
         function easeOutCubic(t) {
           return 1 - Math.pow(1 - t, 3);
         }
 
+        function formatNum(n) {
+          if (divisor > 0) {
+            return prefix + (n / divisor).toFixed(decimal) + unit + suffix;
+          }
+          return prefix + n.toLocaleString() + suffix;
+        }
+
         function update(now) {
           const elapsed = now - startTime;
           const progress = Math.min(elapsed / duration, 1);
           const eased = easeOutCubic(progress);
-          const current = Math.round(target * eased);
-          el.textContent = prefix + current.toLocaleString() + suffix;
+          const current = Math.round(from + (target - from) * eased);
+          el.textContent = formatNum(current);
           if (progress < 1) {
             requestAnimationFrame(update);
           }
@@ -4711,6 +4543,27 @@
       }, { threshold: 0.5 });
 
       countElements.forEach(el => countObserver.observe(el));
+
+      // ---- ROI bar chart sequential growth animation ----
+      const roiChart = document.getElementById('roi-chart');
+      if (roiChart) {
+        const bars = roiChart.querySelectorAll('.roi-chart-bar');
+        const chartObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              bars.forEach(bar => {
+                bar.style.width = bar.dataset.roiWidth;
+              });
+              // Trigger count-ups for totals inside chart
+              roiChart.querySelectorAll('[data-countup]').forEach((el, i) => {
+                setTimeout(() => animateCount(el), i * 600);
+              });
+              chartObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.2 });
+        chartObserver.observe(roiChart);
+      }
 
       // ---- Smooth scroll for anchor links ----
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
