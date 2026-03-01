@@ -430,38 +430,31 @@
     .systems-cluster {
       position: relative;
       width: 100%;
-      max-width: 400px;
-      height: 360px;
+      max-width: 380px;
+    }
+
+    .systems-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      position: relative;
     }
 
     .system-card {
-      position: absolute;
-      padding: 10px 16px;
+      padding: 14px 18px;
       background: #fff;
       border: 1px solid var(--border);
-      border-radius: 8px;
-      font-size: 12px;
+      border-radius: 10px;
+      font-size: 13px;
       font-weight: 500;
       color: var(--text);
-      white-space: nowrap;
+      text-align: center;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      z-index: 2;
     }
 
-    .system-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-    }
-
-    /* Card Positions — structured scatter (3 rows, 2 cols offset) */
-    .system-card:nth-child(1) { top: 8%;  left: 8%; }
-    .system-card:nth-child(2) { top: 4%;  left: 58%; }
-    .system-card:nth-child(3) { top: 35%; left: 42%; }
-    .system-card:nth-child(4) { top: 38%; left: 2%; }
-    .system-card:nth-child(5) { top: 64%; left: 12%; }
-    .system-card:nth-child(6) { top: 68%; left: 55%; }
-
-    /* SVG connection lines */
+    /* SVG disconnection lines — sit behind the cards */
     .systems-lines {
       position: absolute;
       top: 0;
@@ -469,18 +462,16 @@
       width: 100%;
       height: 100%;
       pointer-events: none;
+      z-index: 1;
     }
 
     /* Systems Caption */
     .systems-caption {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
       text-align: center;
       font-size: 12px;
       color: var(--text-muted);
       font-style: italic;
+      margin-top: 20px;
     }
 
     /* Full-Width Stat Bar */
@@ -2853,16 +2844,19 @@
         font-size: 24px;
       }
 
-      /* Systems cluster scales down */
+      /* Systems cluster */
       .systems-cluster {
-        height: 280px;
         max-width: 320px;
         margin: 0 auto;
       }
 
       .system-card {
         font-size: 11px;
-        padding: 8px 12px;
+        padding: 10px 12px;
+      }
+
+      .systems-grid {
+        gap: 12px;
       }
 
       /* Stat bar stacks vertically */
@@ -3438,32 +3432,46 @@
         <!-- Right Column — Disconnected Systems Visual -->
         <div class="challenge-right">
           <div class="systems-cluster reveal-scale reveal-delay-2">
-            <!-- System cards — scattered positioning via CSS nth-child -->
-            <div class="system-card">Portfolio Data</div>
-            <div class="system-card">Client Keynotes</div>
-            <div class="system-card">Tax Documents</div>
-            <div class="system-card">Meeting Notes</div>
-            <div class="system-card">Compliance</div>
-            <div class="system-card">CRM</div>
+            <div class="systems-grid">
+              <div class="system-card">Portfolio Data</div>
+              <div class="system-card">Client Keynotes</div>
+              <div class="system-card">Tax Documents</div>
+              <div class="system-card">Meeting Notes</div>
+              <div class="system-card">Compliance</div>
+              <div class="system-card">CRM</div>
 
-            <!-- SVG dashed lines connecting card pairs -->
-            <svg class="systems-lines" viewBox="0 0 400 360" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <!-- Portfolio Data → Client Keynotes -->
-              <line x1="120" y1="48" x2="260" y2="34" stroke="rgba(180,100,100,0.18)" stroke-width="1.5" stroke-dasharray="6 5"/>
-              <!-- Portfolio Data → Meeting Notes (below-left) -->
-              <line x1="80" y1="58" x2="60" y2="155" stroke="rgba(180,100,100,0.18)" stroke-width="1.5" stroke-dasharray="6 5"/>
-              <!-- Client Keynotes → Tax Documents -->
-              <line x1="290" y1="44" x2="230" y2="140" stroke="rgba(180,100,100,0.18)" stroke-width="1.5" stroke-dasharray="6 5"/>
-              <!-- Meeting Notes → Compliance -->
-              <line x1="60" y1="165" x2="200" y2="148" stroke="rgba(180,100,100,0.18)" stroke-width="1.5" stroke-dasharray="6 5"/>
-              <!-- Compliance → CRM -->
-              <line x1="110" y1="250" x2="250" y2="262" stroke="rgba(180,100,100,0.18)" stroke-width="1.5" stroke-dasharray="6 5"/>
-              <!-- Tax Documents → CRM -->
-              <line x1="230" y1="155" x2="260" y2="258" stroke="rgba(180,100,100,0.18)" stroke-width="1.5" stroke-dasharray="6 5"/>
-              <!-- Meeting Notes → Compliance (diagonal) -->
-              <line x1="50" y1="170" x2="85" y2="248" stroke="rgba(180,100,100,0.18)" stroke-width="1.5" stroke-dasharray="6 5"/>
-            </svg>
-
+              <!-- SVG broken connection lines between grid cells -->
+              <svg class="systems-lines" viewBox="0 0 380 230" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Row 1: horizontal gap between Portfolio Data ↔ Client Keynotes -->
+                <line x1="145" y1="28" x2="175" y2="28" stroke="rgba(180,100,100,0.25)" stroke-width="1.5" stroke-dasharray="4 4"/>
+                <circle cx="160" cy="28" r="4" fill="none" stroke="rgba(180,100,100,0.3)" stroke-width="1"/>
+                <!-- Row 1→2: vertical left (Portfolio Data → Tax Documents) -->
+                <line x1="75" y1="50" x2="75" y2="70" stroke="rgba(180,100,100,0.2)" stroke-width="1.5" stroke-dasharray="4 4"/>
+                <line x1="73" y1="68" x2="77" y2="72" stroke="rgba(180,100,100,0.3)" stroke-width="1.5"/>
+                <line x1="77" y1="68" x2="73" y2="72" stroke="rgba(180,100,100,0.3)" stroke-width="1.5"/>
+                <!-- Row 1→2: vertical right (Client Keynotes → Meeting Notes) -->
+                <line x1="295" y1="50" x2="295" y2="70" stroke="rgba(180,100,100,0.2)" stroke-width="1.5" stroke-dasharray="4 4"/>
+                <circle cx="295" cy="63" r="4" fill="none" stroke="rgba(180,100,100,0.3)" stroke-width="1"/>
+                <!-- Row 2: horizontal gap between Tax Documents ↔ Meeting Notes -->
+                <line x1="145" y1="105" x2="175" y2="105" stroke="rgba(180,100,100,0.25)" stroke-width="1.5" stroke-dasharray="4 4"/>
+                <line x1="158" y1="103" x2="162" y2="107" stroke="rgba(180,100,100,0.3)" stroke-width="1.5"/>
+                <line x1="162" y1="103" x2="158" y2="107" stroke="rgba(180,100,100,0.3)" stroke-width="1.5"/>
+                <!-- Row 2→3: vertical left (Tax Documents → Compliance) -->
+                <line x1="75" y1="127" x2="75" y2="148" stroke="rgba(180,100,100,0.2)" stroke-width="1.5" stroke-dasharray="4 4"/>
+                <circle cx="75" cy="140" r="4" fill="none" stroke="rgba(180,100,100,0.3)" stroke-width="1"/>
+                <!-- Row 2→3: vertical right (Meeting Notes → CRM) -->
+                <line x1="295" y1="127" x2="295" y2="148" stroke="rgba(180,100,100,0.2)" stroke-width="1.5" stroke-dasharray="4 4"/>
+                <line x1="293" y1="146" x2="297" y2="150" stroke="rgba(180,100,100,0.3)" stroke-width="1.5"/>
+                <line x1="297" y1="146" x2="293" y2="150" stroke="rgba(180,100,100,0.3)" stroke-width="1.5"/>
+                <!-- Row 3: horizontal gap between Compliance ↔ CRM -->
+                <line x1="145" y1="182" x2="175" y2="182" stroke="rgba(180,100,100,0.25)" stroke-width="1.5" stroke-dasharray="4 4"/>
+                <circle cx="160" cy="182" r="4" fill="none" stroke="rgba(180,100,100,0.3)" stroke-width="1"/>
+                <!-- Diagonal: Portfolio Data ↔ Meeting Notes -->
+                <line x1="140" y1="42" x2="230" y2="86" stroke="rgba(180,100,100,0.12)" stroke-width="1" stroke-dasharray="3 5"/>
+                <!-- Diagonal: Client Keynotes ↔ Tax Documents -->
+                <line x1="230" y1="42" x2="140" y2="86" stroke="rgba(180,100,100,0.12)" stroke-width="1" stroke-dasharray="3 5"/>
+              </svg>
+            </div>
             <div class="systems-caption">Today: disconnected systems, manual processes</div>
           </div>
         </div>
