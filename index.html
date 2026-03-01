@@ -476,7 +476,7 @@
     .challenge-layout {
       display: flex;
       gap: 64px;
-      align-items: flex-start;
+      align-items: center;
     }
 
     .challenge-left {
@@ -488,6 +488,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      padding-left: 24px;
     }
 
     /* Challenge Typography */
@@ -667,6 +668,16 @@
     .arch-diagram {
       max-width: 860px;
       margin: 64px auto 0;
+    }
+
+    .arch-section-label {
+      font-family: var(--font-sans);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,0.3);
+      text-align: center;
+      margin-bottom: 12px;
     }
 
     .arch-row {
@@ -3234,6 +3245,9 @@
       <!-- Architecture Diagram -->
       <div class="arch-diagram reveal-scale reveal-delay-3">
 
+        <!-- Label — Inputs -->
+        <div class="arch-section-label">Your Data Sources</div>
+
         <!-- Top Row — Data Sources -->
         <div class="arch-row stagger-children">
           <div class="arch-card stagger-child">
@@ -3284,6 +3298,9 @@
           <div class="arch-line"></div>
           <div class="arch-line"></div>
         </div>
+
+        <!-- Label — Outputs -->
+        <div class="arch-section-label">Powered Applications</div>
 
         <!-- Bottom Row — Application Cards -->
         <div class="arch-row stagger-children">
