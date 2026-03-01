@@ -430,29 +430,45 @@
     .systems-cluster {
       position: relative;
       width: 100%;
-      max-width: 380px;
+      max-width: 400px;
+      height: 320px;
     }
 
-    .systems-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
+    .systems-scatter {
       position: relative;
+      width: 100%;
+      height: 100%;
     }
 
     .system-card {
-      padding: 14px 18px;
+      position: absolute;
+      padding: 11px 16px;
       background: #fff;
       border: 1px solid var(--border);
-      border-radius: 10px;
-      font-size: 13px;
+      border-radius: 8px;
+      font-size: 12.5px;
       font-weight: 500;
       color: var(--text);
       text-align: center;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-      position: relative;
       z-index: 2;
+      white-space: nowrap;
+      border-left: 2px solid var(--border);
     }
+
+    .system-card:nth-child(1) { border-left-color: rgba(91,155,173,0.5); }
+    .system-card:nth-child(2) { border-left-color: rgba(91,155,173,0.35); transform: rotate(1deg); }
+    .system-card:nth-child(3) { border-left-color: rgba(91,155,173,0.5); transform: rotate(-1.5deg); }
+    .system-card:nth-child(4) { border-left-color: rgba(160,140,120,0.4); }
+    .system-card:nth-child(5) { border-left-color: rgba(91,155,173,0.35); transform: rotate(1deg); }
+    .system-card:nth-child(6) { border-left-color: rgba(160,140,120,0.4); transform: rotate(-1deg); }
+
+    .system-card.sc-portfolio   { top: 5%;  left: 3%; }
+    .system-card.sc-keynotes    { top: 8%;  left: 58%; }
+    .system-card.sc-tax         { top: 38%; left: 45%; }
+    .system-card.sc-meetings    { top: 42%; left: 3%; }
+    .system-card.sc-compliance  { top: 72%; left: 8%; }
+    .system-card.sc-crm         { top: 70%; left: 60%; }
 
     /* SVG disconnection lines — sit behind the cards */
     .systems-lines {
@@ -471,7 +487,7 @@
       font-size: 12px;
       color: var(--text-muted);
       font-style: italic;
-      margin-top: 20px;
+      margin-top: 12px;
     }
 
     /* Full-Width Stat Bar */
@@ -2844,19 +2860,20 @@
         font-size: 24px;
       }
 
-      /* Systems cluster */
+      /* Systems cluster — mobile: scale down the scattered layout */
       .systems-cluster {
-        max-width: 320px;
+        max-width: 300px;
+        height: 260px;
         margin: 0 auto;
       }
 
       .system-card {
         font-size: 11px;
-        padding: 10px 12px;
+        padding: 9px 12px;
       }
 
-      .systems-grid {
-        gap: 12px;
+      .systems-lines {
+        display: none;
       }
 
       /* Stat bar stacks vertically */
@@ -3432,44 +3449,33 @@
         <!-- Right Column — Disconnected Systems Visual -->
         <div class="challenge-right">
           <div class="systems-cluster reveal-scale reveal-delay-2">
-            <div class="systems-grid">
-              <div class="system-card">Portfolio Data</div>
-              <div class="system-card">Client Keynotes</div>
-              <div class="system-card">Tax Documents</div>
-              <div class="system-card">Meeting Notes</div>
-              <div class="system-card">Compliance</div>
-              <div class="system-card">CRM</div>
+            <div class="systems-scatter">
+              <div class="system-card sc-portfolio">Portfolio Data</div>
+              <div class="system-card sc-keynotes">Client Keynotes</div>
+              <div class="system-card sc-tax">Tax Documents</div>
+              <div class="system-card sc-meetings">Meeting Notes</div>
+              <div class="system-card sc-compliance">Compliance</div>
+              <div class="system-card sc-crm">CRM</div>
 
-              <!-- SVG broken connection lines between grid cells -->
-              <svg class="systems-lines" viewBox="0 0 380 230" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <!-- Row 1: horizontal gap between Portfolio Data ↔ Client Keynotes -->
-                <line x1="145" y1="28" x2="175" y2="28" stroke="rgba(180,100,100,0.25)" stroke-width="1.5" stroke-dasharray="4 4"/>
-                <circle cx="160" cy="28" r="4" fill="none" stroke="rgba(180,100,100,0.3)" stroke-width="1"/>
-                <!-- Row 1→2: vertical left (Portfolio Data → Tax Documents) -->
-                <line x1="75" y1="50" x2="75" y2="70" stroke="rgba(180,100,100,0.2)" stroke-width="1.5" stroke-dasharray="4 4"/>
-                <line x1="73" y1="68" x2="77" y2="72" stroke="rgba(180,100,100,0.3)" stroke-width="1.5"/>
-                <line x1="77" y1="68" x2="73" y2="72" stroke="rgba(180,100,100,0.3)" stroke-width="1.5"/>
-                <!-- Row 1→2: vertical right (Client Keynotes → Meeting Notes) -->
-                <line x1="295" y1="50" x2="295" y2="70" stroke="rgba(180,100,100,0.2)" stroke-width="1.5" stroke-dasharray="4 4"/>
-                <circle cx="295" cy="63" r="4" fill="none" stroke="rgba(180,100,100,0.3)" stroke-width="1"/>
-                <!-- Row 2: horizontal gap between Tax Documents ↔ Meeting Notes -->
-                <line x1="145" y1="105" x2="175" y2="105" stroke="rgba(180,100,100,0.25)" stroke-width="1.5" stroke-dasharray="4 4"/>
-                <line x1="158" y1="103" x2="162" y2="107" stroke="rgba(180,100,100,0.3)" stroke-width="1.5"/>
-                <line x1="162" y1="103" x2="158" y2="107" stroke="rgba(180,100,100,0.3)" stroke-width="1.5"/>
-                <!-- Row 2→3: vertical left (Tax Documents → Compliance) -->
-                <line x1="75" y1="127" x2="75" y2="148" stroke="rgba(180,100,100,0.2)" stroke-width="1.5" stroke-dasharray="4 4"/>
-                <circle cx="75" cy="140" r="4" fill="none" stroke="rgba(180,100,100,0.3)" stroke-width="1"/>
-                <!-- Row 2→3: vertical right (Meeting Notes → CRM) -->
-                <line x1="295" y1="127" x2="295" y2="148" stroke="rgba(180,100,100,0.2)" stroke-width="1.5" stroke-dasharray="4 4"/>
-                <line x1="293" y1="146" x2="297" y2="150" stroke="rgba(180,100,100,0.3)" stroke-width="1.5"/>
-                <line x1="297" y1="146" x2="293" y2="150" stroke="rgba(180,100,100,0.3)" stroke-width="1.5"/>
-                <!-- Row 3: horizontal gap between Compliance ↔ CRM -->
-                <line x1="145" y1="182" x2="175" y2="182" stroke="rgba(180,100,100,0.25)" stroke-width="1.5" stroke-dasharray="4 4"/>
-                <circle cx="160" cy="182" r="4" fill="none" stroke="rgba(180,100,100,0.3)" stroke-width="1"/>
-                <!-- Diagonal: Portfolio Data ↔ Meeting Notes -->
-                <line x1="140" y1="42" x2="230" y2="86" stroke="rgba(180,100,100,0.12)" stroke-width="1" stroke-dasharray="3 5"/>
-                <!-- Diagonal: Client Keynotes ↔ Tax Documents -->
-                <line x1="230" y1="42" x2="140" y2="86" stroke="rgba(180,100,100,0.12)" stroke-width="1" stroke-dasharray="3 5"/>
+              <!-- SVG — only 4 partial connection lines, most cards isolated -->
+              <svg class="systems-lines" viewBox="0 0 400 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- 1. Portfolio Data → Client Keynotes (horizontal-ish, top) -->
+                <line x1="110" y1="28" x2="232" y2="38" stroke="rgba(91,155,173,0.2)" stroke-width="1.5" stroke-dasharray="5 4"/>
+
+                <!-- 2. Client Keynotes → Tax Documents (diagonal down-left) -->
+                <line x1="270" y1="50" x2="220" y2="128" stroke="rgba(91,155,173,0.2)" stroke-width="1.5" stroke-dasharray="5 4"/>
+
+                <!-- 3. Portfolio Data → Meeting Notes (vertical down-left) -->
+                <line x1="50" y1="40" x2="42" y2="138" stroke="rgba(91,155,173,0.2)" stroke-width="1.5" stroke-dasharray="5 4"/>
+                <!-- small × break marker midway -->
+                <line x1="44" y1="87" x2="48" y2="91" stroke="rgba(91,155,173,0.3)" stroke-width="1.2"/>
+                <line x1="48" y1="87" x2="44" y2="91" stroke="rgba(91,155,173,0.3)" stroke-width="1.2"/>
+
+                <!-- 4. Compliance → CRM (horizontal-ish, bottom) — with gap break -->
+                <line x1="90" y1="243" x2="175" y2="238" stroke="rgba(91,155,173,0.2)" stroke-width="1.5" stroke-dasharray="5 4"/>
+                <!-- gap: small open circle showing broken connection -->
+                <circle cx="195" cy="237" r="3.5" fill="none" stroke="rgba(91,155,173,0.28)" stroke-width="1.2"/>
+                <line x1="215" y1="236" x2="240" y2="234" stroke="rgba(91,155,173,0.2)" stroke-width="1.5" stroke-dasharray="5 4"/>
               </svg>
             </div>
             <div class="systems-caption">Today: disconnected systems, manual processes</div>
