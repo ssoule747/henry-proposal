@@ -171,6 +171,81 @@
 
 
     /* ------------------------------------------------------------
+       4b. Page Tracker Nav
+       ------------------------------------------------------------ */
+
+    .page-tracker {
+      position: fixed;
+      right: 28px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      pointer-events: none;
+    }
+    .page-tracker.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .page-tracker-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 0;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .page-tracker-label {
+      font-family: var(--font-sans);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      opacity: 0;
+      transform: translateX(6px);
+      transition: opacity 0.25s ease, transform 0.25s ease, color 0.3s ease;
+      white-space: nowrap;
+    }
+    .page-tracker-item:hover .page-tracker-label,
+    .page-tracker-item.active .page-tracker-label {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .page-tracker-item.active .page-tracker-label {
+      color: var(--gold);
+    }
+
+    .page-tracker-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--border);
+      flex-shrink: 0;
+      transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .page-tracker-item.active .page-tracker-dot {
+      background: var(--gold);
+      transform: scale(1.5);
+      box-shadow: 0 0 8px rgba(201,169,110,0.4);
+    }
+    .page-tracker-item:hover .page-tracker-dot {
+      background: var(--teal);
+      transform: scale(1.3);
+    }
+    .page-tracker-item.active:hover .page-tracker-dot {
+      background: var(--gold);
+      transform: scale(1.5);
+    }
+
+    /* ------------------------------------------------------------
        5. SECTION 1: HERO
        ------------------------------------------------------------ */
 
@@ -2440,6 +2515,9 @@
        ------------------------------------------------------------ */
 
     @media (max-width: 768px) {
+      /* ========== Page Tracker — hide on mobile ========== */
+      .page-tracker { display: none; }
+
       /* ========== iOS Foundation Fixes ========== */
       body {
         -webkit-text-size-adjust: 100%;
@@ -2989,6 +3067,7 @@
 
     /* ── Print Stylesheet ── */
     @media print {
+      .page-tracker { display: none !important; }
       body::before { display: none !important; }
       *, *::before, *::after {
         animation: none !important;
@@ -3017,10 +3096,23 @@
 </head>
 <body>
 
+  <!-- Page Tracker Nav -->
+  <nav class="page-tracker" id="page-tracker">
+    <a class="page-tracker-item active" data-track="hero"><span class="page-tracker-label">Intro</span><span class="page-tracker-dot"></span></a>
+    <a class="page-tracker-item" data-track="challenge"><span class="page-tracker-label">Challenge</span><span class="page-tracker-dot"></span></a>
+    <a class="page-tracker-item" data-track="intelligence-layer"><span class="page-tracker-label">Vision</span><span class="page-tracker-dot"></span></a>
+    <a class="page-tracker-item" data-track="how-it-works"><span class="page-tracker-label">How It Works</span><span class="page-tracker-dot"></span></a>
+    <a class="page-tracker-item" data-track="the-value"><span class="page-tracker-label">Value</span><span class="page-tracker-dot"></span></a>
+    <a class="page-tracker-item" data-track="future-apps"><span class="page-tracker-label">Roadmap</span><span class="page-tracker-dot"></span></a>
+    <a class="page-tracker-item" data-track="technical"><span class="page-tracker-label">Architecture</span><span class="page-tracker-dot"></span></a>
+    <a class="page-tracker-item" data-track="investment"><span class="page-tracker-label">Investment</span><span class="page-tracker-dot"></span></a>
+    <a class="page-tracker-item" data-track="next-steps"><span class="page-tracker-label">Next Steps</span><span class="page-tracker-dot"></span></a>
+  </nav>
+
   <!-- ============================
        SECTION 1: HERO
        ============================ -->
-  <section class="hero">
+  <section class="hero" id="hero">
     <nav class="hero-nav">
       <img src="crew-wealth-logo.svg" alt="Crew Wealth Management" class="hero-nav-logo">
       <span class="hero-nav-text">Prepared Exclusively for Crew Wealth Management</span>
@@ -4180,6 +4272,63 @@
           }
         });
       });
+
+      // ---- Page Tracker ----
+      const tracker = document.getElementById('page-tracker');
+      if (tracker) {
+        const items = tracker.querySelectorAll('.page-tracker-item');
+        const sectionIds = Array.from(items).map(item => item.dataset.track);
+        const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+
+        // Show tracker after scrolling past hero
+        function updateTrackerVisibility() {
+          if (window.scrollY > window.innerHeight * 0.5) {
+            tracker.classList.add('visible');
+          } else {
+            tracker.classList.remove('visible');
+          }
+        }
+
+        // Update active dot based on scroll position
+        function updateActiveSection() {
+          const scrollPos = window.scrollY + window.innerHeight * 0.35;
+          let activeIdx = 0;
+          sections.forEach((section, i) => {
+            if (section.offsetTop <= scrollPos) {
+              activeIdx = i;
+            }
+          });
+          items.forEach((item, i) => {
+            item.classList.toggle('active', i === activeIdx);
+          });
+        }
+
+        // Click to scroll
+        items.forEach(item => {
+          item.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.getElementById(this.dataset.track);
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          });
+        });
+
+        let ticking = false;
+        window.addEventListener('scroll', function() {
+          if (!ticking) {
+            requestAnimationFrame(function() {
+              updateTrackerVisibility();
+              updateActiveSection();
+              ticking = false;
+            });
+            ticking = true;
+          }
+        });
+
+        updateTrackerVisibility();
+        updateActiveSection();
+      }
     });
   </script>
 
