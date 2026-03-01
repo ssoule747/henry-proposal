@@ -1399,181 +1399,6 @@
 
 
     /* ------------------------------------------------------------
-       10. SECTION 6: WHAT'S INCLUDED
-       ------------------------------------------------------------ */
-
-    .scope-cards {
-      display: flex;
-      gap: 24px;
-      align-items: stretch;
-      margin-top: 48px;
-    }
-
-    .scope-card {
-      flex: 1;
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 36px 32px;
-      position: relative;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-    .scope-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-    }
-
-    .scope-card--teal {
-      border-top: 3px solid var(--teal);
-    }
-
-    .scope-card--gold {
-      border-top: 3px solid var(--gold);
-    }
-
-    .scope-tier-badge {
-      display: inline-block;
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      border-radius: 20px;
-      padding: 4px 12px;
-      font-family: var(--font-sans);
-      font-weight: 600;
-    }
-
-    .scope-tier-badge--teal {
-      color: var(--teal);
-      background: rgba(91, 155, 173, 0.08);
-      border: 1px solid rgba(91, 155, 173, 0.15);
-    }
-
-    .scope-tier-badge--gold {
-      color: var(--gold);
-      background: rgba(201, 169, 110, 0.12);
-      border: 1px solid rgba(201, 169, 110, 0.25);
-    }
-
-    .scope-recommended-badge {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      font-size: 9px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--gold);
-      background: rgba(201, 169, 110, 0.12);
-      border: 1px solid rgba(201, 169, 110, 0.25);
-      border-radius: 20px;
-      padding: 4px 12px;
-      font-family: var(--font-sans);
-      font-weight: 600;
-    }
-
-    .scope-card-title {
-      font-family: var(--font-serif);
-      font-size: 22px;
-      color: var(--text);
-      margin-top: 16px;
-      margin-bottom: 8px;
-    }
-
-    .scope-card-subtitle {
-      font-size: 14px;
-      color: var(--text-muted);
-      margin-bottom: 28px;
-      line-height: 1.5;
-    }
-
-    .scope-includes-note {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--teal);
-      margin-bottom: 20px;
-    }
-
-    .scope-includes-note span {
-      margin-right: 6px;
-    }
-
-    .scope-deliverables {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .scope-deliverable {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      padding: 16px 0;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-      border-radius: 6px;
-      transition: background 0.25s ease;
-    }
-
-    .scope-deliverable:last-child {
-      border-bottom: none;
-    }
-
-    .scope-deliverable:hover {
-      background: rgba(0, 0, 0, 0.01);
-    }
-
-    .scope-check {
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    .scope-check--teal {
-      background: var(--teal);
-    }
-
-    .scope-check--gold {
-      background: var(--gold);
-    }
-
-    .scope-check svg {
-      width: 12px;
-      height: 12px;
-    }
-
-    .scope-deliverable-content {
-      flex: 1;
-    }
-
-    .scope-deliverable-title {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text);
-      line-height: 1.4;
-    }
-
-    .scope-deliverable-desc {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-top: 4px;
-      line-height: 1.55;
-    }
-
-    .scope-bottom-note {
-      font-size: 13px;
-      font-style: italic;
-      color: var(--text-muted);
-      max-width: 500px;
-      margin: 40px auto 0;
-      text-align: center;
-      line-height: 1.6;
-    }
-
-
-    /* ------------------------------------------------------------
        11. SECTION 7: THE VALUE
        ------------------------------------------------------------ */
 
@@ -2625,8 +2450,6 @@
       /* ========== Kill ALL :hover states on mobile ========== */
       .system-card:hover,
       .future-card:hover,
-      .scope-deliverable:hover,
-      .scope-card:hover,
       .impact-card:hover,
       .roi-card:hover,
       .roi-stat:hover,
@@ -2913,19 +2736,6 @@
         margin: 40px auto;
       }
 
-      /* ========== Section 6 — What's Included ========== */
-      .scope-cards {
-        flex-direction: column-reverse;
-      }
-
-      .scope-card {
-        padding: 24px 20px;
-      }
-
-      #whats-included h2 {
-        font-size: 26px !important;
-      }
-
       /* ========== Section 7 — The Value ========== */
       .value-headline {
         font-size: 24px;
@@ -3191,7 +3001,7 @@
       .section-dark *, .hero * {
         color: #1a1a1a !important;
       }
-      .pricing-card, .impact-card, .scope-card,
+      .pricing-card, .impact-card,
       .tech-card, .future-card {
         page-break-inside: avoid;
         box-shadow: none !important;
@@ -3610,180 +3420,6 @@
     </div>
   </section>
 
-  <!-- ============================
-       SECTION 6: WHAT'S INCLUDED
-       ============================ -->
-  <section id="whats-included" class="section-alt">
-    <div class="container">
-      <div class="reveal" style="text-align: center;">
-        <p class="section-label">WHAT&rsquo;S INCLUDED</p>
-        <h2 style="font-family: var(--font-serif); font-size: 32px; font-weight: 600; color: var(--text); margin-bottom: 16px;">Two options. Both include the foundation.</h2>
-        <p style="font-size: 15px; color: var(--text-muted); max-width: 600px; margin: 0 auto; line-height: 1.7;">Every tier includes the intelligence layer platform &mdash; the difference is how deeply it connects to your existing systems.</p>
-      </div>
-
-      <div class="scope-cards">
-        <!-- Tier 1 Card -->
-        <div class="scope-card scope-card--teal reveal-scale">
-          <span class="scope-tier-badge scope-tier-badge--teal">TIER 1</span>
-          <h3 class="scope-card-title">Foundation + Henry</h3>
-          <p class="scope-card-subtitle">The platform and your first AI application.</p>
-
-          <ul class="scope-deliverables">
-            <li class="scope-deliverable">
-              <div class="scope-check scope-check--teal">
-                <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              <div class="scope-deliverable-content">
-                <div class="scope-deliverable-title">Mac Mini Configuration</div>
-                <div class="scope-deliverable-desc">Your Mac Mini set up as a private AI hub &mdash; secured, optimized, ready to run.</div>
-              </div>
-            </li>
-            <li class="scope-deliverable">
-              <div class="scope-check scope-check--teal">
-                <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              <div class="scope-deliverable-content">
-                <div class="scope-deliverable-title">Intelligence Layer Platform</div>
-                <div class="scope-deliverable-desc">The core infrastructure that connects your data to AI. This is the foundation everything builds on.</div>
-              </div>
-            </li>
-            <li class="scope-deliverable">
-              <div class="scope-check scope-check--teal">
-                <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              <div class="scope-deliverable-content">
-                <div class="scope-deliverable-title">Henry Web Application</div>
-                <div class="scope-deliverable-desc">Full chat-based presentation assistant &mdash; upload, instruct, review, download.</div>
-              </div>
-            </li>
-            <li class="scope-deliverable">
-              <div class="scope-check scope-check--teal">
-                <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              <div class="scope-deliverable-content">
-                <div class="scope-deliverable-title">Keynote Integration</div>
-                <div class="scope-deliverable-desc">Native AppleScript integration that reads and writes .key files directly.</div>
-              </div>
-            </li>
-            <li class="scope-deliverable">
-              <div class="scope-check scope-check--teal">
-                <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              <div class="scope-deliverable-content">
-                <div class="scope-deliverable-title">Manual Data Input</div>
-                <div class="scope-deliverable-desc">Drag-and-drop upload for PDFs, CSVs, Excel files. Henry cross-references them automatically.</div>
-              </div>
-            </li>
-            <li class="scope-deliverable">
-              <div class="scope-check scope-check--teal">
-                <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              <div class="scope-deliverable-content">
-                <div class="scope-deliverable-title">Slide-Level Iteration</div>
-                <div class="scope-deliverable-desc">Chat about individual slides. Make targeted adjustments without touching the rest.</div>
-              </div>
-            </li>
-            <li class="scope-deliverable">
-              <div class="scope-check scope-check--teal">
-                <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              <div class="scope-deliverable-content">
-                <div class="scope-deliverable-title">Client-Ready Output</div>
-                <div class="scope-deliverable-desc">Download finished decks in native Keynote format.</div>
-              </div>
-            </li>
-            <li class="scope-deliverable">
-              <div class="scope-check scope-check--teal">
-                <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              <div class="scope-deliverable-content">
-                <div class="scope-deliverable-title">30 Days of Refinement</div>
-                <div class="scope-deliverable-desc">Post-launch support to fine-tune Henry to your workflow.</div>
-              </div>
-            </li>
-          </ul>
-        </div>
-
-        <!-- Tier 2 Card -->
-        <div class="scope-card scope-card--gold reveal-scale">
-          <span class="scope-recommended-badge">RECOMMENDED</span>
-          <span class="scope-tier-badge scope-tier-badge--gold">TIER 2</span>
-          <h3 class="scope-card-title">Intelligent Practice</h3>
-          <p class="scope-card-subtitle">Everything in Tier 1, plus deep integration and a second application.</p>
-
-          <p class="scope-includes-note"><span>&rarr;</span> Everything in Foundation + Henry, plus:</p>
-
-          <ul class="scope-deliverables">
-            <li class="scope-deliverable">
-              <div class="scope-check scope-check--gold">
-                <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              <div class="scope-deliverable-content">
-                <div class="scope-deliverable-title">Portfolio Software Integration</div>
-                <div class="scope-deliverable-desc">Direct connection to your portfolio management system (Orion, Black Diamond, Tamarac, etc.). Henry pulls the latest data automatically &mdash; no manual uploads.</div>
-              </div>
-            </li>
-            <li class="scope-deliverable">
-              <div class="scope-check scope-check--gold">
-                <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              <div class="scope-deliverable-content">
-                <div class="scope-deliverable-title">CRM Connection</div>
-                <div class="scope-deliverable-desc">Link to your client relationship manager. Henry knows who each client is, their history, and preferences.</div>
-              </div>
-            </li>
-            <li class="scope-deliverable">
-              <div class="scope-check scope-check--gold">
-                <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              <div class="scope-deliverable-content">
-                <div class="scope-deliverable-title">File System Integration</div>
-                <div class="scope-deliverable-desc">Henry accesses your shared drives and document storage. No more dragging files &mdash; he finds what he needs.</div>
-              </div>
-            </li>
-            <li class="scope-deliverable">
-              <div class="scope-check scope-check--gold">
-                <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              <div class="scope-deliverable-content">
-                <div class="scope-deliverable-title">Client Profiles</div>
-                <div class="scope-deliverable-desc">Henry remembers: &lsquo;The Hendersons prefer conservative language.&rsquo; &lsquo;The Chens want international detail.&rsquo; Every deck is personalized automatically.</div>
-              </div>
-            </li>
-            <li class="scope-deliverable">
-              <div class="scope-check scope-check--gold">
-                <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              <div class="scope-deliverable-content">
-                <div class="scope-deliverable-title">Meeting Prep Briefs</div>
-                <div class="scope-deliverable-desc">Your second application: Henry generates a one-page brief alongside each deck &mdash; key changes to highlight, client questions to expect, talking points.</div>
-              </div>
-            </li>
-            <li class="scope-deliverable">
-              <div class="scope-check scope-check--gold">
-                <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              <div class="scope-deliverable-content">
-                <div class="scope-deliverable-title">Smart Suggestions Engine</div>
-                <div class="scope-deliverable-desc">Henry pre-analyzes your data and proactively recommends updates before you ask.</div>
-              </div>
-            </li>
-            <li class="scope-deliverable">
-              <div class="scope-check scope-check--gold">
-                <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              <div class="scope-deliverable-content">
-                <div class="scope-deliverable-title">60 Days of Refinement</div>
-                <div class="scope-deliverable-desc">Extended support period to build out integrations and train the system on your workflows.</div>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <p class="scope-bottom-note reveal">Both tiers include the intelligence layer platform. Future applications plug into the same foundation &mdash; no rebuilding required.</p>
-    </div>
-  </section>
 
   <!-- ============================
        SECTION 7: THE VALUE
@@ -4417,7 +4053,7 @@
 
     <div class="next-steps-contact reveal reveal-delay-5">
       <div class="next-steps-contact-name">Stuart Soule</div>
-      <div class="next-steps-contact-detail">[PHONE]</div>
+      <div class="next-steps-contact-detail">(661) 425-4413</div>
       <div class="next-steps-contact-detail">stuart@pinecrestai.com</div>
     </div>
 
