@@ -337,6 +337,19 @@
     .hero-stagger-6 { animation-delay: 0.7s; }
     .hero-stagger-7 { animation-delay: 0.8s; }
 
+    /* Keep scroll indicator centered during and after hero animation */
+    .scroll-indicator.hero-stagger {
+      transform: translateX(-50%) translateY(16px);
+      animation: hero-enter-centered 0.6s ease forwards;
+    }
+
+    @keyframes hero-enter-centered {
+      to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+    }
+
 
     /* ------------------------------------------------------------
        6. SECTION 2: THE SYSTEMIC PROBLEM
